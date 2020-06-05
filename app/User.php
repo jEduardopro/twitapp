@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Twit;
 use Illuminate\Notifications\Notifiable;
@@ -42,6 +43,11 @@ class User extends Authenticatable
     public function twits()
     {
         return $this->hasMany(Twit::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 
     public function likes()
