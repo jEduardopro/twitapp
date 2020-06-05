@@ -1,0 +1,10 @@
+created:
+    - database/migrations/2020_06_05_202104_create_twits_table.php
+    - database/migrations/2020_06_05_202105_create_likes_table.php
+    - app/Models/Twit.php
+    - app/Models/Like.php
+    - database/factories/TwitFactory.php
+    - database/factories/LikeFactory.php
+models:
+    Twit: { content: longtext, user_id: id, relationships: { hasMany: Like } }
+    Like: { user_id: id, twit_id: id }
