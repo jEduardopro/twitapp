@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\Likes;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Twit extends Model
 {
+    use Likes;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -26,12 +29,6 @@ class Twit extends Model
         'id' => 'integer',
         'user_id' => 'integer',
     ];
-
-
-    public function likes()
-    {
-        return $this->hasMany(\App\Models\Like::class);
-    }
 
     public function user()
     {
