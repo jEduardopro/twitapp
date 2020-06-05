@@ -32,4 +32,9 @@ trait Likes
     {
         return $this->likes->count();
     }
+
+    public function users_to_like()
+    {
+        return $this->likes()->with('user')->get()->pluck('user');
+    }
 }
