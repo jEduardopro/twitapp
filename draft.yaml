@@ -1,0 +1,9 @@
+models:
+  Twit:
+    content: longtext
+    user_id: id
+    relationships:
+      hasMany: Like
+  Like:
+    user_id: id
+    twit_id: id
