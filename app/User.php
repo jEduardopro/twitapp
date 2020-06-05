@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Like;
 use App\Models\Twit;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -41,6 +42,11 @@ class User extends Authenticatable
     public function twits()
     {
         return $this->hasMany(Twit::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
     }
 
     // Relacion para seguidores
