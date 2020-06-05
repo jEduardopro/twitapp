@@ -14,7 +14,8 @@ class Like extends Model
      */
     protected $fillable = [
         'user_id',
-        'twit_id',
+        'likeable_id',
+        'likeable_type'
     ];
 
     /**
@@ -25,7 +26,6 @@ class Like extends Model
     protected $casts = [
         'id' => 'integer',
         'user_id' => 'integer',
-        'twit_id' => 'integer',
     ];
 
 
@@ -34,8 +34,8 @@ class Like extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function twit()
+    public function likeable()
     {
-        return $this->belongsTo(\App\Models\Twit::class);
+        return $this->morphTo();
     }
 }
