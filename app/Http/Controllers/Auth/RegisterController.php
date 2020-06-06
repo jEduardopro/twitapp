@@ -49,10 +49,21 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        if(filter_var($data['login'], FILTER_VALIDATE_EMAIL)){
+            $field_name = 'email';
+            $rules = ['required', 'string', 'email', 'max:255', 'unique:users'];
+        } else {
+            $field_name = 'phone';
+            $rules = ['required', 'numeric', 'digits_between:10,10', 'unique:users'];
+        };
+        $data[$field_name] = $data['login'];
+
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            $field_name => $rules,
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ], [
+            'phone.digits_between' => 'Introduce un numero de telefono valido'
         ]);
     }
 
@@ -64,9 +75,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $field_name = filter_var($data['login'], FILTER_VALIDATE_EMAIL) ? 'email' : 'phone';
         return User::create([
             'name' => $data['name'],
-            'email' => $data['email'],
+            $field_name => $data['login'],
             'password' => Hash::make($data['password']),
         ]);
     }
