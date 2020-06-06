@@ -1923,13 +1923,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -1941,9 +1934,6 @@ __webpack_require__.r(__webpack_exports__);
       email: '',
       password: ''
     };
-  },
-  mounted: function mounted() {
-    console.log('Component mounted.');
   },
   methods: {}
 });
@@ -1966,19 +1956,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   // pasamos el v-model del padre como un prop
   model: {
     prop: 'value',
     event: 'typing'
   },
-  props: [{
+  props: {
     value: String,
     inputType: {
       type: String,
       required: true
+    },
+    label: {
+      type: String,
+      required: true
     }
-  }]
+  },
+  data: function data() {
+    return {
+      focus_input: false
+    };
+  },
+  methods: {
+    onFocus: function onFocus(flag) {
+      this.focus_input = flag;
+    }
+  }
 });
 
 /***/ }),
@@ -37527,70 +37532,61 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-8" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header" }, [
-            _vm._v("Example Component")
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "card-body" },
-            [
-              _c("label", { attrs: { for: "" } }, [
-                _vm._v("Name " + _vm._s(_vm.name))
-              ]),
-              _vm._v(" "),
-              _c("input-component", {
-                attrs: { inputType: "text" },
-                model: {
-                  value: _vm.name,
-                  callback: function($$v) {
-                    _vm.name = $$v
-                  },
-                  expression: "name"
-                }
-              }),
-              _vm._v(" "),
-              _c("label", { attrs: { for: "" } }, [
-                _vm._v("Email " + _vm._s(_vm.email))
-              ]),
-              _vm._v(" "),
-              _c("input-component", {
-                attrs: { inputType: "email" },
-                model: {
-                  value: _vm.email,
-                  callback: function($$v) {
-                    _vm.email = $$v
-                  },
-                  expression: "email"
-                }
-              }),
-              _vm._v(" "),
-              _c("label", { attrs: { for: "" } }, [
-                _vm._v("Contraseña " + _vm._s(_vm.password))
-              ]),
-              _vm._v(" "),
-              _c("input-component", {
-                attrs: { inputType: "password" },
-                model: {
-                  value: _vm.password,
-                  callback: function($$v) {
-                    _vm.password = $$v
-                  },
-                  expression: "password"
-                }
-              })
-            ],
-            1
-          )
-        ])
-      ])
-    ])
+    _c(
+      "div",
+      { staticClass: "form-login" },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("h1", { staticClass: "text-center" }, [
+          _vm._v("Inicia sesión en TwitApp")
+        ]),
+        _vm._v(" "),
+        _c("input-component", {
+          attrs: { label: "Telefono, correo o usuario", inputType: "text" },
+          model: {
+            value: _vm.name,
+            callback: function($$v) {
+              _vm.name = $$v
+            },
+            expression: "name"
+          }
+        }),
+        _vm._v(" "),
+        _c("input-component", {
+          attrs: { label: "Contraseña", inputType: "password" },
+          model: {
+            value: _vm.password,
+            callback: function($$v) {
+              _vm.password = $$v
+            },
+            expression: "password"
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "button",
+          { staticClass: "btn btn-primary", attrs: { type: "button" } },
+          [_vm._v("Iniciar sesion")]
+        )
+      ],
+      1
+    )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "logo mb-4" }, [
+      _c("img", {
+        staticClass: "mx-auto",
+        attrs: { src: "images/twit-logo-b.png", alt: "" }
+      })
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -37612,18 +37608,33 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("input", {
-      staticClass: "form-control",
-      attrs: { type: _vm.inputType },
-      domProps: { value: _vm.value },
-      on: {
-        input: function($event) {
-          return _vm.$emit("typing", $event.target.value)
+  return _c(
+    "div",
+    { class: ["form-group input-custom", _vm.focus_input ? "focus-set" : ""] },
+    [
+      _c("label", {
+        staticClass: "m-0",
+        domProps: { textContent: _vm._s(_vm.label) }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control bg-transparent",
+        attrs: { type: _vm.inputType },
+        domProps: { value: _vm.value },
+        on: {
+          focus: function($event) {
+            return _vm.onFocus(true)
+          },
+          blur: function($event) {
+            return _vm.onFocus(false)
+          },
+          input: function($event) {
+            return _vm.$emit("typing", $event.target.value)
+          }
         }
-      }
-    })
-  ])
+      })
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

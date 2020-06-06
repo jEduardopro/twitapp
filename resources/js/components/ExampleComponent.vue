@@ -1,20 +1,13 @@
 <template>
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
-
-                    <div class="card-body">
-                        <label for="">Name {{name}}</label>
-                        <input-component v-model="name" :inputType="'text'"></input-component>
-                        <label for="">Email {{email}}</label>
-                        <input-component v-model="email" :inputType="'email'"></input-component>
-                        <label for="">Contraseña {{password}}</label>
-                        <input-component v-model="password" :inputType="'password'"></input-component>
-                    </div>
-                </div>
+        <div class="form-login">
+            <div class="logo mb-4">
+                <img src="images/twit-logo-b.png" class="mx-auto" alt="">
             </div>
+            <h1 class="text-center">Inicia sesión en TwitApp</h1>
+            <input-component v-model="name" :label="'Telefono, correo o usuario'" :inputType="'text'"></input-component>
+            <input-component v-model="password" :label="'Contraseña'" :inputType="'password'"></input-component>
+            <button type="button" class="btn btn-primary">Iniciar sesion</button>
         </div>
     </div>
 </template>
@@ -29,9 +22,6 @@
                 email:'',
                 password:'',
             }
-        },
-        mounted() {
-            console.log('Component mounted.')
         },
         methods: {},
     }

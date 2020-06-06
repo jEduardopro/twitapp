@@ -6,3 +6,20 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+// Components
+@import './components/input';
+// Views
+@import './views/login_register';
+
+body{
+    background: $white;
+    @include theme-page(true, $white, $black);
+    &.dark{
+        background: $dark-light;
+        @include theme-page(true, $dark-light, $white);
+    }
+    &.dark.accent-yellow{
+        background: $dark-light;
+        @include theme-page(true, $dark-light, $white, $accent-yellow);
+    }
+}
