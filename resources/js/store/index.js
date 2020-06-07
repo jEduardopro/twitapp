@@ -2,9 +2,12 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 Vue.use(Vuex);
 
+// import modules
+import modules from './modules/modules';
+
 const store = new Vuex.Store({
     state: {
-
+        errors: {}
     },
     getters: {
 
@@ -15,8 +18,7 @@ const store = new Vuex.Store({
     actions: {
 
     },
-    modules: {
+    modules
 
-    }
 });
 export default store;

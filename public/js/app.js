@@ -1908,7 +1908,14 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ModalRegister_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ModalRegister.vue */ "./resources/js/components/Auth/ModalRegister.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _ModalRegister_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ModalRegister.vue */ "./resources/js/components/Auth/ModalRegister.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -1945,10 +1952,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    ModalRegister: _ModalRegister_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    ModalRegister: _ModalRegister_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['errors'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('auth', ['form'])),
   methods: {}
 });
 
@@ -1963,6 +1972,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2013,7 +2029,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['form'],
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['errors'])),
+  data: function data() {
+    return {
+      useEmail: false
+    };
+  },
   methods: {
     minChar: function minChar(evt) {
       if (evt.target.value.length <= 49) {
@@ -38877,11 +38901,11 @@ var render = function() {
                   inputType: "text"
                 },
                 model: {
-                  value: _vm.input_login,
+                  value: _vm.form.input_login,
                   callback: function($$v) {
-                    _vm.input_login = $$v
+                    _vm.$set(_vm.form, "input_login", $$v)
                   },
-                  expression: "input_login"
+                  expression: "form.input_login"
                 }
               }),
               _vm._v(" "),
@@ -38928,11 +38952,11 @@ var render = function() {
               _c("base-input", {
                 attrs: { label: "Contraseña", inputType: "password" },
                 model: {
-                  value: _vm.password,
+                  value: _vm.form.password,
                   callback: function($$v) {
-                    _vm.password = $$v
+                    _vm.$set(_vm.form, "password", $$v)
                   },
-                  expression: "password"
+                  expression: "form.password"
                 }
               }),
               _vm._v(" "),
@@ -38951,12 +38975,12 @@ var render = function() {
             {
               class: [
                 "btn h49 twit-btn font-weight-bold btn-primary",
-                !_vm.input_login || !_vm.password ? "disabled" : ""
+                !_vm.form.input_login || !_vm.form.password ? "disabled" : ""
               ],
               attrs: { type: "button" },
               on: {
                 click: function($event) {
-                  _vm.input_login && _vm.password ? _vm.login() : null
+                  _vm.form.input_login && _vm.form.password ? _vm.login() : null
                 }
               }
             },
@@ -38975,7 +38999,7 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("modal-register")
+      _c("modal-register", { attrs: { form: _vm.form } })
     ],
     1
   )
@@ -39044,18 +39068,18 @@ var render = function() {
                     }
                   },
                   model: {
-                    value: _vm.name,
+                    value: _vm.form.name,
                     callback: function($$v) {
-                      _vm.name = $$v
+                      _vm.$set(_vm.form, "name", $$v)
                     },
-                    expression: "name"
+                    expression: "form.name"
                   }
                 }),
                 _vm._v(" "),
                 _c(
                   "span",
                   { staticClass: "w-100 d-block text-muted text-right" },
-                  [_vm._v(_vm._s(_vm.name.length) + "/50")]
+                  [_vm._v(_vm._s(_vm.form.name.length) + "/50")]
                 )
               ],
               1
@@ -39071,11 +39095,11 @@ var render = function() {
                     inputType: _vm.useEmail ? "email" : "text"
                   },
                   model: {
-                    value: _vm.input_login,
+                    value: _vm.form.input_login,
                     callback: function($$v) {
-                      _vm.input_login = $$v
+                      _vm.$set(_vm.form, "input_login", $$v)
                     },
-                    expression: "input_login"
+                    expression: "form.input_login"
                   }
                 }),
                 _vm._v(" "),
@@ -39111,7 +39135,8 @@ var render = function() {
                     attrs: { type: "button" },
                     on: {
                       click: function($event) {
-                        ;(_vm.useEmail = !_vm.useEmail), (_vm.input_login = "")
+                        ;(_vm.useEmail = !_vm.useEmail),
+                          (_vm.form.input_login = "")
                       }
                     }
                   },
@@ -39134,11 +39159,11 @@ var render = function() {
                 _c("base-input", {
                   attrs: { label: "Contraseña", inputType: "password" },
                   model: {
-                    value: _vm.password,
+                    value: _vm.form.password,
                     callback: function($$v) {
-                      _vm.password = $$v
+                      _vm.$set(_vm.form, "password", $$v)
                     },
-                    expression: "password"
+                    expression: "form.password"
                   }
                 }),
                 _vm._v(" "),
@@ -39162,11 +39187,11 @@ var render = function() {
                     inputType: "password"
                   },
                   model: {
-                    value: _vm.password_confirmation,
+                    value: _vm.form.password_confirmation,
                     callback: function($$v) {
-                      _vm.password_confirmation = $$v
+                      _vm.$set(_vm.form, "password_confirmation", $$v)
                     },
-                    expression: "password_confirmation"
+                    expression: "form.password_confirmation"
                   }
                 })
               ],
@@ -39178,20 +39203,20 @@ var render = function() {
               {
                 class: [
                   "btn twit-btn h49 font-weight-bold btn-primary",
-                  !_vm.name ||
-                  !_vm.input_login ||
-                  !_vm.password ||
-                  !_vm.password_confirmation
+                  !_vm.form.name ||
+                  !_vm.form.input_login ||
+                  !_vm.form.password ||
+                  !_vm.form.password_confirmation
                     ? "disabled"
                     : ""
                 ],
                 attrs: { type: "button" },
                 on: {
                   click: function($event) {
-                    _vm.name &&
-                    _vm.input_login &&
-                    _vm.password &&
-                    _vm.password_confirmation
+                    _vm.form.name &&
+                    _vm.form.input_login &&
+                    _vm.form.password &&
+                    _vm.form.password_confirmation
                       ? _vm.register()
                       : null
                   }
@@ -56091,17 +56116,68 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _modules_modules__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/modules */ "./resources/js/store/modules/modules.js");
 
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]); // import modules
+
+
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
-  state: {},
+  state: {
+    errors: {}
+  },
   getters: {},
   mutations: {},
   actions: {},
-  modules: {}
+  modules: _modules_modules__WEBPACK_IMPORTED_MODULE_2__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (store);
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/auth.js":
+/*!********************************************!*\
+  !*** ./resources/js/store/modules/auth.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
+  state: {
+    form: {
+      input_login: '',
+      name: '',
+      username: '',
+      email: '',
+      phone: '',
+      password: '',
+      password_confirmation: ''
+    }
+  },
+  getters: {},
+  mutations: {},
+  actions: {}
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/modules.js":
+/*!***********************************************!*\
+  !*** ./resources/js/store/modules/modules.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./auth */ "./resources/js/store/modules/auth.js");
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  auth: _auth__WEBPACK_IMPORTED_MODULE_0__["default"]
+});
 
 /***/ }),
 
