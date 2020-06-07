@@ -17,6 +17,7 @@ body{
              'Segoe UI', Roboto, 'Helvetica Neue',
              Ubuntu, Arial, sans-serif;
     background: $dark-light;
+    color: $white;
 }
 input, button{
     @include outline-none;

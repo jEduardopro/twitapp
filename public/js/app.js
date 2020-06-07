@@ -2127,13 +2127,54 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      csrf: $("meta[name='csrf-token']").attr('content')
+    };
+  },
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('auth', ['logout']))
+});
 
 /***/ }),
 
@@ -39368,7 +39409,79 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    Home\n")])
+  return _c("div", { staticClass: "container-fluid" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-12 col-md-10" }, [
+        _c("div", { staticClass: "row" }, [
+          _c(
+            "div",
+            { staticClass: "col-12 col-md-3 p-0" },
+            [
+              _c("BaseLogo"),
+              _vm._v(" "),
+              _c("ul", { staticClass: "menu" }, [
+                _c("a", { staticClass: "d-block", attrs: { href: "#" } }, [
+                  _vm._v("Inicio")
+                ]),
+                _vm._v(" "),
+                _c("a", { staticClass: "d-block", attrs: { href: "#" } }, [
+                  _vm._v("Notificaciones")
+                ]),
+                _vm._v(" "),
+                _c("a", { staticClass: "d-block", attrs: { href: "#" } }, [
+                  _vm._v("Perfil")
+                ]),
+                _vm._v(" "),
+                _c("a", { staticClass: "d-block", attrs: { href: "#" } }, [
+                  _vm._v("Jesus Eduardo")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "d-block",
+                    attrs: {
+                      href: "#",
+                      onclick:
+                        "event.preventDefault();\n                                            document.getElementById('logout-form').submit();"
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                            Cerrar sesion\n                        "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "form",
+                  {
+                    staticStyle: { display: "none" },
+                    attrs: {
+                      id: "logout-form",
+                      action: "logout",
+                      method: "POST"
+                    }
+                  },
+                  [
+                    _c("input", {
+                      attrs: { type: "hidden", name: "_token" },
+                      domProps: { value: _vm.csrf }
+                    })
+                  ]
+                )
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-12 col-md-9 p-0 border-left" }, [
+            _vm._v("\n                    Twits\n                ")
+          ])
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -56217,7 +56330,7 @@ __webpack_require__.r(__webpack_exports__);
         login: state.form.input_login,
         password: state.form.password
       }).then(function (res) {
-        console.log(res);
+        location.href = 'https://twitapp.dev/';
       })["catch"](function (err) {
         dispatch('catch_errors', err, {
           root: true
@@ -56234,7 +56347,7 @@ __webpack_require__.r(__webpack_exports__);
         password: state.form.password_register,
         password_confirmation: state.form.password_confirmation
       }).then(function (res) {
-        console.log(res);
+        location.href = 'https://twitapp.dev/';
       })["catch"](function (err) {
         dispatch('catch_errors', err, {
           root: true

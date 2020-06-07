@@ -22,7 +22,7 @@ export default {
                 password: state.form.password,
             })
             .then(res => {
-                console.log(res)
+                location.href = 'https://twitapp.dev/';
             })
             .catch(err => {
                 dispatch('catch_errors', err, {root: true});
@@ -36,11 +36,11 @@ export default {
                 password_confirmation: state.form.password_confirmation,
             })
             .then(res => {
-                console.log(res)
+                location.href = 'https://twitapp.dev/';
             })
             .catch(err => {
                 dispatch('catch_errors', err, {root: true});
             })
-        }
+        },
     }
 }
