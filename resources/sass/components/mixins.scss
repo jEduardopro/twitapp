@@ -1,0 +1,6 @@
+@mixin outline-none {
+    &:focus,&:active{
+        outline: none!important;
+        box-shadow: none!important;
+    }
+}

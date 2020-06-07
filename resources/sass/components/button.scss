@@ -1,0 +1,14 @@
+.btn{
+    width: 100%;
+    border-radius: 30px;
+    font-size: $fs-md;
+    @include outline-none;
+    &.disabled{
+        opacity: 0.5;
+        cursor: default;
+    }
+}
+
+.h49{
+    height: 49px;
+}

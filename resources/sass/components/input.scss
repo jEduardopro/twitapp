@@ -1,15 +1,15 @@
 .input-custom{
-    display: flex;
-    flex-basis: auto;
-    flex-direction: column;
-    flex-shrink: 0;
     box-sizing: border-box;
-    background: #F5F8FA;
-    border-bottom: 2px solid #657786;
-    label{color: #657786; padding: 0 10px;}
+    background: $dark-light-input;
+    border-bottom: 2px solid $gray;
+    label{
+        font-size: $fs-md;
+        color: $gray;
+        padding: 0 10px;
+    }
     &.focus-set{
-        border-color: #1DA1F2;
-        label{color: #1DA1F2;}
+        border-color: $blue;
+        label{color: $blue;}
     }
     input{
         height: auto;
@@ -19,11 +19,9 @@
         padding-right: 10px;
         padding-left: 10px;
         border: none;
-        font-size: 19px;
+        color: $white!important;
+        font-size: $fs-lg;
         line-height: 19px;
-        &:focus,&:active{
-            outline: none;
-            box-shadow: none;
-        }
+        @include outline-none;
     }
 }

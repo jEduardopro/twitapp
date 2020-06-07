@@ -6,20 +6,15 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+// Mixins
+@import './components/mixins';
 // Components
+@import './components/login_register';
 @import './components/input';
-// Views
-@import './views/login_register';
-
+@import './components/button';
 body{
-    background: $white;
-    @include theme-page(true, $white, $black);
-    &.dark{
-        background: $dark-light;
-        @include theme-page(true, $dark-light, $white);
-    }
-    &.dark.accent-yellow{
-        background: $dark-light;
-        @include theme-page(true, $dark-light, $white, $accent-yellow);
-    }
+    font-family: -apple-system, system-ui, BlinkMacSystemFont,
+             'Segoe UI', Roboto, 'Helvetica Neue',
+             Ubuntu, Arial, sans-serif;
+    background: $dark-light;
 }
