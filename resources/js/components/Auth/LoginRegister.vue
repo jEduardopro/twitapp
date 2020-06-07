@@ -1,10 +1,10 @@
 <template>
     <div class="container">
         <div class="form-login">
-            <logo-component></logo-component>
+            <BaseLogo/>
             <h1 class="text-center mb-4">Inicia sesión en TwitApp</h1>
             <div class="form-group">
-                <input-component v-model="input_login" :label="'Telefono, correo o usuario'" :inputType="'text'"></input-component>
+                <base-input v-model="input_login" :label="'Telefono, correo o usuario'" :inputType="'text'"></base-input>
                 <span v-if="errors.username || errors.email || errors.phone" class="invalid-feedback d-block">
                     <template v-if="errors.username">
                         {{errors.username[0]}}
@@ -18,7 +18,7 @@
                 </span>
             </div>
             <div class="form-group">
-                <input-component v-model="password" :label="'Contraseña'" :inputType="'password'"></input-component>
+                <base-input v-model="password" :label="'Contraseña'" :inputType="'password'"></base-input>
                 <span v-if="errors.password" v-text="errors.password[0]" class="invalid-feedback d-block"></span>
             </div>
 
@@ -29,43 +29,15 @@
             </button>
             <button data-toggle="modal" data-target="#exampleModal" class="w-100 btn btn-link d-block text-center mt-4">Registrate en TwitApp</button>
         </div>
-        <modal-register-component></modal-register-component>
+        <modal-register></modal-register>
     </div>
 </template>
 
 <script>
-    import InputComponent from '../InputComponent.vue';
-    import LogoComponent from '../LogoComponent.vue';
-    import ModalRegisterComponent from './ModalRegisterComponent.vue';
+    import ModalRegister from './ModalRegister.vue';
     export default {
-        components: {InputComponent, LogoComponent, ModalRegisterComponent},
-        data() {
-            return {
-                input_login:'',
-                email:'',
-                password:'',
-                errors: {}
-            }
-        },
+        components: {ModalRegister},
         methods: {
-            login(){
-                axios.post('login',{
-                    login: this.input_login,
-                    password: this.password,
-                })
-                .then(res => {
-                    console.log(res)
-                })
-                .catch(err => {
-                    if (err.response.data.errors) {
-                        this.errors = err.response.data.errors;
-                    }
-                    setTimeout(() => {
-                        this.errors = {};
-                    }, 3000);
-                    console.error(err);
-                })
-            }
         },
     }
 </script>

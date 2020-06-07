@@ -1,10 +1,10 @@
 <template>
-    <login-register-component></login-register-component>
+    <login-register></login-register>
 </template>
 
 <script>
-import LoginRegisterComponent from '../components/Auth/LoginRegisterComponent.vue'
+import LoginRegister from '../components/Auth/LoginRegister.vue'
 export default {
-    components: {LoginRegisterComponent}
+    components: {LoginRegister}
 }
 </script>
