@@ -18,3 +18,10 @@ body{
              Ubuntu, Arial, sans-serif;
     background: $dark-light;
 }
+input, button{
+    @include outline-none;
+}
+.modal-content{
+    background:$dark-light;
+    color: $white;
+}

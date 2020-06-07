@@ -1,8 +1,9 @@
-.btn{
+.twit-btn{
     width: 100%;
     border-radius: 30px;
     font-size: $fs-md;
-    @include outline-none;
+    background: $blue;
+    color: $white;
     &.disabled{
         opacity: 0.5;
         cursor: default;

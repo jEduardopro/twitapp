@@ -2,15 +2,12 @@
     width: 100%;
     max-width: 550px;
     margin: 0 auto;
-    h1{
-        font-size: $fs-xl;
-        font-weight: bold;
-        color: $white;
-    }
-    button{
-        background: $blue;
-        color: $white;
-    }
+}
+
+h1{
+    font-size: $fs-xl;
+    font-weight: bold;
+    color: $white;
 }
 
 .logo{

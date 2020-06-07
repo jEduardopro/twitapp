@@ -10934,14 +10934,9 @@ a.text-dark:focus {
   margin: 0 auto;
 }
 
-.form-login h1 {
+h1 {
   font-size: 23px;
   font-weight: bold;
-  color: #ffffff;
-}
-
-.form-login button {
-  background: #1DA1F2;
   color: #ffffff;
 }
 
@@ -10990,25 +10985,15 @@ a.text-dark:focus {
   line-height: 19px;
 }
 
-.input-custom input:focus,
-.input-custom input:active {
-  outline: none !important;
-  box-shadow: none !important;
-}
-
-.btn {
+.twit-btn {
   width: 100%;
   border-radius: 30px;
   font-size: 16px;
+  background: #1DA1F2;
+  color: #ffffff;
 }
 
-.btn:focus,
-.btn:active {
-  outline: none !important;
-  box-shadow: none !important;
-}
-
-.btn.disabled {
+.twit-btn.disabled {
   opacity: 0.5;
   cursor: default;
 }
@@ -11020,5 +11005,18 @@ a.text-dark:focus {
 body {
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, Arial, sans-serif;
   background: #15202b;
+}
+
+input:focus,
+input:active,
+button:focus,
+button:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.modal-content {
+  background: #15202b;
+  color: #ffffff;
 }
 

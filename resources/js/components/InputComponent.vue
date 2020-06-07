@@ -1,8 +1,8 @@
 <template>
     <!-- definimos le valor con el prop value mediante el v-model del padre -->
-    <div :class="['form-group input-custom', focus_input ? 'focus-set':'']">
+    <div :class="['input-custom', focus_input ? 'focus-set':'']">
         <label class="m-0" v-text="label"></label>
-        <input :type="inputType" @focus="onFocus(true)" @blur="onFocus(false)" v-bind:value="value" class="form-control bg-transparent" @input="$emit('typing', $event.target.value)"/>
+        <input :type="inputType" @focus="onFocus(true)" @blur="onFocus(false)" v-bind:value="value" class="form-control bg-transparent" @keypress="$emit('press',$event)" @input="$emit('typing', $event.target.value)"/>
     </div>
 </template>
 
