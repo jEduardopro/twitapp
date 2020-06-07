@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="form-login">
+        <div v-if="!isOpenRegister" class="form-login">
             <BaseLogo/>
             <h1 class="text-center mb-4">Inicia sesión en TwitApp</h1>
             <div class="form-group">
@@ -27,14 +27,14 @@
                 :class="['btn h49 twit-btn font-weight-bold btn-primary', (!form.input_login || !form.password) ? 'disabled':'']">
                     Iniciar sesíon
             </button>
-            <button data-toggle="modal" data-target="#modal_register" class="w-100 btn btn-link d-block text-center mt-4">Registrate en TwitApp</button>
+            <button @click="open_register" class="w-100 btn btn-link d-block text-center mt-4">Registrate en TwitApp</button>
         </div>
         <modal-register :form="form"></modal-register>
     </div>
 </template>
 
 <script>
-    import { mapState } from 'vuex';
+    import { mapState, mapActions } from 'vuex';
     import ModalRegister from './ModalRegister.vue';
     export default {
         components: {ModalRegister},
@@ -42,7 +42,26 @@
             ...mapState(['errors']),
             ...mapState('auth', ['form'])
         },
+        data() {
+            return {
+                isOpenRegister: false
+            }
+        },
         methods: {
+            ...mapActions('auth', ['login']),
+            open_register(){
+                this.isOpenRegister = true;
+                $("#modal_register").modal("show");
+            },
+            close_register(){
+                this.isOpenRegister = false;
+            }
+        },
+        mounted() {
+            let closeFn = this.close_register;
+            $('#modal_register').on('hidden.bs.modal', function (e) {
+                closeFn()
+            })
         },
     }
 </script>

@@ -1,13 +1,13 @@
 <template>
     <div class="modal" id="modal_register" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header p-1 border-0">
                     <h5 class="modal-title text-center w-100" id="exampleModalLabel">
                         <BaseLogo/>
                     </h5>
                 </div>
-                <div class="modal-body pb-5">
+                <div class="modal-body pt-0 pb-5">
                     <h1 class="mb-4">Crea tu cuenta</h1>
                     <div class="form-group">
                         <base-input v-model="form.name" @press="minChar($event)" :label="'Nombre'" :inputType="'text'"></base-input>
@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 export default {
     props: ['form'],
     computed: {
@@ -61,6 +61,7 @@ export default {
         }
     },
     methods: {
+        ...mapActions('auth', ['register']),
         minChar(evt){
             if (evt.target.value.length <= 49) {
                 return true;

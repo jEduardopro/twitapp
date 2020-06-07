@@ -1958,7 +1958,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     ModalRegister: _ModalRegister_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['errors'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('auth', ['form'])),
-  methods: {}
+  data: function data() {
+    return {
+      isOpenRegister: false
+    };
+  },
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('auth', ['login'])), {}, {
+    open_register: function open_register() {
+      this.isOpenRegister = true;
+      $("#modal_register").modal("show");
+    },
+    close_register: function close_register() {
+      this.isOpenRegister = false;
+    }
+  }),
+  mounted: function mounted() {
+    var closeFn = this.close_register;
+    $('#modal_register').on('hidden.bs.modal', function (e) {
+      closeFn();
+    });
+  }
 });
 
 /***/ }),
@@ -2038,7 +2057,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       useEmail: false
     };
   },
-  methods: {
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('auth', ['register'])), {}, {
     minChar: function minChar(evt) {
       if (evt.target.value.length <= 49) {
         return true;
@@ -2046,7 +2065,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         evt.preventDefault();
       }
     }
-  }
+  })
 });
 
 /***/ }),
@@ -38881,126 +38900,131 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _c(
-        "div",
-        { staticClass: "form-login" },
-        [
-          _c("BaseLogo"),
-          _vm._v(" "),
-          _c("h1", { staticClass: "text-center mb-4" }, [
-            _vm._v("Inicia sesión en TwitApp")
-          ]),
-          _vm._v(" "),
-          _c(
+      !_vm.isOpenRegister
+        ? _c(
             "div",
-            { staticClass: "form-group" },
+            { staticClass: "form-login" },
             [
-              _c("base-input", {
-                attrs: {
-                  label: "Telefono, correo o usuario",
-                  inputType: "text"
+              _c("BaseLogo"),
+              _vm._v(" "),
+              _c("h1", { staticClass: "text-center mb-4" }, [
+                _vm._v("Inicia sesión en TwitApp")
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group" },
+                [
+                  _c("base-input", {
+                    attrs: {
+                      label: "Telefono, correo o usuario",
+                      inputType: "text"
+                    },
+                    model: {
+                      value: _vm.form.input_login,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "input_login", $$v)
+                      },
+                      expression: "form.input_login"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.errors.username || _vm.errors.email || _vm.errors.phone
+                    ? _c(
+                        "span",
+                        { staticClass: "invalid-feedback d-block" },
+                        [
+                          _vm.errors.username
+                            ? [
+                                _vm._v(
+                                  "\n                    " +
+                                    _vm._s(_vm.errors.username[0]) +
+                                    "\n                "
+                                )
+                              ]
+                            : _vm.errors.email
+                            ? [
+                                _vm._v(
+                                  "\n                    " +
+                                    _vm._s(_vm.errors.email[0]) +
+                                    "\n                "
+                                )
+                              ]
+                            : [
+                                _vm._v(
+                                  "\n                    " +
+                                    _vm._s(_vm.errors.phone[0]) +
+                                    "\n                "
+                                )
+                              ]
+                        ],
+                        2
+                      )
+                    : _vm._e()
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group" },
+                [
+                  _c("base-input", {
+                    attrs: { label: "Contraseña", inputType: "password" },
+                    model: {
+                      value: _vm.form.password,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "password", $$v)
+                      },
+                      expression: "form.password"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.errors.password
+                    ? _c("span", {
+                        staticClass: "invalid-feedback d-block",
+                        domProps: {
+                          textContent: _vm._s(_vm.errors.password[0])
+                        }
+                      })
+                    : _vm._e()
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  class: [
+                    "btn h49 twit-btn font-weight-bold btn-primary",
+                    !_vm.form.input_login || !_vm.form.password
+                      ? "disabled"
+                      : ""
+                  ],
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      _vm.form.input_login && _vm.form.password
+                        ? _vm.login()
+                        : null
+                    }
+                  }
                 },
-                model: {
-                  value: _vm.form.input_login,
-                  callback: function($$v) {
-                    _vm.$set(_vm.form, "input_login", $$v)
-                  },
-                  expression: "form.input_login"
-                }
-              }),
+                [_vm._v("\n                Iniciar sesíon\n        ")]
+              ),
               _vm._v(" "),
-              _vm.errors.username || _vm.errors.email || _vm.errors.phone
-                ? _c(
-                    "span",
-                    { staticClass: "invalid-feedback d-block" },
-                    [
-                      _vm.errors.username
-                        ? [
-                            _vm._v(
-                              "\n                    " +
-                                _vm._s(_vm.errors.username[0]) +
-                                "\n                "
-                            )
-                          ]
-                        : _vm.errors.email
-                        ? [
-                            _vm._v(
-                              "\n                    " +
-                                _vm._s(_vm.errors.email[0]) +
-                                "\n                "
-                            )
-                          ]
-                        : [
-                            _vm._v(
-                              "\n                    " +
-                                _vm._s(_vm.errors.phone[0]) +
-                                "\n                "
-                            )
-                          ]
-                    ],
-                    2
-                  )
-                : _vm._e()
+              _c(
+                "button",
+                {
+                  staticClass: "w-100 btn btn-link d-block text-center mt-4",
+                  on: { click: _vm.open_register }
+                },
+                [_vm._v("Registrate en TwitApp")]
+              )
             ],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "form-group" },
-            [
-              _c("base-input", {
-                attrs: { label: "Contraseña", inputType: "password" },
-                model: {
-                  value: _vm.form.password,
-                  callback: function($$v) {
-                    _vm.$set(_vm.form, "password", $$v)
-                  },
-                  expression: "form.password"
-                }
-              }),
-              _vm._v(" "),
-              _vm.errors.password
-                ? _c("span", {
-                    staticClass: "invalid-feedback d-block",
-                    domProps: { textContent: _vm._s(_vm.errors.password[0]) }
-                  })
-                : _vm._e()
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              class: [
-                "btn h49 twit-btn font-weight-bold btn-primary",
-                !_vm.form.input_login || !_vm.form.password ? "disabled" : ""
-              ],
-              attrs: { type: "button" },
-              on: {
-                click: function($event) {
-                  _vm.form.input_login && _vm.form.password ? _vm.login() : null
-                }
-              }
-            },
-            [_vm._v("\n                Iniciar sesíon\n        ")]
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "w-100 btn btn-link d-block text-center mt-4",
-              attrs: {
-                "data-toggle": "modal",
-                "data-target": "#modal_register"
-              }
-            },
-            [_vm._v("Registrate en TwitApp")]
           )
-        ],
-        1
-      ),
+        : _vm._e(),
       _vm._v(" "),
       _c("modal-register", { attrs: { form: _vm.form } })
     ],
@@ -39042,9 +39066,9 @@ var render = function() {
       }
     },
     [
-      _c("div", { staticClass: "modal-dialog" }, [
+      _c("div", { staticClass: "modal-dialog modal-dialog-scrollable" }, [
         _c("div", { staticClass: "modal-content" }, [
-          _c("div", { staticClass: "modal-header" }, [
+          _c("div", { staticClass: "modal-header p-1 border-0" }, [
             _c(
               "h5",
               {
@@ -39056,7 +39080,7 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "modal-body pb-5" }, [
+          _c("div", { staticClass: "modal-body pt-0 pb-5" }, [
             _c("h1", { staticClass: "mb-4" }, [_vm._v("Crea tu cuenta")]),
             _vm._v(" "),
             _c(
@@ -56130,8 +56154,31 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     errors: {}
   },
   getters: {},
-  mutations: {},
-  actions: {},
+  mutations: {
+    SET_ERRORS: function SET_ERRORS(state, errors) {
+      state.errors = errors;
+    },
+    CLEAN_ERRORS: function CLEAN_ERRORS(state) {
+      setTimeout(function () {
+        state.errors = {};
+      }, 3000);
+    }
+  },
+  actions: {
+    catch_errors: function catch_errors(_ref, err) {
+      var state = _ref.state,
+          commit = _ref.commit;
+      var data = err.response.data;
+      var status = err.response.status;
+
+      switch (status) {
+        case 422:
+          commit('SET_ERRORS', data.errors);
+          commit('CLEAN_ERRORS');
+          break;
+      }
+    }
+  },
   modules: _modules_modules__WEBPACK_IMPORTED_MODULE_2__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (store);
@@ -56154,9 +56201,6 @@ __webpack_require__.r(__webpack_exports__);
       input_login: '',
       input_register: '',
       name: '',
-      username: '',
-      email: '',
-      phone: '',
       password: '',
       password_register: '',
       password_confirmation: ''
@@ -56164,7 +56208,40 @@ __webpack_require__.r(__webpack_exports__);
   },
   getters: {},
   mutations: {},
-  actions: {}
+  actions: {
+    login: function login(_ref) {
+      var state = _ref.state,
+          commit = _ref.commit,
+          dispatch = _ref.dispatch;
+      axios.post('login', {
+        login: state.form.input_login,
+        password: state.form.password
+      }).then(function (res) {
+        console.log(res);
+      })["catch"](function (err) {
+        dispatch('catch_errors', err, {
+          root: true
+        });
+      });
+    },
+    register: function register(_ref2) {
+      var state = _ref2.state,
+          commit = _ref2.commit,
+          dispatch = _ref2.dispatch;
+      axios.post('register', {
+        name: state.form.name,
+        login: state.form.input_register,
+        password: state.form.password_register,
+        password_confirmation: state.form.password_confirmation
+      }).then(function (res) {
+        console.log(res);
+      })["catch"](function (err) {
+        dispatch('catch_errors', err, {
+          root: true
+        });
+      });
+    }
+  }
 });
 
 /***/ }),
