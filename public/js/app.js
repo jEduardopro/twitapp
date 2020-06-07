@@ -38991,7 +38991,10 @@ var render = function() {
             "button",
             {
               staticClass: "w-100 btn btn-link d-block text-center mt-4",
-              attrs: { "data-toggle": "modal", "data-target": "#exampleModal" }
+              attrs: {
+                "data-toggle": "modal",
+                "data-target": "#modal_register"
+              }
             },
             [_vm._v("Registrate en TwitApp")]
           )
@@ -39031,7 +39034,7 @@ var render = function() {
     {
       staticClass: "modal",
       attrs: {
-        id: "exampleModal",
+        id: "modal_register",
         tabindex: "-1",
         role: "dialog",
         "aria-labelledby": "exampleModalLabel",
@@ -39095,11 +39098,11 @@ var render = function() {
                     inputType: _vm.useEmail ? "email" : "text"
                   },
                   model: {
-                    value: _vm.form.input_login,
+                    value: _vm.form.input_register,
                     callback: function($$v) {
-                      _vm.$set(_vm.form, "input_login", $$v)
+                      _vm.$set(_vm.form, "input_register", $$v)
                     },
-                    expression: "form.input_login"
+                    expression: "form.input_register"
                   }
                 }),
                 _vm._v(" "),
@@ -39136,7 +39139,7 @@ var render = function() {
                     on: {
                       click: function($event) {
                         ;(_vm.useEmail = !_vm.useEmail),
-                          (_vm.form.input_login = "")
+                          (_vm.form.input_register = "")
                       }
                     }
                   },
@@ -39159,11 +39162,11 @@ var render = function() {
                 _c("base-input", {
                   attrs: { label: "Contraseña", inputType: "password" },
                   model: {
-                    value: _vm.form.password,
+                    value: _vm.form.password_register,
                     callback: function($$v) {
-                      _vm.$set(_vm.form, "password", $$v)
+                      _vm.$set(_vm.form, "password_register", $$v)
                     },
-                    expression: "form.password"
+                    expression: "form.password_register"
                   }
                 }),
                 _vm._v(" "),
@@ -39204,8 +39207,8 @@ var render = function() {
                 class: [
                   "btn twit-btn h49 font-weight-bold btn-primary",
                   !_vm.form.name ||
-                  !_vm.form.input_login ||
-                  !_vm.form.password ||
+                  !_vm.form.input_register ||
+                  !_vm.form.password_register ||
                   !_vm.form.password_confirmation
                     ? "disabled"
                     : ""
@@ -39214,8 +39217,8 @@ var render = function() {
                 on: {
                   click: function($event) {
                     _vm.form.name &&
-                    _vm.form.input_login &&
-                    _vm.form.password &&
+                    _vm.form.input_register &&
+                    _vm.form.password_register &&
                     _vm.form.password_confirmation
                       ? _vm.register()
                       : null
@@ -56149,11 +56152,13 @@ __webpack_require__.r(__webpack_exports__);
   state: {
     form: {
       input_login: '',
+      input_register: '',
       name: '',
       username: '',
       email: '',
       phone: '',
       password: '',
+      password_register: '',
       password_confirmation: ''
     }
   },

@@ -27,7 +27,7 @@
                 :class="['btn h49 twit-btn font-weight-bold btn-primary', (!form.input_login || !form.password) ? 'disabled':'']">
                     Iniciar sesíon
             </button>
-            <button data-toggle="modal" data-target="#exampleModal" class="w-100 btn btn-link d-block text-center mt-4">Registrate en TwitApp</button>
+            <button data-toggle="modal" data-target="#modal_register" class="w-100 btn btn-link d-block text-center mt-4">Registrate en TwitApp</button>
         </div>
         <modal-register :form="form"></modal-register>
     </div>

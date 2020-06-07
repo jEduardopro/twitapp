@@ -1,5 +1,5 @@
 <template>
-    <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal" id="modal_register" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -15,7 +15,7 @@
                     </div>
 
                     <div class="form-group">
-                        <base-input v-model="form.input_login" :label="useEmail ? 'Correo':'Telefono'" :inputType="useEmail ? 'email':'text'"></base-input>
+                        <base-input v-model="form.input_register" :label="useEmail ? 'Correo':'Telefono'" :inputType="useEmail ? 'email':'text'"></base-input>
                         <span v-if="errors.email || errors.phone" class="invalid-feedback d-block">
                             <template v-if="errors.username">
                                 {{errors.username[0]}}
@@ -24,12 +24,12 @@
                                 {{errors.phone[0]}}
                             </template>
                         </span>
-                        <button type="button" @click="useEmail = !useEmail, form.input_login = ''" class="btn p-0 m-0 btn-link">
+                        <button type="button" @click="useEmail = !useEmail, form.input_register = ''" class="btn p-0 m-0 btn-link">
                             {{useEmail ? 'Usar Telefono':'Usar Correo'}}
                         </button>
                     </div>
                     <div class="form-group">
-                        <base-input v-model="form.password" :label="'Contraseña'" :inputType="'password'"></base-input>
+                        <base-input v-model="form.password_register" :label="'Contraseña'" :inputType="'password'"></base-input>
                         <span v-if="errors.password" v-text="errors.password[0]" class="invalid-feedback d-block"></span>
                     </div>
 
@@ -38,8 +38,8 @@
                     </div>
 
                     <button type="button"
-                        @click="(form.name && form.input_login && form.password && form.password_confirmation) ? register() : null"
-                        :class="['btn twit-btn h49 font-weight-bold btn-primary', (!form.name || !form.input_login || !form.password || !form.password_confirmation) ? 'disabled':'']">
+                        @click="(form.name && form.input_register && form.password_register && form.password_confirmation) ? register() : null"
+                        :class="['btn twit-btn h49 font-weight-bold btn-primary', (!form.name || !form.input_register || !form.password_register || !form.password_confirmation) ? 'disabled':'']">
                             Registrate
                     </button>
                 </div>
