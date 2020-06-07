@@ -6,7 +6,11 @@ Vue.component('login-register-component', require('./components/Auth/LoginRegist
 // Store vuex
 import store from './store/index';
 
+// Router
+import router from './routes/index';
+
 const app = new Vue({
     el: '#app',
-    store
+    store,
+    router
 });
