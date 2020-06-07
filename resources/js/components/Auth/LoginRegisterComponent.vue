@@ -34,8 +34,8 @@
 </template>
 
 <script>
-    import InputComponent from './InputComponent.vue';
-    import LogoComponent from './LogoComponent.vue';
+    import InputComponent from '../InputComponent.vue';
+    import LogoComponent from '../LogoComponent.vue';
     import ModalRegisterComponent from './ModalRegisterComponent.vue';
     export default {
         components: {InputComponent, LogoComponent, ModalRegisterComponent},

@@ -2,6 +2,6 @@
 
 @section('content')
 <div class="container">
-    <login-component></login-component>
+    <login-register-component></login-register-component>
 </div>
 @endsection
