@@ -22,6 +22,7 @@
                     <h1 class="text-center text-white mb-0">Bienvenido a TwitApp</h1>
                     <p class="text-muted p-0 m-0 text-center">Comienza a twittear sin limites.</p>
                 </div>
+                <router-view></router-view>
             </div>
         </div>
     </div>
