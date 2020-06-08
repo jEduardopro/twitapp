@@ -13,11 +13,14 @@
         padding: 0;
         display: flex;
         flex-direction: column;
-        justify-content: start;
+        justify-content: flex-start;
         a{
             color: $white;
             &.active{
                 color: $blue;
+            }
+            i{
+                font-size: $fs-xl;
             }
             div{
                 min-width: 0;

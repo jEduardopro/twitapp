@@ -23,7 +23,7 @@
             <router-link to="#" class="mb-4">
                 <div>
                     <i class="fas fa-user-circle"></i>
-                    <span class="ml-3 font-weight-bold">Jesus Eduardo</span>
+                    <span class="ml-3 font-weight-bold" v-text="user.name"></span>
                 </div>
             </router-link>
             <a href="#"
@@ -43,11 +43,15 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
     data() {
         return {
             csrf: $("meta[name='csrf-token']").attr('content')
         }
+    },
+    computed: {
+        ...mapState('user', ['user'])
     },
 }
 </script>

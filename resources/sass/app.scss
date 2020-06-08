@@ -13,6 +13,7 @@
 @import './components/input';
 @import './components/button';
 @import './components/menu';
+@import './components/twit-form';
 
 body{
     font-family: -apple-system, system-ui, BlinkMacSystemFont,
@@ -44,9 +45,16 @@ input, button{
 }
 .main{
     margin-left: 305px;
+    height: 100%;
+    position: absolute;
     .content{
         border-right: 1px solid $gray-light;
         margin-top: 30px;
+        height: 100%;
         width: 600px;
+        hr{
+            border-color: $gray-light;
+            border-width: 10px;
+        }
     }
 }

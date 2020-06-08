@@ -10986,7 +10986,7 @@ h1 {
 }
 
 .twit-btn {
-  width: 100%;
+  display: inline;
   border-radius: 30px;
   font-size: 16px;
   background: #1DA1F2;
@@ -11019,7 +11019,7 @@ h1 {
   padding: 0;
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .sidebar ul.menu a {
@@ -11028,6 +11028,10 @@ h1 {
 
 .sidebar ul.menu a.active {
   color: #1DA1F2;
+}
+
+.sidebar ul.menu a i {
+  font-size: 23px;
 }
 
 .sidebar ul.menu a div {
@@ -11047,6 +11051,52 @@ h1 {
 
 .sidebar ul.menu a:hover div {
   background: rgba(29, 161, 242, 0.1);
+}
+
+.twit-form {
+  display: flex;
+  flex-direction: row;
+  align-items: top;
+  justify-content: center;
+  vertical-align: middle;
+}
+
+.twit-form .content-twit {
+  width: 90%;
+}
+
+.twit-form .content-twit textarea {
+  width: 100%;
+  resize: none;
+  color: #ffffff;
+  font-size: 19px;
+  padding: 10px;
+}
+
+.twit-form .content-twit textarea:focus,
+.twit-form .content-twit textarea:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.twit-form .content-twit textarea::-moz-placeholder {
+  font-size: 19px;
+  color: #B8BDC5;
+}
+
+.twit-form .content-twit textarea:-ms-input-placeholder {
+  font-size: 19px;
+  color: #B8BDC5;
+}
+
+.twit-form .content-twit textarea::-ms-input-placeholder {
+  font-size: 19px;
+  color: #B8BDC5;
+}
+
+.twit-form .content-twit textarea::placeholder {
+  font-size: 19px;
+  color: #B8BDC5;
 }
 
 body {
@@ -11084,11 +11134,19 @@ button:active {
 
 .main {
   margin-left: 305px;
+  height: 100%;
+  position: absolute;
 }
 
 .main .content {
   border-right: 1px solid #38444D;
   margin-top: 30px;
+  height: 100%;
   width: 600px;
+}
+
+.main .content hr {
+  border-color: #38444D;
+  border-width: 10px;
 }
 

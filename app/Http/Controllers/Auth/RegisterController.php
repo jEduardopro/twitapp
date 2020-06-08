@@ -78,6 +78,7 @@ class RegisterController extends Controller
         $field_name = filter_var($data['login'], FILTER_VALIDATE_EMAIL) ? 'email' : 'phone';
         return User::create([
             'name' => $data['name'],
+            'username' => $data['name'].time(),
             $field_name => $data['login'],
             'password' => Hash::make($data['password']),
         ]);

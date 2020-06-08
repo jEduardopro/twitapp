@@ -24,7 +24,7 @@
 
             <button type="button"
                 @click="(form.input_login && form.password) ? login() : null"
-                :class="['btn h49 twit-btn font-weight-bold btn-primary', (!form.input_login || !form.password) ? 'disabled':'']">
+                :class="['btn h49 twit-btn btn-block font-weight-bold btn-primary', (!form.input_login || !form.password) ? 'disabled':'']">
                     Iniciar sesíon
             </button>
             <button @click="open_register" class="w-100 btn btn-link d-block text-center mt-4">Registrate en TwitApp</button>

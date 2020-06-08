@@ -1,0 +1,22 @@
+.twit-form{
+    display: flex;
+    flex-direction: row;
+    align-items: top;
+    justify-content: center;
+    vertical-align: middle;
+    .content-twit{
+        width: 90%;
+        textarea{
+            width: 100%;
+            resize: none;
+            color: $white;
+            font-size: $fs-lg;
+            padding: 10px;
+            @include outline-none;
+            &::placeholder{
+                font-size: $fs-lg;
+                color: $gray-secondary;
+            }
+        }
+    }
+}

@@ -39,7 +39,7 @@
 
                     <button type="button"
                         @click="(form.name && form.input_register && form.password_register && form.password_confirmation) ? register() : null"
-                        :class="['btn twit-btn h49 font-weight-bold btn-primary', (!form.name || !form.input_register || !form.password_register || !form.password_confirmation) ? 'disabled':'']">
+                        :class="['btn twit-btn btn-block h49 font-weight-bold btn-primary', (!form.name || !form.input_register || !form.password_register || !form.password_confirmation) ? 'disabled':'']">
                             Registrate
                     </button>
                 </div>
