@@ -11002,6 +11002,53 @@ h1 {
   height: 49px;
 }
 
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 320px;
+  height: 100%;
+  min-height: 100%;
+  padding-left: 60px;
+  padding-top: 10px;
+  border-right: 1px solid #38444D;
+}
+
+.sidebar ul.menu {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.sidebar ul.menu a {
+  color: #ffffff;
+}
+
+.sidebar ul.menu a.active {
+  color: #1DA1F2;
+}
+
+.sidebar ul.menu a div {
+  min-width: 0;
+  max-width: 100%;
+  display: inline;
+  padding: 10px 15px;
+  border-radius: 30px;
+  box-sizing: border-box;
+  font-size: 19px;
+}
+
+.sidebar ul.menu a:hover {
+  text-decoration: none;
+  color: #1DA1F2;
+}
+
+.sidebar ul.menu a:hover div {
+  background: rgba(29, 161, 242, 0.1);
+}
+
 body {
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, Arial, sans-serif;
   background: #15202b;
