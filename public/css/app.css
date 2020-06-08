@@ -11068,3 +11068,27 @@ button:active {
   color: #ffffff;
 }
 
+.header-static {
+  position: fixed;
+  top: 0;
+  left: 320px;
+  width: 600px;
+  padding: 15px;
+  height: 60px;
+  font-size: 19px;
+  background: #15202b;
+  z-index: 5;
+  border-right: 1px solid #38444D;
+  border-bottom: 1px solid #38444D;
+}
+
+.main {
+  margin-left: 305px;
+}
+
+.main .content {
+  border-right: 1px solid #38444D;
+  margin-top: 30px;
+  width: 600px;
+}
+

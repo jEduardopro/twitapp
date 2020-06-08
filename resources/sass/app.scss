@@ -28,3 +28,25 @@ input, button{
     background:$dark-light;
     color: $white;
 }
+
+.header-static{
+    position: fixed;
+    top: 0;
+    left: 320px;
+    width: 600px;
+    padding: 15px;
+    height: 60px;
+    font-size: $fs-lg;
+    background: $dark-light;
+    z-index: 5;
+    border-right: 1px solid $gray-light;
+    border-bottom: 1px solid $gray-light;
+}
+.main{
+    margin-left: 305px;
+    .content{
+        border-right: 1px solid $gray-light;
+        margin-top: 30px;
+        width: 600px;
+    }
+}
