@@ -30,6 +30,20 @@ input, button{
     background:$dark-light;
     color: $white;
 }
+.close_modal{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    color: $white;
+    border: none;
+    background: transparent;
+    @include outline-none;
+    &:hover{
+        color: $blue;
+        background: $dark-light-input;
+    }
+}
 
 .header-static{
     position: fixed;

@@ -11107,6 +11107,41 @@ h1 {
   height: 200px;
 }
 
+.cover_image .btn_upload {
+  position: absolute;
+  width: 100%;
+  top: 80px;
+  left: auto;
+  text-align: center;
+}
+
+.cover_image .btn_upload label {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  text-align: center;
+  cursor: pointer;
+  background: transparent;
+}
+
+.cover_image .btn_upload label input[type=file] {
+  position: absolute;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.cover_image .btn_upload label:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.cover_image .btn_upload label i {
+  font-size: 20px;
+  line-height: 40px;
+  color: #ffffff;
+}
+
 .cover_image .avatar {
   position: absolute;
   display: block;
@@ -11120,6 +11155,15 @@ h1 {
   align-items: center;
   box-sizing: border-box;
   background: #B8BDC5;
+}
+
+.cover_image .avatar .btn_upload {
+  top: 45px;
+}
+
+.cover_image .avatar .btn_upload label i {
+  font-size: 20px;
+  color: #ffffff;
 }
 
 .cover_image .avatar i {
@@ -11149,6 +11193,27 @@ button:active {
 .modal-content {
   background: #15202b;
   color: #ffffff;
+}
+
+.close_modal {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  text-align: center;
+  color: #ffffff;
+  border: none;
+  background: transparent;
+}
+
+.close_modal:focus,
+.close_modal:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.close_modal:hover {
+  color: #1DA1F2;
+  background: #192734;
 }
 
 .header-static {

@@ -2333,6 +2333,52 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('user', ['user'])), {}, {
@@ -39850,7 +39896,92 @@ var render = function() {
       _vm._m(2),
       _vm._v(" "),
       _vm._m(3)
-    ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal",
+        attrs: {
+          id: "edit_profile",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c("div", { staticClass: "modal-dialog modal-dialog-scrollable" }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _vm._m(4),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body p-0 pb-5" }, [
+              _vm._m(5),
+              _vm._v(" "),
+              _c("div", { staticClass: "mt-5 px-1 pt-4" }, [
+                _c(
+                  "div",
+                  { staticClass: "form-group" },
+                  [
+                    _c("base-input", {
+                      attrs: { label: "Nombre", inputType: "text" },
+                      on: {
+                        press: function($event) {
+                          return _vm.minChar($event)
+                        }
+                      },
+                      model: {
+                        value: _vm.user.name,
+                        callback: function($$v) {
+                          _vm.$set(_vm.user, "name", $$v)
+                        },
+                        expression: "user.name"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      { staticClass: "w-100 d-block text-muted text-right" },
+                      [_vm._v(_vm._s(_vm.user.name.length) + "/50")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "form-group" },
+                  [
+                    _c("base-input", {
+                      attrs: { label: "Username", inputType: "text" },
+                      on: {
+                        press: function($event) {
+                          return _vm.minChar($event)
+                        }
+                      },
+                      model: {
+                        value: _vm.user.username,
+                        callback: function($$v) {
+                          _vm.$set(_vm.user, "username", $$v)
+                        },
+                        expression: "user.username"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      { staticClass: "w-100 d-block text-muted text-right" },
+                      [_vm._v(_vm._s(_vm.user.username.length) + "/50")]
+                    )
+                  ],
+                  1
+                )
+              ])
+            ])
+          ])
+        ])
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -39873,7 +40004,11 @@ var staticRenderFns = [
         "button",
         {
           staticClass: "btn twit-btn font-weight-bold btn-primary",
-          attrs: { type: "button" }
+          attrs: {
+            type: "button",
+            "data-toggle": "modal",
+            "data-target": "#edit_profile"
+          }
         },
         [_vm._v("\n            Editar perfil\n        ")]
       )
@@ -39899,6 +40034,68 @@ var staticRenderFns = [
         _vm._v("5")
       ]),
       _vm._v(" Seguidores\n        ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header p-1" }, [
+      _c(
+        "h5",
+        {
+          staticClass:
+            "modal-title d-flex justify-content-between text-left w-100",
+          attrs: { id: "exampleModalLabel" }
+        },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "close_modal",
+              attrs: { type: "button", "data-dismiss": "modal" }
+            },
+            [_c("i", { staticClass: "fa fa-times" })]
+          ),
+          _vm._v(" "),
+          _c("span", [_vm._v("Editar perfil")]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn twit-btn font-weight-bold btn-sm btn-primary",
+              attrs: { type: "button" }
+            },
+            [_vm._v("\n                        Guardar\n                    ")]
+          )
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "cover_image" }, [
+      _c("div", { staticClass: "btn_upload" }, [
+        _c("label", { attrs: { for: "upload_cover" } }, [
+          _c("i", { staticClass: "fas fa-camera" }),
+          _vm._v(" "),
+          _c("input", { attrs: { type: "file", id: "upload_cover" } })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "avatar" }, [
+        _c("div", { staticClass: "btn_upload" }, [
+          _c("label", { attrs: { for: "upload_avatar" } }, [
+            _c("i", { staticClass: "fas fa-camera" }),
+            _vm._v(" "),
+            _c("input", { attrs: { type: "file", id: "upload_avatar" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas text-muted fa-user-circle" })
+      ])
     ])
   }
 ]
