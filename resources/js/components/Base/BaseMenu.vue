@@ -2,7 +2,7 @@
     <div class="sidebar">
         <BaseLogo/>
         <ul class="menu">
-            <router-link :to="{ name: 'home' }" active-class="active" class="mb-4">
+            <router-link exact :to="{ name: 'inicio' }" active-class="active" class="mb-4">
                 <div>
                     <i class="fas fa-home"></i>
                     <span class="ml-3 font-weight-bold">Inicio</span>
@@ -14,7 +14,7 @@
                     <span class="ml-3 font-weight-bold">Notificaciones</span>
                 </div>
             </router-link>
-            <router-link :to="{ name: 'profile', params: {username: user.username}}" class="mb-4">
+            <router-link exact :to="{ name: 'perfil', params: {username: user.username}}" active-class="active" class="mb-4">
                 <div>
                     <i class="far fa-user"></i>
                     <span class="ml-3 font-weight-bold">Perfil</span>

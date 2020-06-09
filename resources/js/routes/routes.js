@@ -1,15 +1,18 @@
 
 // Views
-import Home from '../views/Home.vue';
+import App from '../views/App.vue';
 import Login from '../views/Login.vue';
-import Profile from '../views/Profile.vue';
+// Pages
+import Home from '../views/pages/Home.vue';
+import Profile from '../views/pages/Profile.vue';
 
 const routes = [
     {path: '/login', component: Login, name: 'login'},
     {
-        path: '/home', component: Home, name: 'home',
+        path: '/home', component: App,
         children: [
-            {path: ':username', component: Profile, name: 'profile', props: true}
+            {path: '', component: Home, name: 'inicio'},
+            {path: 'profile/:username', component: Profile, name: 'perfil', props: true}
         ]
     },
 ];

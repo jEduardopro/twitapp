@@ -4,6 +4,6 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('home/{x?}', 'HomeController@index')->name('home');
+Route::get('home/{x?}/{y?}', 'HomeController@index')->name('home');
 
 Route::redirect('/', '/home');
