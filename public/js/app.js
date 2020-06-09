@@ -2298,13 +2298,51 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('user', ['user'])), {}, {
+    date_register: function date_register() {
+      var date = new Date(this.user.created_at);
+      var month = date.getMonth() < 10 ? "0".concat(date.getMonth()) : date.getMonth();
+      return "Se unio el ".concat(month, " del ").concat(date.getFullYear());
+    }
+  })
+});
 
 /***/ }),
 
@@ -39790,9 +39828,80 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    Perfil del usuario\n")])
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _vm._m(1),
+    _vm._v(" "),
+    _c("div", { staticClass: "w-50 text-left pt-3 pl-3" }, [
+      _c("p", { staticClass: "font-weight-bold h5 mt-1 text-white" }, [
+        _vm._v("\n            " + _vm._s(_vm.user.name) + "\n            "),
+        _c("small", {
+          staticClass: "text-muted d-block",
+          domProps: { textContent: _vm._s("@" + _vm.user.username) }
+        })
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "text-muted" }, [
+        _c("i", { staticClass: "fa fa-calendar-alt" }),
+        _vm._v(" " + _vm._s(_vm.date_register))
+      ]),
+      _vm._v(" "),
+      _vm._m(2),
+      _vm._v(" "),
+      _vm._m(3)
+    ])
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "cover_image" }, [
+      _c("div", { staticClass: "avatar" }, [
+        _c("i", { staticClass: "fas text-muted fa-user-circle" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-right px-3 pt-2" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn twit-btn font-weight-bold btn-primary",
+          attrs: { type: "button" }
+        },
+        [_vm._v("\n            Editar perfil\n        ")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "text-muted" }, [
+      _c("strong", { staticClass: "font-weight-bold text-white" }, [
+        _vm._v("10")
+      ]),
+      _vm._v(" Siguiendo\n        ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "text-muted ml-2" }, [
+      _c("strong", { staticClass: "font-weight-bold text-white" }, [
+        _vm._v("5")
+      ]),
+      _vm._v(" Seguidores\n        ")
+    ])
+  }
+]
 render._withStripped = true
 
 

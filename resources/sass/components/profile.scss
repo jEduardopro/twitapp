@@ -1,0 +1,26 @@
+.cover_image{
+    position: relative;
+    background: $gray;
+    width: 100%;
+    height: 200px;
+    .avatar{
+        position: absolute;
+        display: block;
+        left: 15px;
+        bottom: -67px;
+        width: 135px;
+        height: 135px;
+        border-radius: 50%;
+        text-align: center;
+        border: 5px solid $dark-light;
+        align-items: center;
+        box-sizing: border-box;
+        background: $gray-secondary;
+        i{font-size: 125px;}
+        img{
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    }
+}

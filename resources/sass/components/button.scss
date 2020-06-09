@@ -3,6 +3,7 @@
     border-radius: 30px;
     font-size: $fs-md;
     background: $blue;
+    border-color: $blue;
     color: $white;
     &.disabled{
         opacity: 0.5;
