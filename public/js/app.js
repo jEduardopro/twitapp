@@ -2257,6 +2257,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -39956,6 +39968,48 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
+                    _c("div", { staticClass: "row p-0 m-0" }, [
+                      _c("div", { staticClass: "col-12 col-md-6" }, [
+                        _c(
+                          "div",
+                          { staticClass: "form-group" },
+                          [
+                            _c("base-input", {
+                              attrs: { label: "Correo", inputType: "email" },
+                              model: {
+                                value: _vm.profile_form.email,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.profile_form, "email", $$v)
+                                },
+                                expression: "profile_form.email"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-12 col-md-6" }, [
+                        _c(
+                          "div",
+                          { staticClass: "form-group" },
+                          [
+                            _c("base-input", {
+                              attrs: { label: "Telefono", inputType: "text" },
+                              model: {
+                                value: _vm.profile_form.phone,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.profile_form, "phone", $$v)
+                                },
+                                expression: "profile_form.phone"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
                       _c(
                         "div",
@@ -57374,6 +57428,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       email: '',
       phone: '',
       image: '',
+      cover: '',
       description: ''
     },
     profile_form: {}

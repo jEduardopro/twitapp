@@ -7,6 +7,7 @@ export default {
             email: '',
             phone: '',
             image: '',
+            cover: '',
             description: ''
         },
         profile_form: {}
