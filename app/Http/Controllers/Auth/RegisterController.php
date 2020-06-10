@@ -79,7 +79,7 @@ class RegisterController extends Controller
         $field_name = filter_var($data['login'], FILTER_VALIDATE_EMAIL) ? 'email' : 'phone';
         return User::create([
             'name' => $data['name'],
-            'username' => Str::slug($data['name'].time()),
+            'username' => Str::slug($data['name'].rand(100,999)),
             $field_name => $data['login'],
             'password' => Hash::make($data['password']),
         ]);
