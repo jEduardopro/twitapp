@@ -11,7 +11,7 @@
         border-color: $blue;
         label{color: $blue;}
     }
-    input{
+    input, textarea{
         height: auto;
         box-sizing: border-box;
         padding-top: 2px;

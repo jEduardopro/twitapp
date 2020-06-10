@@ -10972,7 +10972,8 @@ h1 {
   color: #1DA1F2;
 }
 
-.input-custom input {
+.input-custom input,
+.input-custom textarea {
   height: auto;
   box-sizing: border-box;
   padding-top: 2px;
@@ -11072,12 +11073,6 @@ h1 {
   color: #ffffff;
   font-size: 19px;
   padding: 10px;
-}
-
-.twit-form .content-twit textarea:focus,
-.twit-form .content-twit textarea:active {
-  outline: none !important;
-  box-shadow: none !important;
 }
 
 .twit-form .content-twit textarea::-moz-placeholder {
@@ -11185,7 +11180,9 @@ body {
 input:focus,
 input:active,
 button:focus,
-button:active {
+button:active,
+textarea:focus,
+textarea:active {
   outline: none !important;
   box-shadow: none !important;
 }

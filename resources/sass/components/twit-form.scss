@@ -12,7 +12,6 @@
             color: $white;
             font-size: $fs-lg;
             padding: 10px;
-            @include outline-none;
             &::placeholder{
                 font-size: $fs-lg;
                 color: $gray-secondary;

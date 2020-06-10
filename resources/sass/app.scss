@@ -10,7 +10,7 @@
 @import './components/mixins';
 // Components
 @import './components/login_register';
-@import './components/input';
+@import './components/field';
 @import './components/button';
 @import './components/menu';
 @import './components/twit-form';
@@ -23,7 +23,7 @@ body{
     background: $dark-light;
     color: $white;
 }
-input, button{
+input, button, textarea{
     @include outline-none;
 }
 .modal-content{
