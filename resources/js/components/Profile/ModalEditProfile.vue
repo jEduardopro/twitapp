@@ -14,23 +14,24 @@
                     </h5>
                 </div>
                 <div class="modal-body p-0 pb-5">
-                    <div class="cover_image">
-                        <div class="btn_upload">
-                            <label for="upload_cover">
-                                <i class="fas fa-camera"></i>
-                                <input type="file" id="upload_cover">
-                            </label>
-                        </div>
-                        <div class="avatar">
+                    <cover-avatar-image>
+                        <template v-slot:btn_cover>
+                            <div class="btn_upload">
+                                <label for="upload_cover">
+                                    <i class="fas fa-camera"></i>
+                                    <input type="file" id="upload_cover">
+                                </label>
+                            </div>
+                        </template>
+                        <template v-slot:btn_avatar>
                             <div class="btn_upload">
                                 <label for="upload_avatar">
                                     <i class="fas fa-camera"></i>
                                     <input type="file" id="upload_avatar">
                                 </label>
                             </div>
-                            <i class="fas text-muted fa-user-circle"></i>
-                        </div>
-                    </div>
+                        </template>
+                    </cover-avatar-image>
                     <div v-if="Object.keys(profile_form).length > 0" class="mt-5 px-1 pt-4">
                         <div class="form-group">
                             <base-input v-model="profile_form.name" @press="minChar($event)" :label="'Nombre'" :inputType="'text'"></base-input>
@@ -43,7 +44,7 @@
                         <div class="form-group">
                             <div :class="['input-custom', focus_input ? 'focus-set':'']">
                                 <label class="m-0">Biografía</label>
-                                <textarea row="3" v-model="profile_form.description" @focus="onFocus(true)" @blur="onFocus(false)" class="form-control bg-transparent" placeholder="Agrega tu biografia"></textarea>
+                                <textarea rows="3" v-model="profile_form.description" @focus="onFocus(true)" @blur="onFocus(false)" class="form-control bg-transparent" placeholder="Agrega tu biografia"></textarea>
                             </div>
                         </div>
                     </div>
@@ -55,7 +56,9 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import CoverAvatarImage from './CoverAvatarImage.vue';
 export default {
+    components: {CoverAvatarImage},
     computed: {
         ...mapState('user', ['user','profile_form'])
     },

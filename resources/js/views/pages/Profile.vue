@@ -1,10 +1,6 @@
 <template>
     <div>
-        <div class="cover_image">
-            <div class="avatar">
-                <i class="fas text-muted fa-user-circle"></i>
-            </div>
-        </div>
+        <cover-avatar-image></cover-avatar-image>
         <div class="text-right px-3 pt-2">
             <button type="button" @click="edit_profile" class="btn twit-btn font-weight-bold btn-primary">
                 Editar perfil
@@ -30,8 +26,9 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import ModalEditProfile from '../../components/Profile/ModalEditProfile.vue';
+import CoverAvatarImage from '../../components/Profile/CoverAvatarImage.vue';
 export default {
-    components: {ModalEditProfile},
+    components: {ModalEditProfile, CoverAvatarImage},
     computed: {
         ...mapState('user', ['user']),
         date_register(){

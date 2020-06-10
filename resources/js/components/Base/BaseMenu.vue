@@ -20,12 +20,6 @@
                     <span class="ml-3 font-weight-bold">Perfil</span>
                 </div>
             </router-link>
-            <router-link to="#" class="mb-4">
-                <div>
-                    <i class="fas fa-user-circle"></i>
-                    <span class="ml-3 font-weight-bold" v-text="user.name"></span>
-                </div>
-            </router-link>
             <a href="#"
                 onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">
