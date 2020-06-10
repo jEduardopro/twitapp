@@ -42,12 +42,12 @@
                             <span class="w-100 d-block text-muted text-right">{{profile_form.username.length}}/50</span>
                         </div>
                         <div class="row p-0 m-0">
-                            <div class="col-12 col-md-6">
+                            <div class="col-12 col-md-6 p-1">
                                 <div class="form-group">
                                     <base-input v-model="profile_form.email" :label="'Correo'" :inputType="'email'"></base-input>
                                 </div>
                             </div>
-                            <div class="col-12 col-md-6">
+                            <div class="col-12 col-md-6 p-1">
                                 <div class="form-group">
                                     <base-input v-model="profile_form.phone" :label="'Telefono'" :inputType="'text'"></base-input>
                                 </div>

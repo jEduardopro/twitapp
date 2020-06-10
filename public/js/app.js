@@ -39969,7 +39969,7 @@ var render = function() {
                     ),
                     _vm._v(" "),
                     _c("div", { staticClass: "row p-0 m-0" }, [
-                      _c("div", { staticClass: "col-12 col-md-6" }, [
+                      _c("div", { staticClass: "col-12 col-md-6 p-1" }, [
                         _c(
                           "div",
                           { staticClass: "form-group" },
@@ -39989,7 +39989,7 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-12 col-md-6" }, [
+                      _c("div", { staticClass: "col-12 col-md-6 p-1" }, [
                         _c(
                           "div",
                           { staticClass: "form-group" },
