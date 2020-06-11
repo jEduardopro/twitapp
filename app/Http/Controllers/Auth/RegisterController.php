@@ -55,7 +55,7 @@ class RegisterController extends Controller
             $rules = ['required', 'string', 'email', 'max:255', 'unique:users'];
         } else {
             $field_name = 'phone';
-            $rules = ['required', 'numeric', 'digits_between:10,10', 'unique:users'];
+            $rules = ['required', 'numeric', 'digits_between:10,10'];
         };
         $data[$field_name] = $data['login'];
 

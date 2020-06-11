@@ -7,3 +7,7 @@ Auth::routes();
 Route::get('home/{x?}/{y?}', 'HomeController@index')->name('home');
 
 Route::redirect('/', '/home');
+
+
+// Users routes
+Route::resource('users', 'User\UserController');

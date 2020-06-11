@@ -2269,14 +2269,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     CoverAvatarImage: _CoverAvatarImage_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('user', ['user', 'profile_form'])),
-  methods: {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('user', ['user', 'profile_form'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['errors'])),
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('user', ['update'])), {}, {
     minChar: function minChar(evt) {
       if (evt.target.value.length <= 49) {
         return true;
@@ -2287,7 +2291,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     onFocus: function onFocus(flag) {
       this.focus_input = flag;
     }
-  },
+  }),
   data: function data() {
     return {
       focus_input: false
@@ -39735,7 +39739,7 @@ var render = function() {
             "form",
             {
               staticStyle: { display: "none" },
-              attrs: { id: "logout-form", action: "logout", method: "POST" }
+              attrs: { id: "logout-form", action: "/logout", method: "POST" }
             },
             [
               _c("input", {
@@ -39855,7 +39859,36 @@ var render = function() {
     [
       _c("div", { staticClass: "modal-dialog modal-dialog-scrollable" }, [
         _c("div", { staticClass: "modal-content" }, [
-          _vm._m(0),
+          _c("div", { staticClass: "modal-header p-1" }, [
+            _c(
+              "h5",
+              {
+                staticClass:
+                  "modal-title d-flex justify-content-between text-left w-100",
+                attrs: { id: "exampleModalLabel" }
+              },
+              [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("span", [_vm._v("Editar perfil")]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "btn twit-btn font-weight-bold btn-sm btn-primary",
+                    attrs: { type: "button" },
+                    on: { click: _vm.update }
+                  },
+                  [
+                    _vm._v(
+                      "\n                        Guardar\n                    "
+                    )
+                  ]
+                )
+              ]
+            )
+          ]),
           _vm._v(" "),
           _c(
             "div",
@@ -39922,6 +39955,15 @@ var render = function() {
                           }
                         }),
                         _vm._v(" "),
+                        _vm.errors.name
+                          ? _c("span", {
+                              staticClass: "invalid-feedback d-block",
+                              domProps: {
+                                textContent: _vm._s(_vm.errors.name[0])
+                              }
+                            })
+                          : _vm._e(),
+                        _vm._v(" "),
                         _c(
                           "span",
                           {
@@ -39953,6 +39995,15 @@ var render = function() {
                           }
                         }),
                         _vm._v(" "),
+                        _vm.errors.username
+                          ? _c("span", {
+                              staticClass: "invalid-feedback d-block",
+                              domProps: {
+                                textContent: _vm._s(_vm.errors.username[0])
+                              }
+                            })
+                          : _vm._e(),
+                        _vm._v(" "),
                         _c(
                           "span",
                           {
@@ -39983,7 +40034,16 @@ var render = function() {
                                 },
                                 expression: "profile_form.email"
                               }
-                            })
+                            }),
+                            _vm._v(" "),
+                            _vm.errors.email
+                              ? _c("span", {
+                                  staticClass: "invalid-feedback d-block",
+                                  domProps: {
+                                    textContent: _vm._s(_vm.errors.email[0])
+                                  }
+                                })
+                              : _vm._e()
                           ],
                           1
                         )
@@ -40003,7 +40063,16 @@ var render = function() {
                                 },
                                 expression: "profile_form.phone"
                               }
-                            })
+                            }),
+                            _vm._v(" "),
+                            _vm.errors.phone
+                              ? _c("span", {
+                                  staticClass: "invalid-feedback d-block",
+                                  domProps: {
+                                    textContent: _vm._s(_vm.errors.phone[0])
+                                  }
+                                })
+                              : _vm._e()
                           ],
                           1
                         )
@@ -40076,37 +40145,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header p-1" }, [
-      _c(
-        "h5",
-        {
-          staticClass:
-            "modal-title d-flex justify-content-between text-left w-100",
-          attrs: { id: "exampleModalLabel" }
-        },
-        [
-          _c(
-            "button",
-            {
-              staticClass: "close_modal",
-              attrs: { type: "button", "data-dismiss": "modal" }
-            },
-            [_c("i", { staticClass: "fa fa-times" })]
-          ),
-          _vm._v(" "),
-          _c("span", [_vm._v("Editar perfil")]),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn twit-btn font-weight-bold btn-sm btn-primary",
-              attrs: { type: "button" }
-            },
-            [_vm._v("\n                        Guardar\n                    ")]
-          )
-        ]
-      )
-    ])
+    return _c(
+      "button",
+      {
+        staticClass: "close_modal",
+        attrs: { type: "button", "data-dismiss": "modal" }
+      },
+      [_c("i", { staticClass: "fa fa-times" })]
+    )
   }
 ]
 render._withStripped = true
@@ -56700,6 +56746,7 @@ try {
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.baseURL = window.location.origin;
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
@@ -57413,16 +57460,19 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _routes_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../routes/index */ "./resources/js/routes/index.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   namespaced: true,
   state: {
     user: {
+      id: '',
       name: '',
       username: '',
       email: '',
@@ -57451,6 +57501,41 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var commit = _ref2.commit;
       commit('SET_PROFILE_FORM');
       $("#edit_profile").modal("show");
+    },
+    update: function update(_ref3) {
+      var state = _ref3.state,
+          commit = _ref3.commit,
+          dispatch = _ref3.dispatch;
+      var data = {
+        name: state.profile_form.name,
+        username: state.profile_form.username,
+        description: state.profile_form.description
+      };
+
+      if (state.profile_form.email) {
+        data.email = state.profile_form.email;
+      }
+
+      if (state.profile_form.phone) {
+        data.phone = state.profile_form.phone;
+      }
+
+      axios.put("users/".concat(state.user.id), data).then(function (res) {
+        commit('SET_USER', res.data);
+
+        if (_routes_index__WEBPACK_IMPORTED_MODULE_0__["default"].history.current.params.username != res.data.username) {
+          _routes_index__WEBPACK_IMPORTED_MODULE_0__["default"].push({
+            name: 'perfil',
+            params: {
+              username: res.data.username
+            }
+          });
+        }
+      })["catch"](function (err) {
+        dispatch('catch_errors', err, {
+          root: true
+        });
+      });
     }
   }
 });

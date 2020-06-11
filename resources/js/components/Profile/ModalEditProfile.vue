@@ -8,7 +8,7 @@
                             <i class="fa fa-times"></i>
                         </button>
                         <span>Editar perfil</span>
-                        <button type="button" class="btn twit-btn font-weight-bold btn-sm btn-primary">
+                        <button type="button" @click="update" class="btn twit-btn font-weight-bold btn-sm btn-primary">
                             Guardar
                         </button>
                     </h5>
@@ -35,21 +35,25 @@
                     <div v-if="Object.keys(profile_form).length > 0" class="mt-5 px-1 pt-4">
                         <div class="form-group">
                             <base-input v-model="profile_form.name" @press="minChar($event)" :label="'Nombre'" :inputType="'text'"></base-input>
+                            <span v-if="errors.name" class="invalid-feedback d-block" v-text="errors.name[0]"></span>
                             <span class="w-100 d-block text-muted text-right">{{profile_form.name.length}}/50</span>
                         </div>
                         <div class="form-group">
                             <base-input v-model="profile_form.username" @press="minChar($event)" :label="'Username'" :inputType="'text'"></base-input>
+                            <span v-if="errors.username" class="invalid-feedback d-block" v-text="errors.username[0]"></span>
                             <span class="w-100 d-block text-muted text-right">{{profile_form.username.length}}/50</span>
                         </div>
                         <div class="row p-0 m-0">
                             <div class="col-12 col-md-6 p-1">
                                 <div class="form-group">
                                     <base-input v-model="profile_form.email" :label="'Correo'" :inputType="'email'"></base-input>
+                                    <span v-if="errors.email" class="invalid-feedback d-block" v-text="errors.email[0]"></span>
                                 </div>
                             </div>
                             <div class="col-12 col-md-6 p-1">
                                 <div class="form-group">
                                     <base-input v-model="profile_form.phone" :label="'Telefono'" :inputType="'text'"></base-input>
+                                    <span v-if="errors.phone" class="invalid-feedback d-block" v-text="errors.phone[0]"></span>
                                 </div>
                             </div>
                         </div>
@@ -72,9 +76,11 @@ import CoverAvatarImage from './CoverAvatarImage.vue';
 export default {
     components: {CoverAvatarImage},
     computed: {
-        ...mapState('user', ['user','profile_form'])
+        ...mapState('user', ['user','profile_form']),
+        ...mapState(['errors'])
     },
     methods: {
+        ...mapActions('user', ['update']),
         minChar(evt){
             if (evt.target.value.length <= 49) {
                 return true;

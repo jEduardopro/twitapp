@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateUserFormRequest;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -47,9 +48,10 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUserFormRequest $request, User $user)
     {
-
+        $user->update($request->all());
+        return $user;
     }
 
     /**

@@ -29,7 +29,7 @@
                 </div>
             </a>
 
-            <form id="logout-form" action="logout" method="POST" style="display: none;">
+            <form id="logout-form" action="/logout" method="POST" style="display: none;">
                 <input type="hidden" name="_token" :value="csrf">
             </form>
         </ul>

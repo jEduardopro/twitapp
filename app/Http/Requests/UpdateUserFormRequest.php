@@ -13,7 +13,7 @@ class UpdateUserFormRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,19 @@ class UpdateUserFormRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|string',
+            'username' => 'required|alpha_dash|unique:users,username,'.$this->user()->id,
+            'email' => 'email|unique:users,email,'.$this->user()->id,
+            'phone' => 'numeric|digits_between:10,10',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'username.alpha_dash' => 'El username solo puede contener numeros, letras y guiones',
+            'username.unique' => 'El username esta en uso',
+            'email.unique' => 'El correo ya esta en uso'
         ];
     }
 }
