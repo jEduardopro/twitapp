@@ -6,12 +6,13 @@
                 Editar perfil
             </button>
         </div>
-        <div class="w-50 text-left pt-3 pl-3">
-            <p class="font-weight-bold h5 mt-1 text-white">
+        <div class="text-left pt-3 pl-3">
+            <p class="font-weight-bold w-50 h5 mt-1 text-white">
                 {{user.name}}
                 <small class="text-muted d-block" v-text="`@${user.username}`"></small>
             </p>
-            <p class="text-muted"><i class="fa fa-calendar-alt"></i> {{date_register}}</p>
+            <p v-if="user.description" class="p-0 mb-1 text-white">{{user.description}}</p>
+            <p class="text-muted p-0 w-50"><i class="fa fa-calendar-alt"></i> {{date_register}}</p>
             <span class="text-muted">
                 <strong class="font-weight-bold text-white">10</strong> Siguiendo
             </span>

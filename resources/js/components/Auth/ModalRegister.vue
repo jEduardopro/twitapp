@@ -10,7 +10,7 @@
                 <div class="modal-body pt-0 pb-5">
                     <h1 class="mb-4">Crea tu cuenta</h1>
                     <div class="form-group">
-                        <base-input v-model="form.name" @press="minChar($event)" :label="'Nombre'" :inputType="'text'"></base-input>
+                        <base-input v-model="form.name" @press="minChar($event, 49)" :label="'Nombre'" :inputType="'text'"></base-input>
                         <span class="w-100 d-block text-muted text-right">{{form.name.length}}/50</span>
                     </div>
 
@@ -62,8 +62,8 @@ export default {
     },
     methods: {
         ...mapActions('auth', ['register']),
-        minChar(evt){
-            if (evt.target.value.length <= 49) {
+        minChar(evt, chars){
+            if (evt.target.value.length <= chars) {
                 return true;
             } else {
                 evt.preventDefault();

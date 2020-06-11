@@ -34,12 +34,12 @@
                     </cover-avatar-image>
                     <div v-if="Object.keys(profile_form).length > 0" class="mt-5 px-1 pt-4">
                         <div class="form-group">
-                            <base-input v-model="profile_form.name" @press="minChar($event)" :label="'Nombre'" :inputType="'text'"></base-input>
+                            <base-input v-model="profile_form.name" @press="minChar($event, 50)" :label="'Nombre'" :inputType="'text'"></base-input>
                             <span v-if="errors.name" class="invalid-feedback d-block" v-text="errors.name[0]"></span>
                             <span class="w-100 d-block text-muted text-right">{{profile_form.name.length}}/50</span>
                         </div>
                         <div class="form-group">
-                            <base-input v-model="profile_form.username" @press="minChar($event)" :label="'Username'" :inputType="'text'"></base-input>
+                            <base-input v-model="profile_form.username" @press="minChar($event, 50)" :label="'Username'" :inputType="'text'"></base-input>
                             <span v-if="errors.username" class="invalid-feedback d-block" v-text="errors.username[0]"></span>
                             <span class="w-100 d-block text-muted text-right">{{profile_form.username.length}}/50</span>
                         </div>
@@ -60,8 +60,10 @@
                         <div class="form-group">
                             <div :class="['input-custom', focus_input ? 'focus-set':'']">
                                 <label class="m-0">Biografía</label>
-                                <textarea rows="3" v-model="profile_form.description" @focus="onFocus(true)" @blur="onFocus(false)" class="form-control bg-transparent" placeholder="Agrega tu biografia"></textarea>
+                                <textarea rows="3" @keypress="minChar($event, 159)" v-model="profile_form.description" @focus="onFocus(true)" @blur="onFocus(false)" class="form-control bg-transparent" placeholder="Agrega tu biografia"></textarea>
                             </div>
+                            <span v-if="errors.description" class="invalid-feedback d-block" v-text="errors.description[0]"></span>
+                            <span class="w-100 d-block text-muted text-right">{{profile_form.description.length}}/160</span>
                         </div>
                     </div>
                 </div>
@@ -81,8 +83,8 @@ export default {
     },
     methods: {
         ...mapActions('user', ['update']),
-        minChar(evt){
-            if (evt.target.value.length <= 49) {
+        minChar(evt, chars){
+            if (evt.target.value.length <= chars) {
                 return true;
             } else {
                 evt.preventDefault();

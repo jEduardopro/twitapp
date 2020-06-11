@@ -2058,8 +2058,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('auth', ['register'])), {}, {
-    minChar: function minChar(evt) {
-      if (evt.target.value.length <= 49) {
+    minChar: function minChar(evt, chars) {
+      if (evt.target.value.length <= chars) {
         return true;
       } else {
         evt.preventDefault();
@@ -2273,6 +2273,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2281,8 +2283,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('user', ['user', 'profile_form'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['errors'])),
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('user', ['update'])), {}, {
-    minChar: function minChar(evt) {
-      if (evt.target.value.length <= 49) {
+    minChar: function minChar(evt, chars) {
+      if (evt.target.value.length <= chars) {
         return true;
       } else {
         evt.preventDefault();
@@ -2418,6 +2420,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -39394,7 +39397,7 @@ var render = function() {
                   attrs: { label: "Nombre", inputType: "text" },
                   on: {
                     press: function($event) {
-                      return _vm.minChar($event)
+                      return _vm.minChar($event, 49)
                     }
                   },
                   model: {
@@ -39943,7 +39946,7 @@ var render = function() {
                           attrs: { label: "Nombre", inputType: "text" },
                           on: {
                             press: function($event) {
-                              return _vm.minChar($event)
+                              return _vm.minChar($event, 50)
                             }
                           },
                           model: {
@@ -39983,7 +39986,7 @@ var render = function() {
                           attrs: { label: "Username", inputType: "text" },
                           on: {
                             press: function($event) {
-                              return _vm.minChar($event)
+                              return _vm.minChar($event, 50)
                             }
                           },
                           model: {
@@ -40109,6 +40112,9 @@ var render = function() {
                             },
                             domProps: { value: _vm.profile_form.description },
                             on: {
+                              keypress: function($event) {
+                                return _vm.minChar($event, 159)
+                              },
                               focus: function($event) {
                                 return _vm.onFocus(true)
                               },
@@ -40127,6 +40133,25 @@ var render = function() {
                               }
                             }
                           })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _vm.errors.description
+                        ? _c("span", {
+                            staticClass: "invalid-feedback d-block",
+                            domProps: {
+                              textContent: _vm._s(_vm.errors.description[0])
+                            }
+                          })
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        { staticClass: "w-100 d-block text-muted text-right" },
+                        [
+                          _vm._v(
+                            _vm._s(_vm.profile_form.description.length) + "/160"
+                          )
                         ]
                       )
                     ])
@@ -40325,8 +40350,8 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "w-50 text-left pt-3 pl-3" }, [
-        _c("p", { staticClass: "font-weight-bold h5 mt-1 text-white" }, [
+      _c("div", { staticClass: "text-left pt-3 pl-3" }, [
+        _c("p", { staticClass: "font-weight-bold w-50 h5 mt-1 text-white" }, [
           _vm._v("\n            " + _vm._s(_vm.user.name) + "\n            "),
           _c("small", {
             staticClass: "text-muted d-block",
@@ -40334,7 +40359,13 @@ var render = function() {
           })
         ]),
         _vm._v(" "),
-        _c("p", { staticClass: "text-muted" }, [
+        _vm.user.description
+          ? _c("p", { staticClass: "p-0 mb-1 text-white" }, [
+              _vm._v(_vm._s(_vm.user.description))
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c("p", { staticClass: "text-muted p-0 w-50" }, [
           _c("i", { staticClass: "fa fa-calendar-alt" }),
           _vm._v(" " + _vm._s(_vm.date_register))
         ]),
