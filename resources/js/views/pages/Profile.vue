@@ -1,6 +1,13 @@
 <template>
     <div>
-        <cover-avatar-image></cover-avatar-image>
+        <cover-avatar-image>
+            <template v-if="user.cover_image" v-slot:cover_image>
+                <img :src="user.cover_image" class="cover_image_preview">
+            </template>
+            <template v-if="user.image" v-slot:avatar>
+                <img :src="user.image" class="avatar_image_preview rounded-circle">
+            </template>
+        </cover-avatar-image>
         <div class="text-right px-3 pt-2">
             <button type="button" @click="edit_profile" class="btn twit-btn font-weight-bold btn-primary">
                 Editar perfil

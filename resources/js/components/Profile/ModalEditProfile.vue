@@ -1,5 +1,5 @@
 <template>
-    <div class="modal" id="edit_profile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="edit_profile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header p-1">
@@ -15,8 +15,13 @@
                 </div>
                 <div class="modal-body p-0 pb-5">
                     <cover-avatar-image>
-                        <template v-if="profile_form.cover_image" v-slot:cover_image>
-                            <img src="" class="cover_image_preview" alt="">
+                        <template v-if="user.cover_image" v-slot:cover_image>
+                            <img :src="user.cover_image" class="cover_image_preview">
+                        </template>
+                        <template v-else v-slot:cover_image>
+                            <template v-if="profile_form.cover_image">
+                                <img src="" class="cover_image_preview">
+                            </template>
                         </template>
                         <template v-slot:btn_cover>
                             <div class="btn_upload">
@@ -26,8 +31,13 @@
                                 </label>
                             </div>
                         </template>
-                        <template v-if="profile_form.image" v-slot:avatar>
-                            <img src="" class="avatar_image_preview rounded-circle" alt="">
+                        <template v-if="user.image" v-slot:avatar>
+                            <img :src="user.image" class="avatar_image_preview rounded-circle">
+                        </template>
+                        <template v-else v-slot:avatar>
+                            <template v-if="profile_form.image">
+                                <img src="" class="avatar_image_preview rounded-circle">
+                            </template>
                         </template>
                         <template v-slot:btn_avatar>
                             <div class="btn_upload">
