@@ -3,11 +3,21 @@
     background: $gray;
     width: 100%;
     height: 200px;
+    .cover_image_preview, .avatar_image_preview{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: block;
+        top: 0;
+        left: auto;
+        z-index: 5;
+    }
     .btn_upload{
         position: absolute;
         width: 100%;
         top: 80px;
         left: auto;
+        z-index: 15;
         text-align: center;
         label{
             position: relative;
@@ -36,6 +46,7 @@
     }
     .avatar{
         position: absolute;
+        z-index: 10;
         display: block;
         left: 15px;
         bottom: -67px;

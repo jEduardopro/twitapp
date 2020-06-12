@@ -15,19 +15,25 @@
                 </div>
                 <div class="modal-body p-0 pb-5">
                     <cover-avatar-image>
+                        <template v-if="profile_form.cover_image" v-slot:cover_image>
+                            <img src="" class="cover_image_preview" alt="">
+                        </template>
                         <template v-slot:btn_cover>
                             <div class="btn_upload">
-                                <label for="upload_cover">
+                                <label for="upload_cover_image">
                                     <i class="fas fa-camera"></i>
-                                    <input type="file" id="upload_cover">
+                                    <input type="file" @change="set_cover_image" id="upload_cover_image">
                                 </label>
                             </div>
+                        </template>
+                        <template v-if="profile_form.image" v-slot:avatar>
+                            <img src="" class="avatar_image_preview rounded-circle" alt="">
                         </template>
                         <template v-slot:btn_avatar>
                             <div class="btn_upload">
                                 <label for="upload_avatar">
                                     <i class="fas fa-camera"></i>
-                                    <input type="file" id="upload_avatar">
+                                    <input type="file" @change="set_avatar" id="upload_avatar">
                                 </label>
                             </div>
                         </template>
@@ -82,7 +88,7 @@ export default {
         ...mapState(['errors'])
     },
     methods: {
-        ...mapActions('user', ['update']),
+        ...mapActions('user', ['set_cover_image','set_avatar','update']),
         minChar(evt, chars){
             if (evt.target.value.length <= chars) {
                 return true;

@@ -2275,6 +2275,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2282,7 +2288,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     CoverAvatarImage: _CoverAvatarImage_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('user', ['user', 'profile_form'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['errors'])),
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('user', ['update'])), {}, {
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('user', ['set_cover_image', 'set_avatar', 'update'])), {}, {
     minChar: function minChar(evt, chars) {
       if (evt.target.value.length <= chars) {
         return true;
@@ -39809,12 +39815,16 @@ var render = function() {
     "div",
     { staticClass: "cover_image" },
     [
+      _vm._t("cover_image"),
+      _vm._v(" "),
       _vm._t("btn_cover"),
       _vm._v(" "),
       _c(
         "div",
         { staticClass: "avatar" },
         [
+          _vm._t("avatar"),
+          _vm._v(" "),
           _vm._t("btn_avatar"),
           _vm._v(" "),
           _c("i", { staticClass: "fas text-muted fa-user-circle" })
@@ -39898,42 +39908,84 @@ var render = function() {
             { staticClass: "modal-body p-0 pb-5" },
             [
               _c("cover-avatar-image", {
-                scopedSlots: _vm._u([
-                  {
-                    key: "btn_cover",
-                    fn: function() {
-                      return [
-                        _c("div", { staticClass: "btn_upload" }, [
-                          _c("label", { attrs: { for: "upload_cover" } }, [
-                            _c("i", { staticClass: "fas fa-camera" }),
-                            _vm._v(" "),
-                            _c("input", {
-                              attrs: { type: "file", id: "upload_cover" }
-                            })
+                scopedSlots: _vm._u(
+                  [
+                    _vm.profile_form.cover_image
+                      ? {
+                          key: "cover_image",
+                          fn: function() {
+                            return [
+                              _c("img", {
+                                staticClass: "cover_image_preview",
+                                attrs: { src: "", alt: "" }
+                              })
+                            ]
+                          },
+                          proxy: true
+                        }
+                      : null,
+                    {
+                      key: "btn_cover",
+                      fn: function() {
+                        return [
+                          _c("div", { staticClass: "btn_upload" }, [
+                            _c(
+                              "label",
+                              { attrs: { for: "upload_cover_image" } },
+                              [
+                                _c("i", { staticClass: "fas fa-camera" }),
+                                _vm._v(" "),
+                                _c("input", {
+                                  attrs: {
+                                    type: "file",
+                                    id: "upload_cover_image"
+                                  },
+                                  on: { change: _vm.set_cover_image }
+                                })
+                              ]
+                            )
                           ])
-                        ])
-                      ]
+                        ]
+                      },
+                      proxy: true
                     },
-                    proxy: true
-                  },
-                  {
-                    key: "btn_avatar",
-                    fn: function() {
-                      return [
-                        _c("div", { staticClass: "btn_upload" }, [
-                          _c("label", { attrs: { for: "upload_avatar" } }, [
-                            _c("i", { staticClass: "fas fa-camera" }),
-                            _vm._v(" "),
-                            _c("input", {
-                              attrs: { type: "file", id: "upload_avatar" }
-                            })
+                    _vm.profile_form.image
+                      ? {
+                          key: "avatar",
+                          fn: function() {
+                            return [
+                              _c("img", {
+                                staticClass:
+                                  "avatar_image_preview rounded-circle",
+                                attrs: { src: "", alt: "" }
+                              })
+                            ]
+                          },
+                          proxy: true
+                        }
+                      : null,
+                    {
+                      key: "btn_avatar",
+                      fn: function() {
+                        return [
+                          _c("div", { staticClass: "btn_upload" }, [
+                            _c("label", { attrs: { for: "upload_avatar" } }, [
+                              _c("i", { staticClass: "fas fa-camera" }),
+                              _vm._v(" "),
+                              _c("input", {
+                                attrs: { type: "file", id: "upload_avatar" },
+                                on: { change: _vm.set_avatar }
+                              })
+                            ])
                           ])
-                        ])
-                      ]
-                    },
-                    proxy: true
-                  }
-                ])
+                        ]
+                      },
+                      proxy: true
+                    }
+                  ],
+                  null,
+                  true
+                )
               }),
               _vm._v(" "),
               Object.keys(_vm.profile_form).length > 0
@@ -57509,7 +57561,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       email: '',
       phone: '',
       image: '',
-      cover: '',
+      cover_image: '',
       description: ''
     },
     profile_form: {}
@@ -57524,6 +57576,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     SET_PROFILE_FORM: function SET_PROFILE_FORM(state) {
       state.profile_form = _objectSpread({}, state.user);
+    },
+    SET_COVER_IMAGE: function SET_COVER_IMAGE(state, file) {
+      state.profile_form.cover_image = file;
+    },
+    SET_AVATAR: function SET_AVATAR(state, file) {
+      state.profile_form.image = file;
     }
   },
   actions: {
@@ -57536,10 +57594,50 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       commit('SET_PROFILE_FORM');
       $("#edit_profile").modal("show");
     },
-    update: function update(_ref3) {
-      var state = _ref3.state,
-          commit = _ref3.commit,
-          dispatch = _ref3.dispatch;
+    set_cover_image: function set_cover_image(_ref3, evt) {
+      var commit = _ref3.commit;
+      var files = evt.target.files;
+
+      if (files.length > 0) {
+        commit('SET_COVER_IMAGE', evt.target.files[0]);
+        var reader = new FileReader();
+
+        reader.onloadend = function () {
+          $(".modal-body .cover_image img.cover_image_preview").attr('src', reader.result);
+        };
+
+        reader.readAsDataURL(evt.target.files[0]);
+      } else {
+        commit('SET_COVER_IMAGE', '');
+        $(".modal-body .cover_image img.cover_image_preview").attr('src', '');
+      }
+
+      ;
+    },
+    set_avatar: function set_avatar(_ref4, evt) {
+      var commit = _ref4.commit;
+      var files = evt.target.files;
+
+      if (files.length > 0) {
+        commit('SET_AVATAR', evt.target.files[0]);
+        var reader = new FileReader();
+
+        reader.onloadend = function () {
+          $(".modal-body .cover_image img.avatar_image_preview").attr('src', reader.result);
+        };
+
+        reader.readAsDataURL(evt.target.files[0]);
+      } else {
+        commit('SET_AVATAR', '');
+        $(".modal-body .cover_image img.avatar_image_preview").attr('src', '');
+      }
+
+      ;
+    },
+    update: function update(_ref5) {
+      var state = _ref5.state,
+          commit = _ref5.commit,
+          dispatch = _ref5.dispatch;
       var data = {
         name: state.profile_form.name,
         username: state.profile_form.username,
