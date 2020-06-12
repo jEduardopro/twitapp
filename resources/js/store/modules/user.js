@@ -20,6 +20,10 @@ export default {
     mutations: {
         SET_USER(state, user){
             state.user = user;
+            state.user.email =  (user.email) ? user.email : '';
+            state.user.phone =  (user.phone) ? user.phone : '';
+            state.user.description =  (user.description) ? user.description : '';
+
         },
         SET_PROFILE_FORM(state){
             state.profile_form = {...state.user};

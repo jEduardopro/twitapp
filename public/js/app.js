@@ -57518,6 +57518,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mutations: {
     SET_USER: function SET_USER(state, user) {
       state.user = user;
+      state.user.email = user.email ? user.email : '';
+      state.user.phone = user.phone ? user.phone : '';
+      state.user.description = user.description ? user.description : '';
     },
     SET_PROFILE_FORM: function SET_PROFILE_FORM(state) {
       state.profile_form = _objectSpread({}, state.user);
