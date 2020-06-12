@@ -58528,11 +58528,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 };
 
                 if (state.profile_form.email) {
-                  form_data.append('email', state.profile_form.email);
+                  data.email = state.profile_form.email;
                 }
 
                 if (state.profile_form.phone) {
-                  form_data.append('phone', state.profile_form.phone);
+                  data.phone = state.profile_form.phone;
                 }
 
                 method = 'PUT';

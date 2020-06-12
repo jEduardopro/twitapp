@@ -101,10 +101,10 @@ export default {
                     description: state.profile_form.description,
                 }
                 if (state.profile_form.email) {
-                    form_data.append('email', state.profile_form.email);
+                    data.email = state.profile_form.email;
                 }
                 if (state.profile_form.phone) {
-                    form_data.append('phone', state.profile_form.phone);
+                    data.phone = state.profile_form.phone;
                 }
                 method = 'PUT'
             }
