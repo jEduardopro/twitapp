@@ -25,7 +25,8 @@ class TwitResource extends JsonResource
                         "user" => [
                             "id" => $this->user->id,
                             "name" => $this->user->name,
-                            "image" => "/storage/users/avatars/" . $this->user->image
+                            "username" => $this->user->username,
+                            "image" => ($this->user->image) ? "/storage/users/avatars/" . $this->user->image : ''
                         ]
                     ];
                 }

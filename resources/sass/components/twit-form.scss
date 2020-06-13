@@ -1,21 +1,37 @@
-.twit-form{
+.twit-form {
     display: flex;
     flex-direction: row;
-    align-items: top;
+    align-items: flex-start;
     justify-content: center;
     vertical-align: middle;
-    .content-twit{
+
+    .content-twit {
         width: 90%;
-        textarea{
+
+        textarea {
             width: 100%;
             resize: none;
             color: $white;
             font-size: $fs-lg;
             padding: 10px;
-            &::placeholder{
+
+            &::placeholder {
                 font-size: $fs-lg;
                 color: $gray-secondary;
             }
         }
+    }
+}
+
+.user-image {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    text-align: center;
+
+    img {
+        width: 100%;
+        height: 100%;
+        display: block;
     }
 }

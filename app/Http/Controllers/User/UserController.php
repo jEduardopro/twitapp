@@ -58,7 +58,7 @@ class UserController extends Controller
             if ($user->cover_image) {
                 Storage::disk('covers')->delete($user->cover_image);
             }
-            $filename_cover_image = time().rand(1,999).'.'.$request->file('cover_image')->getClientOriginalExtension();
+            $filename_cover_image = time() . rand(1, 999) . '.' . $request->file('cover_image')->getClientOriginalExtension();
             Storage::disk('covers')->put(
                 $filename_cover_image,
                 File::get($request->cover_image)
@@ -68,7 +68,7 @@ class UserController extends Controller
             if ($user->image) {
                 Storage::disk('avatars')->delete($user->image);
             }
-            $filename_image = time().rand(1,999).'.'.$request->file('cover_image')->getClientOriginalExtension();
+            $filename_image = time() . rand(1, 999) . '.' . $request->file('image')->getClientOriginalExtension();
             Storage::disk('avatars')->put(
                 $filename_image,
                 File::get($request->image)

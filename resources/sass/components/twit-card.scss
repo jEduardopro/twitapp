@@ -1,0 +1,95 @@
+.twit-card {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+
+    .twit-body {
+        width: 90%;
+
+        .twit-header a {
+            font-weight: bold;
+            font-size: $fs-md;
+
+            &:hover {
+                text-decoration: none;
+
+                strong {
+                    text-decoration: underline;
+                }
+            }
+
+            span {
+                color: $gray;
+                font-weight: normal;
+            }
+        }
+
+        .twit-content {
+            font-size: $fs-md;
+        }
+
+        .twit-footer {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: flex-start;
+
+            .btn-comment,
+            .btn-like {
+                display: flex;
+                width: 100px;
+                align-items: center;
+
+                span {
+                    color: $gray;
+                }
+
+                .btn {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    text-align: center;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    i {
+                        color: $gray;
+                        font-size: 20px;
+                        line-height: 40px;
+                    }
+                }
+
+                &:hover {
+                    .btn {
+                        background: $white-light;
+                    }
+                }
+            }
+
+            .btn-comment:hover {
+                .btn.btn-comment {
+                    i {
+                        color: $blue;
+                    }
+                }
+
+                span {
+                    color: $blue;
+                }
+            }
+
+            .btn-like:hover {
+                .btn.btn-like {
+                    i {
+                        color: $pink;
+                    }
+                }
+
+                span {
+                    color: $pink;
+                }
+            }
+        }
+    }
+}

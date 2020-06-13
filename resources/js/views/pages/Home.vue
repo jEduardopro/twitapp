@@ -1,7 +1,14 @@
 <template>
     <div>
         <div class="twit-form px-3 pt-3">
-            <i class="fas text-muted fa-3x fa-user-circle"></i>
+            <div class="user-image">
+                <img
+                    v-if="user.image"
+                    :src="user.image"
+                    class="rounded-circle"
+                />
+                <i v-else class="fas text-muted fa-3x fa-user-circle"></i>
+            </div>
             <div class="content-twit">
                 <textarea
                     autofocus
@@ -33,13 +40,9 @@
         </div>
         <hr class="mt-2" />
         <div>
-            <template v-if="twits.length">
-                <p
-                    v-for="twit in twits"
-                    :key="twit.id"
-                    v-text="twit.content"
-                ></p>
-            </template>
+            <div v-if="twits.length" class="px-3">
+                <BaseTwit v-for="twit in twits" :twit="twit" :key="twit.id" />
+            </div>
             <template v-else>
                 <template v-if="!loading">
                     <h1 class="text-center text-white mb-0">
@@ -58,6 +61,7 @@
 import { mapState, mapActions } from "vuex";
 export default {
     computed: {
+        ...mapState("user", ["user"]),
         ...mapState("twit", ["form", "twits", "loading"])
     },
     methods: {

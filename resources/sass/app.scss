@@ -14,23 +14,29 @@
 @import './components/button';
 @import './components/menu';
 @import './components/twit-form';
+@import './components/twit-card';
 @import './components/profile';
 
-body{
+body {
     font-family: -apple-system, system-ui, BlinkMacSystemFont,
-             'Segoe UI', Roboto, 'Helvetica Neue',
-             Ubuntu, Arial, sans-serif;
+        'Segoe UI', Roboto, 'Helvetica Neue',
+        Ubuntu, Arial, sans-serif;
     background: $dark-light;
     color: $white;
 }
-input, button, textarea{
+
+input,
+button,
+textarea {
     @include outline-none;
 }
-.modal-content{
-    background:$dark-light;
+
+.modal-content {
+    background: $dark-light;
     color: $white;
 }
-.close_modal{
+
+.close_modal {
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -39,13 +45,14 @@ input, button, textarea{
     border: none;
     background: transparent;
     @include outline-none;
-    &:hover{
+
+    &:hover {
         color: $blue;
         background: $dark-light-input;
     }
 }
 
-.header-static{
+.header-static {
     position: fixed;
     top: 0;
     left: 320px;
@@ -58,16 +65,19 @@ input, button, textarea{
     border-right: 1px solid $gray-light;
     border-bottom: 1px solid $gray-light;
 }
-.main{
+
+.main {
     margin-left: 305px;
     height: 100%;
     position: absolute;
-    .content{
+
+    .content {
         border-right: 1px solid $gray-light;
         margin-top: 30px;
         height: 100%;
         width: 600px;
-        hr{
+
+        hr {
             border-color: $gray-light;
             border-width: 10px;
         }
