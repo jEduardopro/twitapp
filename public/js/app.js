@@ -2303,14 +2303,109 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     CoverAvatarImage: _CoverAvatarImage_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('user', ['user', 'profile_form'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['errors'])),
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('user', ['set_cover_image', 'set_avatar', 'update'])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("user", ["user", "profile_form"])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(["errors"])),
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("user", ["set_cover_image", "set_avatar", "update"])), {}, {
     minChar: function minChar(evt, chars) {
       if (evt.target.value.length <= chars) {
         return true;
@@ -2405,6 +2500,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2426,7 +2528,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("twit", ["form"])),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("twit", ["create"]))
+});
 
 /***/ }),
 
@@ -41120,7 +41248,74 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("div", { staticClass: "twit-form px-3 pt-3" }, [
+      _c("i", { staticClass: "fas text-muted fa-3x fa-user-circle" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "content-twit" }, [
+        _c("textarea", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.form.twit,
+              expression: "form.twit"
+            }
+          ],
+          staticClass: "d-inline-block border-0 bg-transparent",
+          attrs: { autofocus: "", placeholder: "¿Que esta pasando?" },
+          domProps: { value: _vm.form.twit },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.form, "twit", $event.target.value)
+            }
+          }
+        })
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass:
+          "text-right d-flex align-items-center justify-content-end px-3"
+      },
+      [
+        _vm.form.twit.length > 0
+          ? _c(
+              "span",
+              {
+                class: [
+                  "font-weight-bold mr-2 lead",
+                  _vm.form.twit.length > 280 ? "text-danger" : "text-muted"
+                ]
+              },
+              [_vm._v(_vm._s(_vm.form.twit.length) + "/280")]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn twit-btn font-weight-bold btn-primary",
+            attrs: {
+              type: "button",
+              disabled: !_vm.form.twit || _vm.form.twit.length > 280
+            },
+            on: { click: _vm.create }
+          },
+          [_vm._v("\n            Twittear\n        ")]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c("hr", { staticClass: "mt-2" }),
+    _vm._v(" "),
+    _vm._m(0)
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -41128,38 +41323,12 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", [
-      _c("div", { staticClass: "twit-form px-3 pt-3" }, [
-        _c("i", { staticClass: "fas text-muted fa-3x fa-user-circle" }),
-        _vm._v(" "),
-        _c("div", { staticClass: "content-twit" }, [
-          _c("textarea", {
-            staticClass: "d-inline-block border-0 bg-transparent",
-            attrs: { autofocus: "", placeholder: "¿Que esta pasando?" }
-          })
-        ])
+      _c("h1", { staticClass: "text-center text-white mb-0" }, [
+        _vm._v("Bienvenido a TwitApp")
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "text-right px-3" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn twit-btn font-weight-bold btn-primary",
-            attrs: { type: "button" }
-          },
-          [_vm._v("\n            Twittear\n        ")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("hr", { staticClass: "mt-2" }),
-      _vm._v(" "),
-      _c("div", [
-        _c("h1", { staticClass: "text-center text-white mb-0" }, [
-          _vm._v("Bienvenido a TwitApp")
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "text-muted p-0 m-0 text-center" }, [
-          _vm._v("Comienza a twittear sin limites.")
-        ])
+      _c("p", { staticClass: "text-muted p-0 m-0 text-center" }, [
+        _vm._v("\n            Comienza a twittear sin limites.\n        ")
       ])
     ])
   }
@@ -57615,20 +57784,20 @@ requireComponent.keys().forEach(function (fileName) {
   // Obtener la configuración de los componentes
   var componentConfig = requireComponent(fileName);
   var componentName = lodash_upperFirst__WEBPACK_IMPORTED_MODULE_0___default()(lodash_camelCase__WEBPACK_IMPORTED_MODULE_1___default()( // Quitar el `./`en el comienzo y la extensión del nombre del archivo
-  fileName.replace(/^\.\/(.*)\.\w+$/, '$1'))); // Registrar el componente a nivel global
+  fileName.replace(/^\.\/(.*)\.\w+$/, "$1"))); // Registrar el componente a nivel global
 
   Vue.component(componentName, // Busca las opciones de componentes en `.default`, que
   // existen si el componente fue exportado con `export default`,
   // de lo contrario volver a la raíz del módulo.
   componentConfig["default"] || componentConfig);
 });
-Vue.component('login-register', __webpack_require__(/*! ./components/Auth/LoginRegister.vue */ "./resources/js/components/Auth/LoginRegister.vue")["default"]); // Store vuex
+Vue.component("login-register", __webpack_require__(/*! ./components/Auth/LoginRegister.vue */ "./resources/js/components/Auth/LoginRegister.vue")["default"]); // Store vuex
 
  // Router
 
 
 var app = new Vue({
-  el: '#app',
+  el: "#app",
   store: _store_index__WEBPACK_IMPORTED_MODULE_2__["default"],
   router: _routes_index__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
@@ -58360,11 +58529,50 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./auth */ "./resources/js/store/modules/auth.js");
 /* harmony import */ var _user__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./user */ "./resources/js/store/modules/user.js");
+/* harmony import */ var _twit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./twit */ "./resources/js/store/modules/twit.js");
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   auth: _auth__WEBPACK_IMPORTED_MODULE_0__["default"],
-  user: _user__WEBPACK_IMPORTED_MODULE_1__["default"]
+  user: _user__WEBPACK_IMPORTED_MODULE_1__["default"],
+  twit: _twit__WEBPACK_IMPORTED_MODULE_2__["default"]
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/twit.js":
+/*!********************************************!*\
+  !*** ./resources/js/store/modules/twit.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
+  state: {
+    form: {
+      twit: ""
+    }
+  },
+  getters: {},
+  mutations: {},
+  actions: {
+    create: function create(_ref) {
+      var state = _ref.state,
+          commit = _ref.commit,
+          dispatch = _ref.dispatch;
+      axios.post("/twits", state.form).then(function (res) {
+        console.log(res);
+      })["catch"](function (err) {
+        dispatch("catch_errors", err, {
+          root: true
+        });
+      });
+    }
+  }
 });
 
 /***/ }),

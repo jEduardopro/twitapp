@@ -1,16 +1,18 @@
-.twit-btn{
+.twit-btn {
     display: inline;
     border-radius: 30px;
     font-size: $fs-md;
     background: $blue;
     border-color: $blue;
     color: $white;
-    &.disabled{
+
+    &.disabled,
+    &:disabled {
         opacity: 0.5;
         cursor: default;
     }
 }
 
-.h49{
+.h49 {
     height: 49px;
 }

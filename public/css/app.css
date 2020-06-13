@@ -10995,7 +10995,8 @@ h1 {
   color: #ffffff;
 }
 
-.twit-btn.disabled {
+.twit-btn.disabled,
+.twit-btn:disabled {
   opacity: 0.5;
   cursor: default;
 }
