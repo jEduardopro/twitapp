@@ -33,10 +33,23 @@
         </div>
         <hr class="mt-2" />
         <div>
-            <h1 class="text-center text-white mb-0">Bienvenido a TwitApp</h1>
-            <p class="text-muted p-0 m-0 text-center">
-                Comienza a twittear sin limites.
-            </p>
+            <template v-if="twits.length">
+                <p
+                    v-for="twit in twits"
+                    :key="twit.id"
+                    v-text="twit.content"
+                ></p>
+            </template>
+            <template v-else>
+                <template v-if="!loading">
+                    <h1 class="text-center text-white mb-0">
+                        Bienvenido a TwitApp
+                    </h1>
+                    <p class="text-muted p-0 m-0 text-center">
+                        Comienza a twittear sin limites.
+                    </p>
+                </template>
+            </template>
         </div>
     </div>
 </template>
@@ -45,10 +58,13 @@
 import { mapState, mapActions } from "vuex";
 export default {
     computed: {
-        ...mapState("twit", ["form"])
+        ...mapState("twit", ["form", "twits", "loading"])
     },
     methods: {
-        ...mapActions("twit", ["create"])
+        ...mapActions("twit", ["get_twits", "create"])
+    },
+    created() {
+        this.get_twits();
     }
 };
 </script>

@@ -3,16 +3,34 @@ export default {
     state: {
         form: {
             twit: ""
-        }
+        },
+        twits: [],
+        loading: false
     },
     getters: {},
-    mutations: {},
+    mutations: {
+        SET_TWITS(state, twits) {
+            state.twits = twits;
+        },
+        SET_LOADING(state, status) {
+            state.loading = status;
+        },
+        CLEAN_FORM(state) {
+            state.form.twit = "";
+        }
+    },
     actions: {
+        async get_twits({ commit }) {
+            commit("SET_LOADING", true);
+            const twits = await axios.get("twits");
+            commit("SET_TWITS", twits.data);
+            commit("SET_LOADING", false);
+        },
         create({ state, commit, dispatch }) {
             axios
-                .post("/twits", state.form)
+                .post("twits", state.form)
                 .then(res => {
-                    console.log(res);
+                    commit("CLEAN_FORM");
                 })
                 .catch(err => {
                     dispatch("catch_errors", err, { root: true });

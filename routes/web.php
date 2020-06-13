@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -11,3 +12,5 @@ Route::redirect('/', '/home');
 
 // Users routes
 Route::resource('users', 'User\UserController');
+// Twits routes
+Route::resource('twits', 'Twit\TwitController');

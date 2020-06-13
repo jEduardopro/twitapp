@@ -2550,10 +2550,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("twit", ["form"])),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("twit", ["create"]))
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("twit", ["form", "twits", "loading"])),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("twit", ["get_twits", "create"])),
+  created: function created() {
+    this.get_twits();
+  }
 });
 
 /***/ }),
@@ -41314,25 +41330,39 @@ var render = function() {
     _vm._v(" "),
     _c("hr", { staticClass: "mt-2" }),
     _vm._v(" "),
-    _vm._m(0)
+    _c(
+      "div",
+      [
+        _vm.twits.length
+          ? _vm._l(_vm.twits, function(twit) {
+              return _c("p", {
+                key: twit.id,
+                domProps: { textContent: _vm._s(twit.content) }
+              })
+            })
+          : [
+              !_vm.loading
+                ? [
+                    _c("h1", { staticClass: "text-center text-white mb-0" }, [
+                      _vm._v(
+                        "\n                    Bienvenido a TwitApp\n                "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "text-muted p-0 m-0 text-center" }, [
+                      _vm._v(
+                        "\n                    Comienza a twittear sin limites.\n                "
+                      )
+                    ])
+                  ]
+                : _vm._e()
+            ]
+      ],
+      2
+    )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("h1", { staticClass: "text-center text-white mb-0" }, [
-        _vm._v("Bienvenido a TwitApp")
-      ]),
-      _vm._v(" "),
-      _c("p", { staticClass: "text-muted p-0 m-0 text-center" }, [
-        _vm._v("\n            Comienza a twittear sin limites.\n        ")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -58550,22 +58580,67 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   namespaced: true,
   state: {
     form: {
       twit: ""
-    }
+    },
+    twits: [],
+    loading: false
   },
   getters: {},
-  mutations: {},
+  mutations: {
+    SET_TWITS: function SET_TWITS(state, twits) {
+      state.twits = twits;
+    },
+    SET_LOADING: function SET_LOADING(state, status) {
+      state.loading = status;
+    },
+    CLEAN_FORM: function CLEAN_FORM(state) {
+      state.form.twit = "";
+    }
+  },
   actions: {
-    create: function create(_ref) {
-      var state = _ref.state,
-          commit = _ref.commit,
-          dispatch = _ref.dispatch;
-      axios.post("/twits", state.form).then(function (res) {
-        console.log(res);
+    get_twits: function get_twits(_ref) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var commit, twits;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                commit = _ref.commit;
+                commit("SET_LOADING", true);
+                _context.next = 4;
+                return axios.get("twits");
+
+              case 4:
+                twits = _context.sent;
+                commit("SET_TWITS", twits.data);
+                commit("SET_LOADING", false);
+
+              case 7:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    create: function create(_ref2) {
+      var state = _ref2.state,
+          commit = _ref2.commit,
+          dispatch = _ref2.dispatch;
+      axios.post("twits", state.form).then(function (res) {
+        commit("CLEAN_FORM");
       })["catch"](function (err) {
         dispatch("catch_errors", err, {
           root: true
