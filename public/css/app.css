@@ -11291,6 +11291,24 @@ h1 {
   display: block;
 }
 
+.nav-follows a {
+  color: #B8BDC5;
+  box-sizing: border-box;
+  border-bottom-color: #38444D !important;
+}
+
+.nav-follows a.active {
+  color: #1DA1F2;
+  border-bottom-width: 2px !important;
+  border-bottom-color: #1DA1F2 !important;
+}
+
+.nav-follows a:hover {
+  background: #1da0f21c;
+  color: #1DA1F2;
+  text-decoration: none;
+}
+
 body {
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, Arial, sans-serif;
   background: #15202b;

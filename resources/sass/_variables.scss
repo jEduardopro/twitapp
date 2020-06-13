@@ -2,12 +2,14 @@
 $body-bg: #f8fafc;
 
 // Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
+$font-family-sans-serif: 'Nunito',
+sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
 // Colors
 $blue: #1DA1F2;
+$blue-light: #1da0f21c;
 $indigo: #6574cd;
 $purple: #9561e2;
 $pink: #f66d9b;
@@ -20,12 +22,12 @@ $cyan: #6cb2eb;
 $black: #000000;
 $dark-light: #15202b;
 $white: #ffffff;
-$white-light: rgba(255,255,255,0.2);
+$white-light: rgba(255, 255, 255, 0.2);
 $dark-light-input: #192734;
 $gray: rgb(136, 153, 166);
 $gray-light: #38444D;
 $gray-secondary: #B8BDC5;
-$hover-light: rgba(29,161,242,0.1);
+$hover-light: rgba(29, 161, 242, 0.1);
 
 // Font Size
 $fs-xs: 10px;

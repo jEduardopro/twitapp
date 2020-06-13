@@ -35,14 +35,26 @@
                 <i class="fa fa-calendar-alt"></i> {{ date_register }}
             </p>
             <div class="mb-3">
-                <span class="text-muted">
+                <router-link
+                    :to="{
+                        name: 'siguiendo',
+                        params: { username: user.username }
+                    }"
+                    class="text-muted"
+                >
                     <strong class="font-weight-bold text-white">10</strong>
                     Siguiendo
-                </span>
-                <span class="text-muted ml-2">
+                </router-link>
+                <router-link
+                    :to="{
+                        name: 'seguidores',
+                        params: { username: user.username }
+                    }"
+                    class="text-muted ml-2"
+                >
                     <strong class="font-weight-bold text-white">5</strong>
                     Seguidores
-                </span>
+                </router-link>
             </div>
         </div>
         <div>

@@ -1,0 +1,20 @@
+.nav-follows {
+    a {
+        color: $gray-secondary;
+        box-sizing: border-box;
+        border-bottom-color: $gray-light !important;
+
+        &.active {
+            color: $blue;
+            border-bottom-width: 2px !important;
+            border-bottom-color: $blue !important;
+            ;
+        }
+
+        &:hover {
+            background: $blue-light;
+            color: $blue;
+            text-decoration: none;
+        }
+    }
+}
