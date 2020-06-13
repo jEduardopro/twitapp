@@ -2244,6 +2244,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["twit"]
 });
@@ -2510,11 +2516,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['user_authenticated'],
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('user', ['user'])),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('user', ['set_user_information'])),
+  props: ["user_authenticated"],
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("user", ["user"])),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("user", ["set_user_information"])),
   created: function created() {
     this.set_user_information(this.user_authenticated);
   }
@@ -2682,6 +2689,41 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2690,14 +2732,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     ModalEditProfile: _components_Profile_ModalEditProfile_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     CoverAvatarImage: _components_Profile_CoverAvatarImage_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('user', ['user'])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("user", ["user", "twits", "loading"])), {}, {
     date_register: function date_register() {
       var date = new Date(this.user.created_at);
       var month = date.getMonth() < 10 ? "0".concat(date.getMonth()) : date.getMonth();
       return "Se unio el ".concat(month, " del ").concat(date.getFullYear());
     }
   }),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('user', ['edit_profile']))
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("user", ["get_twits", "edit_profile"])),
+  created: function created() {
+    this.get_twits();
+  }
 });
 
 /***/ }),
@@ -40781,7 +40826,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "twit-card" }, [
+  return _c("div", { staticClass: "twit-card px-3 py-2 border-bottom" }, [
     _c("div", { staticClass: "user-image mr-3" }, [
       _vm.twit.relationships.user.image
         ? _c("img", {
@@ -40792,26 +40837,45 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "twit-body" }, [
-      _c("div", { staticClass: "twit-header" }, [
-        _c("a", { staticClass: "text-white", attrs: { href: "#" } }, [
-          _c("strong", {
-            domProps: { textContent: _vm._s(_vm.twit.relationships.user.name) }
-          }),
-          _vm._v(" "),
-          _c("span", { staticClass: "ml-2" }, [
-            _vm._v(
-              "\n                    @" +
-                _vm._s(_vm.twit.relationships.user.username) +
-                "\n                "
-            )
-          ]),
-          _vm._v(" "),
-          _c("span", {
-            staticClass: "ml-2",
-            domProps: { textContent: _vm._s(_vm.twit.created_at) }
-          })
-        ])
-      ]),
+      _c(
+        "div",
+        { staticClass: "twit-header" },
+        [
+          _c(
+            "router-link",
+            {
+              staticClass: "text-white",
+              attrs: {
+                to: {
+                  name: "perfil",
+                  params: { username: _vm.twit.relationships.user.username }
+                }
+              }
+            },
+            [
+              _c("strong", {
+                domProps: {
+                  textContent: _vm._s(_vm.twit.relationships.user.name)
+                }
+              }),
+              _vm._v(" "),
+              _c("span", { staticClass: "ml-2" }, [
+                _vm._v(
+                  "\n                    @" +
+                    _vm._s(_vm.twit.relationships.user.username) +
+                    "\n                "
+                )
+              ]),
+              _vm._v(" "),
+              _c("span", {
+                staticClass: "ml-2",
+                domProps: { textContent: _vm._s(_vm.twit.created_at) }
+              })
+            ]
+          )
+        ],
+        1
+      ),
       _vm._v(" "),
       _c("div", {
         staticClass: "twit-content py-1",
@@ -40828,7 +40892,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "twit-footer" }, [
-      _c("div", { staticClass: "btn-comment" }, [
+      _c("div", { staticClass: "btn-comment mr-3" }, [
         _c(
           "button",
           { staticClass: "btn btn-comment", attrs: { type: "button" } },
@@ -41360,7 +41424,9 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "content" }, [_c("router-view")], 1)
-      ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "border-right-fixed" })
     ],
     1
   )
@@ -41490,7 +41556,6 @@ var render = function() {
         _vm.twits.length
           ? _c(
               "div",
-              { staticClass: "px-3" },
               _vm._l(_vm.twits, function(twit) {
                 return _c("BaseTwit", { key: twit.id, attrs: { twit: twit } })
               }),
@@ -41603,19 +41668,47 @@ var render = function() {
         _vm._v(" "),
         _vm.user.description
           ? _c("p", { staticClass: "p-0 mb-1 text-white" }, [
-              _vm._v(_vm._s(_vm.user.description))
+              _vm._v(
+                "\n            " + _vm._s(_vm.user.description) + "\n        "
+              )
             ])
           : _vm._e(),
         _vm._v(" "),
-        _c("p", { staticClass: "text-muted p-0 w-50" }, [
+        _c("p", { staticClass: "text-muted p-0 mb-1 w-50" }, [
           _c("i", { staticClass: "fa fa-calendar-alt" }),
-          _vm._v(" " + _vm._s(_vm.date_register))
+          _vm._v(" " + _vm._s(_vm.date_register) + "\n        ")
         ]),
         _vm._v(" "),
-        _vm._m(0),
-        _vm._v(" "),
-        _vm._m(1)
+        _vm._m(0)
       ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        [
+          _vm.loading
+            ? _c("h3", { staticClass: "text-muted text-center w-100" }, [
+                _vm._v("\n            Cargando Twits...\n        ")
+              ])
+            : [
+                _vm.twits.length
+                  ? _c(
+                      "div",
+                      { staticClass: "border-top" },
+                      _vm._l(_vm.twits, function(twit) {
+                        return _c("BaseTwit", {
+                          key: twit.id,
+                          attrs: { twit: twit }
+                        })
+                      }),
+                      1
+                    )
+                  : _c("h1", { staticClass: "text-center text-white mb-0" }, [
+                      _vm._v("\n                No tienes twits\n            ")
+                    ])
+              ]
+        ],
+        2
+      ),
       _vm._v(" "),
       _c("modal-edit-profile")
     ],
@@ -41627,22 +41720,20 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "text-muted" }, [
-      _c("strong", { staticClass: "font-weight-bold text-white" }, [
-        _vm._v("10")
+    return _c("div", { staticClass: "mb-3" }, [
+      _c("span", { staticClass: "text-muted" }, [
+        _c("strong", { staticClass: "font-weight-bold text-white" }, [
+          _vm._v("10")
+        ]),
+        _vm._v("\n                Siguiendo\n            ")
       ]),
-      _vm._v(" Siguiendo\n        ")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "text-muted ml-2" }, [
-      _c("strong", { staticClass: "font-weight-bold text-white" }, [
-        _vm._v("5")
-      ]),
-      _vm._v(" Seguidores\n        ")
+      _vm._v(" "),
+      _c("span", { staticClass: "text-muted ml-2" }, [
+        _c("strong", { staticClass: "font-weight-bold text-white" }, [
+          _vm._v("5")
+        ]),
+        _vm._v("\n                Seguidores\n            ")
+      ])
     ])
   }
 ]
@@ -58907,126 +58998,159 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   namespaced: true,
   state: {
     user: {
-      id: '',
-      name: '',
-      username: '',
-      email: '',
-      phone: '',
-      image: '',
-      cover_image: '',
-      description: ''
+      id: "",
+      name: "",
+      username: "",
+      email: "",
+      phone: "",
+      image: "",
+      cover_image: "",
+      description: ""
     },
+    twits: [],
+    loading: false,
     profile_form: {}
   },
   getters: {},
   mutations: {
     SET_USER: function SET_USER(state, user) {
       state.user = user;
-      state.user.email = user.email ? user.email : '';
-      state.user.phone = user.phone ? user.phone : '';
-      state.user.description = user.description ? user.description : '';
-      state.user.cover_image = user.cover_image ? "/storage/users/cover_images/".concat(user.cover_image) : '';
-      state.user.image = user.image ? "/storage/users/avatars/".concat(user.image) : '';
+      state.user.email = user.email ? user.email : "";
+      state.user.phone = user.phone ? user.phone : "";
+      state.user.description = user.description ? user.description : "";
+      state.user.cover_image = user.cover_image ? "/storage/users/cover_images/".concat(user.cover_image) : "";
+      state.user.image = user.image ? "/storage/users/avatars/".concat(user.image) : "";
     },
     SET_PROFILE_FORM: function SET_PROFILE_FORM(state) {
       state.profile_form = _objectSpread({}, state.user);
-      state.profile_form.cover_image = '';
-      state.profile_form.image = '';
+      state.profile_form.cover_image = "";
+      state.profile_form.image = "";
     },
     SET_COVER_IMAGE: function SET_COVER_IMAGE(state, file) {
       state.profile_form.cover_image = file;
     },
     SET_AVATAR: function SET_AVATAR(state, file) {
       state.profile_form.image = file;
+    },
+    SET_TWITS: function SET_TWITS(state, twits) {
+      state.twits = twits;
+    },
+    SET_LOADING: function SET_LOADING(state, status) {
+      state.loading = status;
     }
   },
   actions: {
-    set_user_information: function set_user_information(_ref, user) {
-      var commit = _ref.commit;
-      commit('SET_USER', user);
-    },
-    edit_profile: function edit_profile(_ref2) {
-      var commit = _ref2.commit;
-      commit('SET_PROFILE_FORM');
-      $("#edit_profile").modal("show");
-    },
-    set_cover_image: function set_cover_image(_ref3, evt) {
-      var commit = _ref3.commit;
-      var files = evt.target.files;
-
-      if (files.length > 0) {
-        commit('SET_COVER_IMAGE', evt.target.files[0]);
-        var reader = new FileReader();
-
-        reader.onloadend = function () {
-          $(".modal-body .cover_image img.cover_image_preview").attr('src', reader.result);
-        };
-
-        reader.readAsDataURL(evt.target.files[0]);
-      }
-    },
-    set_avatar: function set_avatar(_ref4, evt) {
-      var commit = _ref4.commit;
-      var files = evt.target.files;
-
-      if (files.length > 0) {
-        commit('SET_AVATAR', evt.target.files[0]);
-        var reader = new FileReader();
-
-        reader.onloadend = function () {
-          $(".modal-body .cover_image img.avatar_image_preview").attr('src', reader.result);
-        };
-
-        reader.readAsDataURL(evt.target.files[0]);
-      }
-    },
-    create_form_data: function create_form_data(_ref5) {
-      var state = _ref5.state;
-      var form_data = new FormData();
-
-      if (state.profile_form.email) {
-        form_data.append('email', state.profile_form.email);
-      }
-
-      if (state.profile_form.phone) {
-        form_data.append('phone', state.profile_form.phone);
-      }
-
-      if (state.profile_form.cover_image) {
-        form_data.append('cover_image', state.profile_form.cover_image, state.profile_form.cover_image.name);
-      }
-
-      if (state.profile_form.image) {
-        form_data.append('image', state.profile_form.image, state.profile_form.image.name);
-      }
-
-      form_data.append('name', state.profile_form.name);
-      form_data.append('username', state.profile_form.username);
-      form_data.append('description', state.profile_form.description);
-      form_data.append('_method', 'PUT');
-      return form_data;
-    },
-    update: function update(_ref6) {
+    get_twits: function get_twits(_ref) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var state, commit, dispatch, data, method;
+        var state, commit, twits;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                state = _ref6.state, commit = _ref6.commit, dispatch = _ref6.dispatch;
+                state = _ref.state, commit = _ref.commit;
+                commit("SET_LOADING", true);
+                _context.next = 4;
+                return axios.get("users/".concat(state.user.id, "/twits"));
+
+              case 4:
+                twits = _context.sent;
+                commit("SET_TWITS", twits.data.data);
+                commit("SET_LOADING", false);
+
+              case 7:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    set_user_information: function set_user_information(_ref2, user) {
+      var commit = _ref2.commit;
+      commit("SET_USER", user);
+    },
+    edit_profile: function edit_profile(_ref3) {
+      var commit = _ref3.commit;
+      commit("SET_PROFILE_FORM");
+      $("#edit_profile").modal("show");
+    },
+    set_cover_image: function set_cover_image(_ref4, evt) {
+      var commit = _ref4.commit;
+      var files = evt.target.files;
+
+      if (files.length > 0) {
+        commit("SET_COVER_IMAGE", evt.target.files[0]);
+        var reader = new FileReader();
+
+        reader.onloadend = function () {
+          $(".modal-body .cover_image img.cover_image_preview").attr("src", reader.result);
+        };
+
+        reader.readAsDataURL(evt.target.files[0]);
+      }
+    },
+    set_avatar: function set_avatar(_ref5, evt) {
+      var commit = _ref5.commit;
+      var files = evt.target.files;
+
+      if (files.length > 0) {
+        commit("SET_AVATAR", evt.target.files[0]);
+        var reader = new FileReader();
+
+        reader.onloadend = function () {
+          $(".modal-body .cover_image img.avatar_image_preview").attr("src", reader.result);
+        };
+
+        reader.readAsDataURL(evt.target.files[0]);
+      }
+    },
+    create_form_data: function create_form_data(_ref6) {
+      var state = _ref6.state;
+      var form_data = new FormData();
+
+      if (state.profile_form.email) {
+        form_data.append("email", state.profile_form.email);
+      }
+
+      if (state.profile_form.phone) {
+        form_data.append("phone", state.profile_form.phone);
+      }
+
+      if (state.profile_form.cover_image) {
+        form_data.append("cover_image", state.profile_form.cover_image, state.profile_form.cover_image.name);
+      }
+
+      if (state.profile_form.image) {
+        form_data.append("image", state.profile_form.image, state.profile_form.image.name);
+      }
+
+      form_data.append("name", state.profile_form.name);
+      form_data.append("username", state.profile_form.username);
+      form_data.append("description", state.profile_form.description);
+      form_data.append("_method", "PUT");
+      return form_data;
+    },
+    update: function update(_ref7) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var state, commit, dispatch, data, method;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                state = _ref7.state, commit = _ref7.commit, dispatch = _ref7.dispatch;
 
                 if (!(state.profile_form.cover_image || state.profile_form.image)) {
-                  _context.next = 8;
+                  _context2.next = 8;
                   break;
                 }
 
-                _context.next = 4;
-                return dispatch('create_form_data');
+                _context2.next = 4;
+                return dispatch("create_form_data");
 
               case 4:
-                data = _context.sent;
-                method = 'POST';
-                _context.next = 12;
+                data = _context2.sent;
+                method = "POST";
+                _context2.next = 12;
                 break;
 
               case 8:
@@ -59044,7 +59168,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   data.phone = state.profile_form.phone;
                 }
 
-                method = 'PUT';
+                method = "PUT";
 
               case 12:
                 axios({
@@ -59053,28 +59177,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   data: data
                 }).then(function (res) {
                   console.log(res.data);
-                  commit('SET_USER', res.data);
+                  commit("SET_USER", res.data);
 
                   if (_routes_index__WEBPACK_IMPORTED_MODULE_1__["default"].history.current.params.username != res.data.username) {
                     _routes_index__WEBPACK_IMPORTED_MODULE_1__["default"].push({
-                      name: 'perfil',
+                      name: "perfil",
                       params: {
                         username: res.data.username
                       }
                     });
                   }
                 })["catch"](function (err) {
-                  dispatch('catch_errors', err, {
+                  dispatch("catch_errors", err, {
                     root: true
                   });
                 });
 
               case 13:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee);
+        }, _callee2);
       }))();
     }
   }

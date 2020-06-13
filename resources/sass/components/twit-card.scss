@@ -3,6 +3,10 @@
     flex-direction: row;
     align-items: flex-start;
 
+    &.border-bottom {
+        border-bottom-color: $gray-light !important;
+    }
+
     .twit-body {
         width: 90%;
 
@@ -37,7 +41,6 @@
             .btn-comment,
             .btn-like {
                 display: flex;
-                width: 100px;
                 align-items: center;
 
                 span {

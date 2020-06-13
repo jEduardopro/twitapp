@@ -1,29 +1,30 @@
 <template>
     <div class="container-fluid">
-        <BaseMenu/>
+        <BaseMenu />
         <div class="main">
             <div class="header-static font-weight-bold">
-                {{$route.name.toUpperCase()}}
+                {{ $route.name.toUpperCase() }}
             </div>
             <div class="content">
                 <router-view></router-view>
             </div>
         </div>
+        <div class="border-right-fixed"></div>
     </div>
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapState } from "vuex";
 export default {
-    props: ['user_authenticated'],
+    props: ["user_authenticated"],
     computed: {
-        ...mapState('user', ['user'])
+        ...mapState("user", ["user"])
     },
     methods: {
-        ...mapActions('user', ['set_user_information'])
+        ...mapActions("user", ["set_user_information"])
     },
     created() {
-        this.set_user_information(this.user_authenticated)
-    },
-}
+        this.set_user_information(this.user_authenticated);
+    }
+};
 </script>

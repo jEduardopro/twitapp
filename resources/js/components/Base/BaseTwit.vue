@@ -1,5 +1,5 @@
 <template>
-    <div class="twit-card">
+    <div class="twit-card px-3 py-2 border-bottom">
         <div class="user-image mr-3">
             <img
                 v-if="twit.relationships.user.image"
@@ -10,17 +10,23 @@
         </div>
         <div class="twit-body">
             <div class="twit-header">
-                <a href="#" class="text-white">
+                <router-link
+                    :to="{
+                        name: 'perfil',
+                        params: { username: twit.relationships.user.username }
+                    }"
+                    class="text-white"
+                >
                     <strong v-text="twit.relationships.user.name"></strong>
                     <span class="ml-2">
                         @{{ twit.relationships.user.username }}
                     </span>
                     <span class="ml-2" v-text="twit.created_at"></span>
-                </a>
+                </router-link>
             </div>
             <div class="twit-content py-1" v-text="twit.content"></div>
             <div class="twit-footer">
-                <div class="btn-comment">
+                <div class="btn-comment mr-3">
                     <button type="button" class="btn btn-comment">
                         <i class="far fa-comment"></i>
                     </button>

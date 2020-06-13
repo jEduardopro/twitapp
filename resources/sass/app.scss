@@ -55,31 +55,41 @@ textarea {
 .header-static {
     position: fixed;
     top: 0;
-    left: 320px;
-    width: 600px;
+    left: 23.5%;
+    width: 44.5%;
     padding: 15px;
     height: 60px;
     font-size: $fs-lg;
     background: $dark-light;
-    z-index: 5;
-    border-right: 1px solid $gray-light;
+    z-index: 2050;
     border-bottom: 1px solid $gray-light;
 }
 
 .main {
-    margin-left: 305px;
+    top: 0;
+    left: 23.5%;
+    width: 44.5%;
     height: 100%;
     position: absolute;
 
     .content {
-        border-right: 1px solid $gray-light;
-        margin-top: 30px;
+        margin-top: 60px;
+        width: 100%;
         height: 100%;
-        width: 600px;
 
         hr {
             border-color: $gray-light;
             border-width: 10px;
         }
     }
+}
+
+.border-right-fixed {
+    position: fixed;
+    top: 0;
+    left: auto;
+    right: 0;
+    width: 32%;
+    height: 100%;
+    border-left: 1px solid $gray-light;
 }

@@ -40,7 +40,7 @@
         </div>
         <hr class="mt-2" />
         <div>
-            <div v-if="twits.length" class="px-3">
+            <div v-if="twits.length">
                 <BaseTwit v-for="twit in twits" :twit="twit" :key="twit.id" />
             </div>
             <template v-else>
