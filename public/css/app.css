@@ -11309,6 +11309,60 @@ h1 {
   text-decoration: none;
 }
 
+.search {
+  position: relative;
+}
+
+.search .input-search {
+  background: #192734;
+  border: 1px solid #192734;
+  border-radius: 30px;
+  width: 100%;
+  padding: 10px;
+  color: #ffffff;
+  font-size: 19px;
+  line-height: 19px;
+}
+
+.search .input-search:active,
+.search .input-search:focus {
+  border: 1px solid #1DA1F2;
+}
+
+.search .input-search::-moz-placeholder {
+  color: #8899a6;
+  font-size: 16px;
+}
+
+.search .input-search:-ms-input-placeholder {
+  color: #8899a6;
+  font-size: 16px;
+}
+
+.search .input-search::-ms-input-placeholder {
+  color: #8899a6;
+  font-size: 16px;
+}
+
+.search .input-search::placeholder {
+  color: #8899a6;
+  font-size: 16px;
+}
+
+.search .box-results {
+  position: absolute;
+  top: 90%;
+  left: 4.5%;
+  width: 90%;
+  height: 350px;
+  max-height: 350px;
+  border-radius: 5px;
+  overflow-y: auto;
+  z-index: 1000;
+  background: #15202b;
+  box-shadow: rgba(136, 153, 166, 0.2) 0px 0px 15px, rgba(136, 153, 166, 0.15) 0px 0px 3px 1px;
+}
+
 body {
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, Arial, sans-serif;
   background: #15202b;

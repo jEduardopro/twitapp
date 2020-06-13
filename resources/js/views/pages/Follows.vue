@@ -1,6 +1,7 @@
 <template>
     <div>
-        <nav class="d-flex mt-5 pt-3 nav-follows">
+        <search></search>
+        <nav class="d-flex mt-2 nav-follows">
             <router-link
                 :to="{
                     name: 'seguidores',
@@ -30,8 +31,10 @@
 
 <script>
 import { mapState } from "vuex";
+import Search from "../../components/Follow/Search.vue";
 export default {
     props: ["username"],
+    components: { Search },
     computed: {
         ...mapState("user", ["user"])
     }
