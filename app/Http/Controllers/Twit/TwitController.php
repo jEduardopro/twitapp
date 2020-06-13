@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Twit;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\TwitResource;
 use App\Models\Twit;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class TwitController extends Controller
      */
     public function index()
     {
-        return Twit::latest()->get();
+        return TwitResource::collection(Twit::with(['user'])->latest()->get());
     }
 
     /**
@@ -30,7 +31,7 @@ class TwitController extends Controller
             'user_id' => auth()->id(),
             'content' => $request->twit
         ]);
-        return $twit;
+        return TwitResource::make($twit);
     }
 
     /**

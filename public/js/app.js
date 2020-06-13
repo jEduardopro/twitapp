@@ -58624,7 +58624,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 4:
                 twits = _context.sent;
-                commit("SET_TWITS", twits.data);
+                commit("SET_TWITS", twits.data.data);
                 commit("SET_LOADING", false);
 
               case 7:

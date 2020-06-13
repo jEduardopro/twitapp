@@ -23,7 +23,7 @@ export default {
         async get_twits({ commit }) {
             commit("SET_LOADING", true);
             const twits = await axios.get("twits");
-            commit("SET_TWITS", twits.data);
+            commit("SET_TWITS", twits.data.data);
             commit("SET_LOADING", false);
         },
         create({ state, commit, dispatch }) {
