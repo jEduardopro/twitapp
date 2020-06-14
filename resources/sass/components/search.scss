@@ -1,38 +1,48 @@
-.search {
-    position: relative;
+.search-sidebar {
+    position: fixed;
+    top: 0;
+    left: auto;
+    right: 0;
+    width: 32%;
+    height: 100%;
+    border-left: 1px solid $gray-light;
 
-    .input-search {
-        background: $dark-light-input;
-        border: 1px solid $dark-light-input;
-        border-radius: 30px;
-        width: 100%;
-        padding: 10px;
-        color: $white;
-        font-size: $fs-lg;
-        line-height: 19px;
+    .form-group {
+        position: relative;
 
-        &:active,
-        &:focus {
-            border: 1px solid $blue;
+        .input-search {
+            background: #253341;
+            border: 1px solid #253341;
+            border-radius: 40px;
+            width: 100%;
+            padding: 7px 20px;
+            color: $white;
+            font-size: $fs-lg;
+            line-height: 19px;
+
+            &:active,
+            &:focus {
+                border: 1px solid $blue;
+            }
+
+            &::placeholder {
+                color: $gray;
+                font-size: $fs-md;
+            }
         }
 
-        &::placeholder {
-            color: $gray;
-            font-size: $fs-md;
+        .box-results {
+            position: absolute;
+            top: 100%;
+            left: auto;
+            width: 100%;
+            height: 350px;
+            max-height: 350px;
+            border-radius: 5px;
+            overflow-y: auto;
+            z-index: 1000;
+            background: $dark-light;
+            box-shadow: rgba(136, 153, 166, 0.2) 0px 0px 15px, rgba(136, 153, 166, 0.15) 0px 0px 3px 1px;
         }
-    }
-
-    .box-results {
-        position: absolute;
-        top: 90%;
-        left: 4.5%;
-        width: 90%;
-        height: 350px;
-        max-height: 350px;
-        border-radius: 5px;
-        overflow-y: auto;
-        z-index: 1000;
-        background: $dark-light;
-        box-shadow: rgba(136, 153, 166, 0.2) 0px 0px 15px, rgba(136, 153, 166, 0.15) 0px 0px 3px 1px;
     }
 }

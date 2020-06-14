@@ -1,7 +1,6 @@
 <template>
     <div>
-        <search></search>
-        <nav class="d-flex mt-2 nav-follows">
+        <nav class="d-flex mt-5 nav-follows">
             <router-link
                 :to="{
                     name: 'seguidores',

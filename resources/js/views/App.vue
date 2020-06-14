@@ -9,7 +9,7 @@
                 <router-view></router-view>
             </div>
         </div>
-        <div class="border-right-fixed"></div>
+        <BaseSearch />
     </div>
 </template>
 

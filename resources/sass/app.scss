@@ -85,13 +85,3 @@ textarea {
         }
     }
 }
-
-.border-right-fixed {
-    position: fixed;
-    top: 0;
-    left: auto;
-    right: 0;
-    width: 32%;
-    height: 100%;
-    border-left: 1px solid $gray-light;
-}

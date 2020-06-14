@@ -109,6 +109,11 @@ import ModalEditProfile from "../../components/Profile/ModalEditProfile.vue";
 import CoverAvatarImage from "../../components/Profile/CoverAvatarImage.vue";
 export default {
     props: ["username"],
+    watch: {
+        $route(to, from) {
+            this.show(to.params.username);
+        }
+    },
     components: { ModalEditProfile, CoverAvatarImage },
     computed: {
         ...mapState("user", ["user", "profile", "loading"])
