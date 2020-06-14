@@ -12,6 +12,7 @@ Route::redirect('/', '/home');
 
 // Users routes
 Route::resource('users', 'User\UserController');
+Route::get('me', 'User\UserController@me');
 Route::resource('users.twits', 'User\UserTwitsController')->only(['index']);
 // Twits routes
 Route::resource('twits', 'Twit\TwitController');

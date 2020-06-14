@@ -11,7 +11,6 @@
             </div>
             <div class="content-twit">
                 <textarea
-                    autofocus
                     v-model="form.twit"
                     class="d-inline-block border-0 bg-transparent"
                     placeholder="¿Que esta pasando?"
@@ -41,7 +40,11 @@
         <hr class="mt-2" />
         <div>
             <div v-if="twits.length">
-                <BaseTwit v-for="twit in twits" :twit="twit" :key="twit.id" />
+                <BaseTwit
+                    v-for="(twit, index) in twits"
+                    :twit="twit"
+                    :key="twit.id + '_' + index"
+                />
             </div>
             <template v-else>
                 <template v-if="!loading">

@@ -12,7 +12,7 @@ export default {
             cover_image: "",
             description: ""
         },
-        twits: [],
+        profile: {},
         loading: false,
         profile_form: {}
     },
@@ -41,22 +41,31 @@ export default {
         SET_AVATAR(state, file) {
             state.profile_form.image = file;
         },
-        SET_TWITS(state, twits) {
-            state.twits = twits;
+        SET_PROFILE(state, profile) {
+            state.profile = profile;
+            state.profile.cover_image = profile.cover_image
+                ? `/storage/users/cover_images/${profile.cover_image}`
+                : "";
+            state.profile.image = profile.image
+                ? `/storage/users/avatars/${profile.image}`
+                : "";
         },
         SET_LOADING(state, status) {
             state.loading = status;
         }
     },
     actions: {
-        async get_twits({ state, commit }) {
+        async set_user_information({ commit }) {
             commit("SET_LOADING", true);
-            const twits = await axios.get(`users/${state.user.id}/twits`);
-            commit("SET_TWITS", twits.data.data);
+            const user = await axios.get(`me`);
+            commit("SET_USER", user.data.data);
             commit("SET_LOADING", false);
         },
-        set_user_information({ commit }, user) {
-            commit("SET_USER", user);
+        async show({ state, commit }, username) {
+            commit("SET_LOADING", true);
+            const profile = await axios.get(`users/${username}`);
+            commit("SET_PROFILE", profile.data.data);
+            commit("SET_LOADING", false);
         },
         edit_profile({ commit }) {
             commit("SET_PROFILE_FORM");

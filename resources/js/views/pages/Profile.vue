@@ -1,84 +1,88 @@
 <template>
-    <div>
+    <div v-if="!loading">
         <cover-avatar-image>
-            <template v-if="user.cover_image" v-slot:cover_image>
-                <img :src="user.cover_image" class="cover_image_preview" />
+            <template v-if="profile.cover_image" v-slot:cover_image>
+                <img :src="profile.cover_image" class="cover_image_preview" />
             </template>
-            <template v-if="user.image" v-slot:avatar>
+            <template v-if="profile.image" v-slot:avatar>
                 <img
-                    :src="user.image"
+                    :src="profile.image"
                     class="avatar_image_preview rounded-circle"
                 />
             </template>
         </cover-avatar-image>
         <div class="text-right px-3 pt-2">
             <button
+                v-if="user.id == profile.id"
                 type="button"
                 @click="edit_profile"
                 class="btn twit-btn font-weight-bold btn-primary"
             >
                 Editar perfil
             </button>
+            <button
+                v-else
+                type="button"
+                @click="edit_profile"
+                class="btn twit-btn font-weight-bold btn-primary"
+            >
+                Seguir
+            </button>
         </div>
         <div class="text-left pt-3 pl-3">
             <p class="font-weight-bold w-50 h5 mt-1 text-white">
-                {{ user.name }}
+                {{ profile.name }}
                 <small
                     class="text-muted d-block"
-                    v-text="`@${user.username}`"
+                    v-text="`@${profile.username}`"
                 ></small>
             </p>
-            <p v-if="user.description" class="p-0 mb-1 text-white">
-                {{ user.description }}
+            <p v-if="profile.description" class="p-0 mb-1 text-white">
+                {{ profile.description }}
             </p>
             <p class="text-muted p-0 mb-1 w-50">
-                <i class="fa fa-calendar-alt"></i> {{ date_register }}
+                <i class="fa fa-calendar-alt"></i> Se unió {{ profile.join_at }}
             </p>
             <div class="mb-3">
                 <router-link
                     :to="{
                         name: 'siguiendo',
-                        params: { username: user.username }
+                        params: { username: profile.username }
                     }"
                     class="text-muted"
                 >
                     <strong
                         class="font-weight-bold text-white"
-                        v-text="user.following.length"
+                        v-text="profile.relationships.following.length"
                     ></strong>
                     Siguiendo
                 </router-link>
                 <router-link
                     :to="{
                         name: 'seguidores',
-                        params: { username: user.username }
+                        params: { username: profile.username }
                     }"
                     class="text-muted ml-2"
                 >
                     <strong
                         class="font-weight-bold text-white"
-                        v-text="user.followers.length"
+                        v-text="profile.relationships.followers.length"
                     ></strong>
                     Seguidores
                 </router-link>
             </div>
         </div>
         <div class="border-top">
-            <h3 v-if="loading" class="text-muted text-center w-100">
-                Cargando Twits...
-            </h3>
-            <template v-else>
-                <div v-if="twits.length">
-                    <BaseTwit
-                        v-for="twit in twits"
-                        :twit="twit"
-                        :key="twit.id"
-                    />
-                </div>
-                <h1 v-else class="text-center text-muted mb-0">
-                    No tienes twits
-                </h1>
-            </template>
+            <div v-if="profile.relationships.twits.length">
+                <BaseTwit
+                    v-for="twit in profile.relationships.twits"
+                    :twit="twit"
+                    :key="twit.id"
+                />
+            </div>
+            <h1 v-else class="text-center text-muted mb-0">
+                No hay twits
+            </h1>
         </div>
         <modal-edit-profile></modal-edit-profile>
     </div>
@@ -89,21 +93,16 @@ import { mapState, mapActions } from "vuex";
 import ModalEditProfile from "../../components/Profile/ModalEditProfile.vue";
 import CoverAvatarImage from "../../components/Profile/CoverAvatarImage.vue";
 export default {
+    props: ["username"],
     components: { ModalEditProfile, CoverAvatarImage },
     computed: {
-        ...mapState("user", ["user", "twits", "loading"]),
-        date_register() {
-            let date = new Date(this.user.created_at);
-            let month =
-                date.getMonth() < 10 ? `0${date.getMonth()}` : date.getMonth();
-            return `Se unio el ${month} del ${date.getFullYear()}`;
-        }
+        ...mapState("user", ["user", "profile", "loading"])
     },
     methods: {
-        ...mapActions("user", ["get_twits", "edit_profile"])
+        ...mapActions("user", ["show", "edit_profile"])
     },
     created() {
-        this.get_twits();
+        this.show(this.username);
     }
 };
 </script>

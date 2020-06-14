@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserFormRequest;
+use App\Http\Resources\UserResource;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -27,9 +28,16 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($username)
     {
-        //
+        $user = User::where('username', $username)->with(['twits', 'followers', 'following'])->first();
+        return UserResource::make($user);
+    }
+
+    public function me()
+    {
+        $user = User::where('id', auth()->id())->with(['twits', 'followers', 'following'])->first();
+        return UserResource::make($user);
     }
 
     /**

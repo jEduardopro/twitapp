@@ -2558,7 +2558,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["user_authenticated"],
   watch: {
     $route: function $route(to, from) {
       $("body, html").animate({
@@ -2569,7 +2568,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("user", ["user"])),
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("user", ["set_user_information"])),
   created: function created() {
-    this.set_user_information(this.user_authenticated);
+    this.set_user_information();
   }
 });
 
@@ -2674,6 +2673,9 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
 //
 //
 //
@@ -2848,24 +2850,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["username"],
   components: {
     ModalEditProfile: _components_Profile_ModalEditProfile_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     CoverAvatarImage: _components_Profile_CoverAvatarImage_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("user", ["user", "twits", "loading"])), {}, {
-    date_register: function date_register() {
-      var date = new Date(this.user.created_at);
-      var month = date.getMonth() < 10 ? "0".concat(date.getMonth()) : date.getMonth();
-      return "Se unio el ".concat(month, " del ").concat(date.getFullYear());
-    }
-  }),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("user", ["get_twits", "edit_profile"])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("user", ["user", "profile", "loading"])),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("user", ["show", "edit_profile"])),
   created: function created() {
-    this.get_twits();
+    this.show(this.username);
   }
 });
 
@@ -41639,28 +41640,30 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container-fluid" },
-    [
-      _c("BaseMenu"),
-      _vm._v(" "),
-      _c("div", { staticClass: "main" }, [
-        _c("div", { staticClass: "header-static font-weight-bold" }, [
-          _vm._v(
-            "\n            " +
-              _vm._s(_vm.$route.name.toUpperCase()) +
-              "\n        "
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "content" }, [_c("router-view")], 1)
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "border-right-fixed" })
-    ],
-    1
-  )
+  return _vm.user.id
+    ? _c(
+        "div",
+        { staticClass: "container-fluid" },
+        [
+          _c("BaseMenu"),
+          _vm._v(" "),
+          _c("div", { staticClass: "main" }, [
+            _c("div", { staticClass: "header-static font-weight-bold" }, [
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.$route.name.toUpperCase()) +
+                  "\n        "
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "content" }, [_c("router-view")], 1)
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "border-right-fixed" })
+        ],
+        1
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -41807,7 +41810,7 @@ var render = function() {
             }
           ],
           staticClass: "d-inline-block border-0 bg-transparent",
-          attrs: { autofocus: "", placeholder: "¿Que esta pasando?" },
+          attrs: { placeholder: "¿Que esta pasando?" },
           domProps: { value: _vm.form.twit },
           on: {
             input: function($event) {
@@ -41864,8 +41867,11 @@ var render = function() {
         _vm.twits.length
           ? _c(
               "div",
-              _vm._l(_vm.twits, function(twit) {
-                return _c("BaseTwit", { key: twit.id, attrs: { twit: twit } })
+              _vm._l(_vm.twits, function(twit, index) {
+                return _c("BaseTwit", {
+                  key: twit.id + "_" + index,
+                  attrs: { twit: twit }
+                })
               }),
               1
             )
@@ -41913,160 +41919,177 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("cover-avatar-image", {
-        scopedSlots: _vm._u(
-          [
-            _vm.user.cover_image
-              ? {
-                  key: "cover_image",
-                  fn: function() {
-                    return [
-                      _c("img", {
-                        staticClass: "cover_image_preview",
-                        attrs: { src: _vm.user.cover_image }
-                      })
-                    ]
-                  },
-                  proxy: true
-                }
-              : null,
-            _vm.user.image
-              ? {
-                  key: "avatar",
-                  fn: function() {
-                    return [
-                      _c("img", {
-                        staticClass: "avatar_image_preview rounded-circle",
-                        attrs: { src: _vm.user.image }
-                      })
-                    ]
-                  },
-                  proxy: true
-                }
-              : null
-          ],
-          null,
-          true
-        )
-      }),
-      _vm._v(" "),
-      _c("div", { staticClass: "text-right px-3 pt-2" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn twit-btn font-weight-bold btn-primary",
-            attrs: { type: "button" },
-            on: { click: _vm.edit_profile }
-          },
-          [_vm._v("\n            Editar perfil\n        ")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "text-left pt-3 pl-3" }, [
-        _c("p", { staticClass: "font-weight-bold w-50 h5 mt-1 text-white" }, [
-          _vm._v("\n            " + _vm._s(_vm.user.name) + "\n            "),
-          _c("small", {
-            staticClass: "text-muted d-block",
-            domProps: { textContent: _vm._s("@" + _vm.user.username) }
-          })
-        ]),
-        _vm._v(" "),
-        _vm.user.description
-          ? _c("p", { staticClass: "p-0 mb-1 text-white" }, [
-              _vm._v(
-                "\n            " + _vm._s(_vm.user.description) + "\n        "
-              )
-            ])
-          : _vm._e(),
-        _vm._v(" "),
-        _c("p", { staticClass: "text-muted p-0 mb-1 w-50" }, [
-          _c("i", { staticClass: "fa fa-calendar-alt" }),
-          _vm._v(" " + _vm._s(_vm.date_register) + "\n        ")
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "mb-3" },
-          [
-            _c(
-              "router-link",
-              {
-                staticClass: "text-muted",
-                attrs: {
-                  to: {
-                    name: "siguiendo",
-                    params: { username: _vm.user.username }
-                  }
-                }
-              },
+  return !_vm.loading
+    ? _c(
+        "div",
+        [
+          _c("cover-avatar-image", {
+            scopedSlots: _vm._u(
               [
-                _c("strong", {
-                  staticClass: "font-weight-bold text-white",
-                  domProps: { textContent: _vm._s(_vm.user.following.length) }
-                }),
-                _vm._v("\n                Siguiendo\n            ")
+                _vm.profile.cover_image
+                  ? {
+                      key: "cover_image",
+                      fn: function() {
+                        return [
+                          _c("img", {
+                            staticClass: "cover_image_preview",
+                            attrs: { src: _vm.profile.cover_image }
+                          })
+                        ]
+                      },
+                      proxy: true
+                    }
+                  : null,
+                _vm.profile.image
+                  ? {
+                      key: "avatar",
+                      fn: function() {
+                        return [
+                          _c("img", {
+                            staticClass: "avatar_image_preview rounded-circle",
+                            attrs: { src: _vm.profile.image }
+                          })
+                        ]
+                      },
+                      proxy: true
+                    }
+                  : null
+              ],
+              null,
+              true
+            )
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "text-right px-3 pt-2" }, [
+            _vm.user.id == _vm.profile.id
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn twit-btn font-weight-bold btn-primary",
+                    attrs: { type: "button" },
+                    on: { click: _vm.edit_profile }
+                  },
+                  [_vm._v("\n            Editar perfil\n        ")]
+                )
+              : _c(
+                  "button",
+                  {
+                    staticClass: "btn twit-btn font-weight-bold btn-primary",
+                    attrs: { type: "button" },
+                    on: { click: _vm.edit_profile }
+                  },
+                  [_vm._v("\n            Seguir\n        ")]
+                )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "text-left pt-3 pl-3" }, [
+            _c(
+              "p",
+              { staticClass: "font-weight-bold w-50 h5 mt-1 text-white" },
+              [
+                _vm._v(
+                  "\n            " + _vm._s(_vm.profile.name) + "\n            "
+                ),
+                _c("small", {
+                  staticClass: "text-muted d-block",
+                  domProps: { textContent: _vm._s("@" + _vm.profile.username) }
+                })
               ]
             ),
             _vm._v(" "),
+            _vm.profile.description
+              ? _c("p", { staticClass: "p-0 mb-1 text-white" }, [
+                  _vm._v(
+                    "\n            " +
+                      _vm._s(_vm.profile.description) +
+                      "\n        "
+                  )
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _c("p", { staticClass: "text-muted p-0 mb-1 w-50" }, [
+              _c("i", { staticClass: "fa fa-calendar-alt" }),
+              _vm._v(" Se unió " + _vm._s(_vm.profile.join_at) + "\n        ")
+            ]),
+            _vm._v(" "),
             _c(
-              "router-link",
-              {
-                staticClass: "text-muted ml-2",
-                attrs: {
-                  to: {
-                    name: "seguidores",
-                    params: { username: _vm.user.username }
-                  }
-                }
-              },
+              "div",
+              { staticClass: "mb-3" },
               [
-                _c("strong", {
-                  staticClass: "font-weight-bold text-white",
-                  domProps: { textContent: _vm._s(_vm.user.followers.length) }
-                }),
-                _vm._v("\n                Seguidores\n            ")
-              ]
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "text-muted",
+                    attrs: {
+                      to: {
+                        name: "siguiendo",
+                        params: { username: _vm.profile.username }
+                      }
+                    }
+                  },
+                  [
+                    _c("strong", {
+                      staticClass: "font-weight-bold text-white",
+                      domProps: {
+                        textContent: _vm._s(
+                          _vm.profile.relationships.following.length
+                        )
+                      }
+                    }),
+                    _vm._v("\n                Siguiendo\n            ")
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "text-muted ml-2",
+                    attrs: {
+                      to: {
+                        name: "seguidores",
+                        params: { username: _vm.profile.username }
+                      }
+                    }
+                  },
+                  [
+                    _c("strong", {
+                      staticClass: "font-weight-bold text-white",
+                      domProps: {
+                        textContent: _vm._s(
+                          _vm.profile.relationships.followers.length
+                        )
+                      }
+                    }),
+                    _vm._v("\n                Seguidores\n            ")
+                  ]
+                )
+              ],
+              1
             )
-          ],
-          1
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "border-top" },
-        [
-          _vm.loading
-            ? _c("h3", { staticClass: "text-muted text-center w-100" }, [
-                _vm._v("\n            Cargando Twits...\n        ")
-              ])
-            : [
-                _vm.twits.length
-                  ? _c(
-                      "div",
-                      _vm._l(_vm.twits, function(twit) {
-                        return _c("BaseTwit", {
-                          key: twit.id,
-                          attrs: { twit: twit }
-                        })
-                      }),
-                      1
-                    )
-                  : _c("h1", { staticClass: "text-center text-muted mb-0" }, [
-                      _vm._v("\n                No tienes twits\n            ")
-                    ])
-              ]
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "border-top" }, [
+            _vm.profile.relationships.twits.length
+              ? _c(
+                  "div",
+                  _vm._l(_vm.profile.relationships.twits, function(twit) {
+                    return _c("BaseTwit", {
+                      key: twit.id,
+                      attrs: { twit: twit }
+                    })
+                  }),
+                  1
+                )
+              : _c("h1", { staticClass: "text-center text-muted mb-0" }, [
+                  _vm._v("\n            No hay twits\n        ")
+                ])
+          ]),
+          _vm._v(" "),
+          _c("modal-edit-profile")
         ],
-        2
-      ),
-      _vm._v(" "),
-      _c("modal-edit-profile")
-    ],
-    1
-  )
+        1
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -59533,7 +59556,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       cover_image: "",
       description: ""
     },
-    twits: [],
+    profile: {},
     loading: false,
     profile_form: {}
   },
@@ -59558,29 +59581,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     SET_AVATAR: function SET_AVATAR(state, file) {
       state.profile_form.image = file;
     },
-    SET_TWITS: function SET_TWITS(state, twits) {
-      state.twits = twits;
+    SET_PROFILE: function SET_PROFILE(state, profile) {
+      state.profile = profile;
+      state.profile.cover_image = profile.cover_image ? "/storage/users/cover_images/".concat(profile.cover_image) : "";
+      state.profile.image = profile.image ? "/storage/users/avatars/".concat(profile.image) : "";
     },
     SET_LOADING: function SET_LOADING(state, status) {
       state.loading = status;
     }
   },
   actions: {
-    get_twits: function get_twits(_ref) {
+    set_user_information: function set_user_information(_ref) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var state, commit, twits;
+        var commit, user;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                state = _ref.state, commit = _ref.commit;
+                commit = _ref.commit;
                 commit("SET_LOADING", true);
                 _context.next = 4;
-                return axios.get("users/".concat(state.user.id, "/twits"));
+                return axios.get("me");
 
               case 4:
-                twits = _context.sent;
-                commit("SET_TWITS", twits.data.data);
+                user = _context.sent;
+                commit("SET_USER", user.data.data);
                 commit("SET_LOADING", false);
 
               case 7:
@@ -59591,9 +59616,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }, _callee);
       }))();
     },
-    set_user_information: function set_user_information(_ref2, user) {
-      var commit = _ref2.commit;
-      commit("SET_USER", user);
+    show: function show(_ref2, username) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var state, commit, profile;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                state = _ref2.state, commit = _ref2.commit;
+                commit("SET_LOADING", true);
+                _context2.next = 4;
+                return axios.get("users/".concat(username));
+
+              case 4:
+                profile = _context2.sent;
+                commit("SET_PROFILE", profile.data.data);
+                commit("SET_LOADING", false);
+
+              case 7:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     },
     edit_profile: function edit_profile(_ref3) {
       var commit = _ref3.commit;
@@ -59657,26 +59703,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return form_data;
     },
     update: function update(_ref7) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         var state, commit, dispatch, data, method;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
                 state = _ref7.state, commit = _ref7.commit, dispatch = _ref7.dispatch;
 
                 if (!(state.profile_form.cover_image || state.profile_form.image)) {
-                  _context2.next = 8;
+                  _context3.next = 8;
                   break;
                 }
 
-                _context2.next = 4;
+                _context3.next = 4;
                 return dispatch("create_form_data");
 
               case 4:
-                data = _context2.sent;
+                data = _context3.sent;
                 method = "POST";
-                _context2.next = 12;
+                _context3.next = 12;
                 break;
 
               case 8:
@@ -59721,10 +59767,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
               case 13:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2);
+        }, _callee3);
       }))();
     }
   }
