@@ -11223,6 +11223,18 @@ h1 {
   color: #f66d9b;
 }
 
+.user-card {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 5px 10px;
+  border-bottom: 1px solid #38444D;
+}
+
+.user-card .user-info {
+  width: 90%;
+}
+
 .cover_image {
   position: relative;
   background: #8899a6;

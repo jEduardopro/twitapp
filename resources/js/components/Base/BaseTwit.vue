@@ -1,13 +1,6 @@
 <template>
     <div class="twit-card px-3 py-2 border-bottom">
-        <div class="user-image mr-3">
-            <img
-                v-if="twit.relationships.user.image"
-                :src="twit.relationships.user.image"
-                class="rounded-circle"
-            />
-            <i v-else class="fas text-muted fa-3x fa-user-circle"></i>
-        </div>
+        <BaseUserImage :image="twit.relationships.user.image" class="mr-2" />
         <div class="twit-body">
             <div class="twit-header">
                 <router-link

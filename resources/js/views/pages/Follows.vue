@@ -22,12 +22,12 @@
                 >Siguiendo
             </router-link>
         </nav>
-        <template v-if="!profile.id">
-            <h4 class="p-3 text-muted text-center">
+        <template v-if="!loading">
+            <h4 v-if="!profile.id" class="p-3 text-muted text-center">
                 Algo salio mal
             </h4>
+            <router-view v-else></router-view>
         </template>
-        <router-view v-else></router-view>
     </div>
 </template>
 
@@ -37,7 +37,9 @@ export default {
     props: ["username"],
     watch: {
         $route(to, from) {
-            this.show(to.params.username);
+            if (!this.profile.id || this.username != this.profile.username) {
+                this.show(to.params.username);
+            }
         }
     },
     computed: {
@@ -47,7 +49,9 @@ export default {
         ...mapActions("user", ["show", "edit_profile", "unfollow", "follow"])
     },
     created() {
-        this.show(this.username);
+        if (!this.profile.id) {
+            this.show(this.username);
+        }
     }
 };
 </script>

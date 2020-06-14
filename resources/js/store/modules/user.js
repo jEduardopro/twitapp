@@ -17,7 +17,8 @@ export default {
         users_following: [],
         profile: {},
         profile_form: {},
-        loading: false
+        loading: false,
+        loading_following: false
     },
     getters: {},
     mutations: {
@@ -67,6 +68,9 @@ export default {
         },
         SET_LOADING(state, status) {
             state.loading = status;
+        },
+        SET_LOADING_FOLLOWING(state, status) {
+            state.loading_following = status;
         }
     },
     actions: {
@@ -185,10 +189,12 @@ export default {
                 });
         },
         async get_users_following({ state, commit }) {
+            commit("SET_LOADING_FOLLOWING", true);
             const response = await axios.get(
                 `users/${state.profile.id}/following`
             );
             commit("SET_USERS_FOLLOWING", response.data.data);
+            commit("SET_LOADING_FOLLOWING", false);
         },
         follow({ state, commit }, follow_id) {
             axios

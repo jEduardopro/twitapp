@@ -2,14 +2,7 @@
     <div>
         <base-header>Home</base-header>
         <div class="twit-form px-3 pt-3">
-            <div class="user-image">
-                <img
-                    v-if="user.image"
-                    :src="user.image"
-                    class="rounded-circle"
-                />
-                <i v-else class="fas text-muted fa-3x fa-user-circle"></i>
-            </div>
+            <BaseUserImage :image="user.image" />
             <div class="content-twit">
                 <textarea
                     v-model="form.twit"
