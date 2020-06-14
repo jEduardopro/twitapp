@@ -6,15 +6,17 @@ export default {
             id: "",
             name: "",
             username: "",
-            email: "",
             phone: "",
+            email: "",
+            description: "",
             image: "",
             cover_image: "",
-            description: ""
+            join_at: "",
+            relationships: {}
         },
         profile: {},
-        loading: false,
-        profile_form: {}
+        profile_form: {},
+        loading: false
     },
     getters: {},
     mutations: {
@@ -168,6 +170,8 @@ export default {
                 .catch(err => {
                     dispatch("catch_errors", err, { root: true });
                 });
-        }
+        },
+        follow({ state, commit }, user_id) {},
+        unfollow({ state, commit }, user_id) {}
     }
 };

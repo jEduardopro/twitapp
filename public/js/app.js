@@ -2854,6 +2854,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2864,7 +2879,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     CoverAvatarImage: _components_Profile_CoverAvatarImage_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("user", ["user", "profile", "loading"])),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("user", ["show", "edit_profile"])),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("user", ["show", "edit_profile", "unfollow", "follow"])),
   created: function created() {
     this.show(this.username);
   }
@@ -41974,11 +41989,37 @@ var render = function() {
               : _c(
                   "button",
                   {
-                    staticClass: "btn twit-btn font-weight-bold btn-primary",
+                    class: [
+                      "btn twit-btn font-weight-bold btn-primary",
+                      _vm.user.relationships.following.includes(_vm.profile.id)
+                        ? "btn-following"
+                        : ""
+                    ],
                     attrs: { type: "button" },
-                    on: { click: _vm.edit_profile }
+                    on: {
+                      click: function($event) {
+                        _vm.user.relationships.following.includes(
+                          _vm.profile.id
+                        )
+                          ? _vm.unfollow(_vm.profile.id)
+                          : _vm.follow(_vm.profile.id)
+                      }
+                    }
                   },
-                  [_vm._v("\n            Seguir\n        ")]
+                  [
+                    _vm.user.relationships.following.includes(_vm.profile.id)
+                      ? [
+                          _c("span", { staticClass: "following_text" }, [
+                            _vm._v("Siguiendo")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "unfollow_text" }, [
+                            _vm._v("Dejar de seguir")
+                          ])
+                        ]
+                      : _c("span", [_vm._v("Seguir")])
+                  ],
+                  2
                 )
           ]),
           _vm._v(" "),
@@ -59550,15 +59591,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       id: "",
       name: "",
       username: "",
-      email: "",
       phone: "",
+      email: "",
+      description: "",
       image: "",
       cover_image: "",
-      description: ""
+      join_at: "",
+      relationships: {}
     },
     profile: {},
-    loading: false,
-    profile_form: {}
+    profile_form: {},
+    loading: false
   },
   getters: {},
   mutations: {
@@ -59772,6 +59815,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }
         }, _callee3);
       }))();
+    },
+    follow: function follow(_ref8, user_id) {
+      var state = _ref8.state,
+          commit = _ref8.commit;
+    },
+    unfollow: function unfollow(_ref9, user_id) {
+      var state = _ref9.state,
+          commit = _ref9.commit;
     }
   }
 });

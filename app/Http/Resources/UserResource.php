@@ -21,6 +21,7 @@ class UserResource extends JsonResource
             "username" => $this->username,
             "phone" => $this->phone,
             "email" => $this->email,
+            "description" => $this->description,
             "image" => ($this->image) ? "/storage/users/avatars/" . $this->image : '',
             "cover_image" => ($this->cover_image) ? "/storage/users/cover_images/" . $this->cover_image : '',
             "join_at" => Carbon::parse($this->created_at)->translatedFormat('j F Y'),

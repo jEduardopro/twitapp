@@ -5,11 +5,35 @@
     background: $blue;
     border-color: $blue;
     color: $white;
+    text-size-adjust: auto;
 
     &.disabled,
     &:disabled {
         opacity: 0.5;
         cursor: default;
+    }
+
+    &.btn-following {
+        .following_text {
+            display: block;
+        }
+
+        .unfollow_text {
+            display: none;
+        }
+
+        &:hover {
+            background: $pink-dark;
+            border-color: $pink-dark;
+
+            .following_text {
+                display: none;
+            }
+
+            .unfollow_text {
+                display: block;
+            }
+        }
     }
 }
 

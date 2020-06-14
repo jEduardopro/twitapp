@@ -10993,12 +10993,37 @@ h1 {
   background: #1DA1F2;
   border-color: #1DA1F2;
   color: #ffffff;
+  -webkit-text-size-adjust: auto;
+     -moz-text-size-adjust: auto;
+      -ms-text-size-adjust: auto;
+          text-size-adjust: auto;
 }
 
 .twit-btn.disabled,
 .twit-btn:disabled {
   opacity: 0.5;
   cursor: default;
+}
+
+.twit-btn.btn-following .following_text {
+  display: block;
+}
+
+.twit-btn.btn-following .unfollow_text {
+  display: none;
+}
+
+.twit-btn.btn-following:hover {
+  background: #CA2055;
+  border-color: #CA2055;
+}
+
+.twit-btn.btn-following:hover .following_text {
+  display: none;
+}
+
+.twit-btn.btn-following:hover .unfollow_text {
+  display: block;
 }
 
 .h49 {
