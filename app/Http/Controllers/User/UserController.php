@@ -31,7 +31,10 @@ class UserController extends Controller
     public function show($username)
     {
         $user = User::where('username', $username)->with(['twits', 'followers', 'following'])->first();
-        return UserResource::make($user);
+        if (is_object($user)) {
+            return UserResource::make($user);
+        }
+        return response()->json(["error" => 'Recurso no encontrado'], 404);
     }
 
     public function me()

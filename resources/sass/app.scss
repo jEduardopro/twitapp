@@ -59,12 +59,16 @@ textarea {
     top: 0;
     left: 23.5%;
     width: 44.5%;
-    padding: 15px;
+    padding: 5px 15px;
     height: 60px;
     font-size: $fs-lg;
     background: $dark-light;
     z-index: 1040;
     border-bottom: 1px solid $gray-light;
+
+    small {
+        font-size: $fs-sm;
+    }
 }
 
 .main {

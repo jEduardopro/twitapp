@@ -2678,7 +2678,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["username"],
@@ -2804,6 +2803,11 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
 //
 //
 //
@@ -41795,62 +41799,61 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return !_vm.loading
-    ? _c(
-        "div",
+  return _c(
+    "div",
+    [
+      _c("base-header", [
+        _vm._v("\n        " + _vm._s(_vm.profile.name) + "\n        "),
+        _c("small", { staticClass: "text-muted p-0 m-0 d-block" }, [
+          _vm._v(
+            "\n            @" + _vm._s(_vm.profile.username) + "\n        "
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "nav",
+        { staticClass: "d-flex pt-2 nav-follows" },
         [
-          _c("base-header", [_vm._v(_vm._s(_vm.profile.name))]),
-          _vm._v(" "),
           _c(
-            "nav",
-            { staticClass: "d-flex pt-2 nav-follows" },
-            [
-              _c(
-                "router-link",
-                {
-                  staticClass: "w-50 p-3 text-center h5 border-bottom",
-                  attrs: {
-                    to: {
-                      name: "seguidores",
-                      params: { username: _vm.profile.username }
-                    },
-                    "active-class": "active",
-                    exact: ""
-                  }
-                },
-                [_vm._v("Seguidores\n        ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                {
-                  staticClass: "w-50 p-3 text-center h5 border-bottom",
-                  attrs: {
-                    to: {
-                      name: "siguiendo",
-                      params: { username: _vm.profile.username }
-                    },
-                    "active-class": "active",
-                    exact: ""
-                  }
-                },
-                [_vm._v("Siguiendo\n        ")]
-              )
-            ],
-            1
+            "router-link",
+            {
+              staticClass: "w-50 p-3 text-center h5 border-bottom",
+              attrs: {
+                to: { name: "seguidores" },
+                "active-class": "active",
+                exact: ""
+              }
+            },
+            [_vm._v("Seguidores\n        ")]
           ),
           _vm._v(" "),
-          !_vm.profile.id
-            ? [
-                _c("h4", { staticClass: "p-3 text-muted text-center" }, [
-                  _vm._v("\n            Algo salio mal\n        ")
-                ])
-              ]
-            : _c("router-view")
+          _c(
+            "router-link",
+            {
+              staticClass: "w-50 p-3 text-center h5 border-bottom",
+              attrs: {
+                to: { name: "siguiendo" },
+                "active-class": "active",
+                exact: ""
+              }
+            },
+            [_vm._v("Siguiendo\n        ")]
+          )
         ],
-        2
-      )
-    : _vm._e()
+        1
+      ),
+      _vm._v(" "),
+      !_vm.profile.id
+        ? [
+            _c("h4", { staticClass: "p-3 text-muted text-center" }, [
+              _vm._v("\n            Algo salio mal\n        ")
+            ])
+          ]
+        : _c("router-view")
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -42019,7 +42022,16 @@ var render = function() {
     ? _c(
         "div",
         [
-          _c("base-header", [_vm._v(_vm._s(_vm.profile.name))]),
+          _c("base-header", [
+            _vm._v("\n        " + _vm._s(_vm.profile.name) + "\n        "),
+            _c("small", { staticClass: "text-muted p-0 m-0 d-block" }, [
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.profile.relationships.twits.length) +
+                  " Tweets\n        "
+              )
+            ])
+          ]),
           _vm._v(" "),
           _c("cover-avatar-image", {
             scopedSlots: _vm._u(

@@ -11441,12 +11441,16 @@ textarea:active {
   top: 0;
   left: 23.5%;
   width: 44.5%;
-  padding: 15px;
+  padding: 5px 15px;
   height: 60px;
   font-size: 19px;
   background: #15202b;
   z-index: 1040;
   border-bottom: 1px solid #38444D;
+}
+
+.header-static small {
+  font-size: 13px;
 }
 
 .main {

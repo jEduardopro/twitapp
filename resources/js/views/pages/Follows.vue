@@ -1,22 +1,21 @@
 <template>
-    <div v-if="!loading">
-        <base-header>{{ profile.name }}</base-header>
+    <div>
+        <base-header>
+            {{ profile.name }}
+            <small class="text-muted p-0 m-0 d-block">
+                @{{ profile.username }}
+            </small>
+        </base-header>
         <nav class="d-flex pt-2 nav-follows">
             <router-link
-                :to="{
-                    name: 'seguidores',
-                    params: { username: profile.username }
-                }"
+                :to="{ name: 'seguidores' }"
                 class="w-50 p-3 text-center h5 border-bottom"
                 active-class="active"
                 exact
                 >Seguidores
             </router-link>
             <router-link
-                :to="{
-                    name: 'siguiendo',
-                    params: { username: profile.username }
-                }"
+                :to="{ name: 'siguiendo' }"
                 class="w-50 p-3 text-center h5 border-bottom"
                 active-class="active"
                 exact
