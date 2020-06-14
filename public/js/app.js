@@ -59629,6 +59629,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       state.profile.cover_image = profile.cover_image ? "/storage/users/cover_images/".concat(profile.cover_image) : "";
       state.profile.image = profile.image ? "/storage/users/avatars/".concat(profile.image) : "";
     },
+    ADD_FOLLOW: function ADD_FOLLOW(state, follow_id) {
+      state.user.relationships.following.push(follow_id);
+    },
+    REMOVE_FOLLOW: function REMOVE_FOLLOW(state, follow_id) {
+      state.user.relationships.following.splice(state.user.relationships.following.indexOf(follow_id), 1);
+    },
     SET_LOADING: function SET_LOADING(state, status) {
       state.loading = status;
     }
@@ -59816,13 +59822,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }, _callee3);
       }))();
     },
-    follow: function follow(_ref8, user_id) {
+    follow: function follow(_ref8, follow_id) {
       var state = _ref8.state,
           commit = _ref8.commit;
+      axios.post("users/".concat(state.user.id, "/follows"), {
+        follow_id: follow_id
+      }).then(function (res) {
+        commit("ADD_FOLLOW", follow_id);
+      });
     },
-    unfollow: function unfollow(_ref9, user_id) {
+    unfollow: function unfollow(_ref9, follow_id) {
       var state = _ref9.state,
           commit = _ref9.commit;
+      axios["delete"]("users/".concat(state.user.id, "/follows/").concat(follow_id)).then(function (res) {
+        commit("REMOVE_FOLLOW", follow_id);
+      });
     }
   }
 });

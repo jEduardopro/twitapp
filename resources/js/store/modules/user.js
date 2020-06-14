@@ -52,6 +52,15 @@ export default {
                 ? `/storage/users/avatars/${profile.image}`
                 : "";
         },
+        ADD_FOLLOW(state, follow_id) {
+            state.user.relationships.following.push(follow_id);
+        },
+        REMOVE_FOLLOW(state, follow_id) {
+            state.user.relationships.following.splice(
+                state.user.relationships.following.indexOf(follow_id),
+                1
+            );
+        },
         SET_LOADING(state, status) {
             state.loading = status;
         }
@@ -171,7 +180,19 @@ export default {
                     dispatch("catch_errors", err, { root: true });
                 });
         },
-        follow({ state, commit }, user_id) {},
-        unfollow({ state, commit }, user_id) {}
+        follow({ state, commit }, follow_id) {
+            axios
+                .post(`users/${state.user.id}/follows`, { follow_id })
+                .then(res => {
+                    commit("ADD_FOLLOW", follow_id);
+                });
+        },
+        unfollow({ state, commit }, follow_id) {
+            axios
+                .delete(`users/${state.user.id}/follows/${follow_id}`)
+                .then(res => {
+                    commit("REMOVE_FOLLOW", follow_id);
+                });
+        }
     }
 };
