@@ -1,38 +1,44 @@
 <template>
     <div class="user-card">
-        <BaseUserImage :image="user.image" class="mr-2" />
+        <BaseUserImage :image="user_following.image" class="mr-2" />
         <div class="user-info">
             <div class="d-flex justify-content-between">
                 <div class="d-flex flex-column justify-content-start">
                     <router-link
                         :to="{
                             name: 'perfil',
-                            params: { username: user.username }
+                            params: { username: user_following.username }
                         }"
                         class="text-white font-weight-bold"
-                        v-text="user.name"
+                        v-text="user_following.name"
                     ></router-link>
-                    <p class="p-0 m-0 text-muted">@{{ user.username }}</p>
+                    <p class="p-0 m-0 text-muted">
+                        @{{ user_following.username }}
+                    </p>
                 </div>
                 <div class="w-50 text-right">
                     <button
                         type="button"
                         @click="
-                            profile.relationships.following.includes(user.id)
-                                ? unfollow(user.id)
-                                : follow(user.id)
+                            user.relationships.following.includes(
+                                user_following.id
+                            )
+                                ? unfollow(user_following.id)
+                                : follow(user_following.id)
                         "
                         :class="[
                             'btn twit-btn btn-sm font-weight-bold btn-primary',
-                            profile.relationships.following.includes(user.id)
-                                ? 'btn-following'
-                                : ''
+                            user.relationships.following.includes(
+                                user_following.id
+                            )
+                                ? 'btn-unfollow'
+                                : 'btn-follow'
                         ]"
                     >
                         <template
                             v-if="
-                                profile.relationships.following.includes(
-                                    user.id
+                                user.relationships.following.includes(
+                                    user_following.id
                                 )
                             "
                         >
@@ -43,7 +49,7 @@
                     </button>
                 </div>
             </div>
-            <p class="py-1" v-text="user.description"></p>
+            <p class="py-1" v-text="user_following.description"></p>
         </div>
     </div>
 </template>
@@ -51,9 +57,9 @@
 <script>
 import { mapState } from "vuex";
 export default {
-    props: ["user"],
+    props: ["user_following"],
     computed: {
-        ...mapState("user", ["profile"])
+        ...mapState("user", ["user"])
     }
 };
 </script>

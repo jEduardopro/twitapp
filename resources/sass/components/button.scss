@@ -1,10 +1,12 @@
 .twit-btn {
     display: inline;
-    border-radius: 30px;
+    border-radius: 40px;
     font-size: $fs-md;
     background: $blue;
     border-color: $blue;
     color: $white;
+    min-width: 67px;
+    padding: 2px 15px;
 
     &.disabled,
     &:disabled {
@@ -12,7 +14,7 @@
         cursor: default;
     }
 
-    &.btn-following {
+    &.btn-unfollow {
         .following_text {
             display: block;
         }
@@ -32,6 +34,15 @@
             .unfollow_text {
                 display: block;
             }
+        }
+    }
+
+    &.btn-follow {
+        background: $black-transparent;
+        color: $blue;
+
+        &:hover {
+            background: $dark-light-input;
         }
     }
 }

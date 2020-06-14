@@ -37,8 +37,8 @@
                 :class="[
                     'btn twit-btn font-weight-bold btn-primary',
                     user.relationships.following.includes(profile.id)
-                        ? 'btn-following'
-                        : ''
+                        ? 'btn-unfollow'
+                        : 'btn-follow'
                 ]"
             >
                 <template
@@ -50,7 +50,7 @@
                 <span v-else>Seguir</span>
             </button>
         </div>
-        <div class="text-left pt-3 pl-3">
+        <div class="text-left pt-4 pl-3">
             <p class="font-weight-bold w-50 h5 mt-1 text-white">
                 {{ profile.name }}
                 <small

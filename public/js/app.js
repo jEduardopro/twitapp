@@ -2356,10 +2356,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["user"],
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("user", ["profile"]))
+  props: ["user_following"],
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("user", ["user"]))
 });
 
 /***/ }),
@@ -41302,7 +41308,7 @@ var render = function() {
     [
       _c("BaseUserImage", {
         staticClass: "mr-2",
-        attrs: { image: _vm.user.image }
+        attrs: { image: _vm.user_following.image }
       }),
       _vm._v(" "),
       _c("div", { staticClass: "user-info" }, [
@@ -41316,14 +41322,18 @@ var render = function() {
                 attrs: {
                   to: {
                     name: "perfil",
-                    params: { username: _vm.user.username }
+                    params: { username: _vm.user_following.username }
                   }
                 },
-                domProps: { textContent: _vm._s(_vm.user.name) }
+                domProps: { textContent: _vm._s(_vm.user_following.name) }
               }),
               _vm._v(" "),
               _c("p", { staticClass: "p-0 m-0 text-muted" }, [
-                _vm._v("@" + _vm._s(_vm.user.username))
+                _vm._v(
+                  "\n                    @" +
+                    _vm._s(_vm.user_following.username) +
+                    "\n                "
+                )
               ])
             ],
             1
@@ -41335,21 +41345,25 @@ var render = function() {
               {
                 class: [
                   "btn twit-btn btn-sm font-weight-bold btn-primary",
-                  _vm.profile.relationships.following.includes(_vm.user.id)
-                    ? "btn-following"
-                    : ""
+                  _vm.user.relationships.following.includes(
+                    _vm.user_following.id
+                  )
+                    ? "btn-unfollow"
+                    : "btn-follow"
                 ],
                 attrs: { type: "button" },
                 on: {
                   click: function($event) {
-                    _vm.profile.relationships.following.includes(_vm.user.id)
-                      ? _vm.unfollow(_vm.user.id)
-                      : _vm.follow(_vm.user.id)
+                    _vm.user.relationships.following.includes(
+                      _vm.user_following.id
+                    )
+                      ? _vm.unfollow(_vm.user_following.id)
+                      : _vm.follow(_vm.user_following.id)
                   }
                 }
               },
               [
-                _vm.profile.relationships.following.includes(_vm.user.id)
+                _vm.user.relationships.following.includes(_vm.user_following.id)
                   ? [
                       _c("span", { staticClass: "following_text" }, [
                         _vm._v("Siguiendo")
@@ -41368,7 +41382,7 @@ var render = function() {
         _vm._v(" "),
         _c("p", {
           staticClass: "py-1",
-          domProps: { textContent: _vm._s(_vm.user.description) }
+          domProps: { textContent: _vm._s(_vm.user_following.description) }
         })
       ])
     ],
@@ -41466,7 +41480,7 @@ var render = function() {
         : _vm._l(_vm.users_following, function(user_following, i) {
             return _c("base-user-card", {
               key: user_following + "-" + i,
-              attrs: { user: user_following }
+              attrs: { user_following: user_following }
             })
           })
     ],
@@ -42319,8 +42333,8 @@ var render = function() {
                     class: [
                       "btn twit-btn font-weight-bold btn-primary",
                       _vm.user.relationships.following.includes(_vm.profile.id)
-                        ? "btn-following"
-                        : ""
+                        ? "btn-unfollow"
+                        : "btn-follow"
                     ],
                     attrs: { type: "button" },
                     on: {
@@ -42350,7 +42364,7 @@ var render = function() {
                 )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "text-left pt-3 pl-3" }, [
+          _c("div", { staticClass: "text-left pt-4 pl-3" }, [
             _c(
               "p",
               { staticClass: "font-weight-bold w-50 h5 mt-1 text-white" },
