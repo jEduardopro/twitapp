@@ -2,9 +2,6 @@
     <div v-if="user.id" class="container-fluid">
         <BaseMenu />
         <div class="main">
-            <div class="header-static font-weight-bold">
-                {{ $route.name.toUpperCase() }}
-            </div>
             <div class="content">
                 <router-view></router-view>
             </div>

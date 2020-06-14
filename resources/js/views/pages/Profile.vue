@@ -1,5 +1,6 @@
 <template>
     <div v-if="!loading">
+        <base-header>{{ profile.name }}</base-header>
         <cover-avatar-image>
             <template v-if="profile.cover_image" v-slot:cover_image>
                 <img :src="profile.cover_image" class="cover_image_preview" />

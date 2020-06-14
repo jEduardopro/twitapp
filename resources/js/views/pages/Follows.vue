@@ -1,10 +1,11 @@
 <template>
-    <div>
-        <nav class="d-flex mt-5 nav-follows">
+    <div v-if="!loading">
+        <base-header>{{ profile.name }}</base-header>
+        <nav class="d-flex pt-2 nav-follows">
             <router-link
                 :to="{
                     name: 'seguidores',
-                    params: { username: user.username }
+                    params: { username: profile.username }
                 }"
                 class="w-50 p-3 text-center h5 border-bottom"
                 active-class="active"
@@ -12,14 +13,17 @@
                 >Seguidores
             </router-link>
             <router-link
-                :to="{ name: 'siguiendo', params: { username: user.username } }"
+                :to="{
+                    name: 'siguiendo',
+                    params: { username: profile.username }
+                }"
                 class="w-50 p-3 text-center h5 border-bottom"
                 active-class="active"
                 exact
                 >Siguiendo
             </router-link>
         </nav>
-        <template v-if="username != user.username">
+        <template v-if="!profile.id">
             <h4 class="p-3 text-muted text-center">
                 Algo salio mal
             </h4>
@@ -29,13 +33,22 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-import Search from "../../components/Follow/Search.vue";
+import { mapState, mapActions } from "vuex";
 export default {
     props: ["username"],
-    components: { Search },
+    watch: {
+        $route(to, from) {
+            this.show(to.params.username);
+        }
+    },
     computed: {
-        ...mapState("user", ["user"])
+        ...mapState("user", ["user", "profile", "loading"])
+    },
+    methods: {
+        ...mapActions("user", ["show", "edit_profile", "unfollow", "follow"])
+    },
+    created() {
+        this.show(this.username);
     }
 };
 </script>

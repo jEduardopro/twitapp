@@ -1,5 +1,6 @@
 <template>
     <div>
+        <base-header>Home</base-header>
         <div class="twit-form px-3 pt-3">
             <div class="user-image">
                 <img
