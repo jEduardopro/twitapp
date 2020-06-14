@@ -57,19 +57,19 @@
                 </router-link>
             </div>
         </div>
-        <div>
+        <div class="border-top">
             <h3 v-if="loading" class="text-muted text-center w-100">
                 Cargando Twits...
             </h3>
             <template v-else>
-                <div v-if="twits.length" class="border-top">
+                <div v-if="twits.length">
                     <BaseTwit
                         v-for="twit in twits"
                         :twit="twit"
                         :key="twit.id"
                     />
                 </div>
-                <h1 v-else class="text-center text-white mb-0">
+                <h1 v-else class="text-center text-muted mb-0">
                     No tienes twits
                 </h1>
             </template>

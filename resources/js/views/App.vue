@@ -17,6 +17,11 @@
 import { mapActions, mapState } from "vuex";
 export default {
     props: ["user_authenticated"],
+    watch: {
+        $route(to, from) {
+            $("body, html").animate({ scrollTop: 0 });
+        }
+    },
     computed: {
         ...mapState("user", ["user"])
     },

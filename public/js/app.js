@@ -2559,6 +2559,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["user_authenticated"],
+  watch: {
+    $route: function $route(to, from) {
+      $("body, html").animate({
+        scrollTop: 0
+      });
+    }
+  },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("user", ["user"])),
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("user", ["set_user_information"])),
   created: function created() {
@@ -42022,6 +42029,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
+        { staticClass: "border-top" },
         [
           _vm.loading
             ? _c("h3", { staticClass: "text-muted text-center w-100" }, [
@@ -42031,7 +42039,6 @@ var render = function() {
                 _vm.twits.length
                   ? _c(
                       "div",
-                      { staticClass: "border-top" },
                       _vm._l(_vm.twits, function(twit) {
                         return _c("BaseTwit", {
                           key: twit.id,
@@ -42040,7 +42047,7 @@ var render = function() {
                       }),
                       1
                     )
-                  : _c("h1", { staticClass: "text-center text-white mb-0" }, [
+                  : _c("h1", { staticClass: "text-center text-muted mb-0" }, [
                       _vm._v("\n                No tienes twits\n            ")
                     ])
               ]

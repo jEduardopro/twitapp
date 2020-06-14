@@ -11414,7 +11414,7 @@ textarea:active {
   height: 60px;
   font-size: 19px;
   background: #15202b;
-  z-index: 2050;
+  z-index: 1040;
   border-bottom: 1px solid #38444D;
 }
 

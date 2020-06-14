@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Twit;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\TwitResource;
 use App\Models\Twit;
+use App\User;
 use Illuminate\Http\Request;
 
 class TwitController extends Controller
@@ -16,7 +17,10 @@ class TwitController extends Controller
      */
     public function index()
     {
-        return TwitResource::collection(Twit::with(['user'])->latest()->get());
+        $user = User::whereId(auth()->id())->first();
+        $twits_followers = $user->followers()->with(['twits', 'twits.user'])->get()->pluck('twits')->collapse();
+        $twits = $twits_followers->merge($user->twits()->with(['user'])->get());
+        return TwitResource::collection($twits);
     }
 
     /**
