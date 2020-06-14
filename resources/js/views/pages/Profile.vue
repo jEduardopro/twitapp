@@ -42,7 +42,10 @@
                     }"
                     class="text-muted"
                 >
-                    <strong class="font-weight-bold text-white">10</strong>
+                    <strong
+                        class="font-weight-bold text-white"
+                        v-text="user.following.length"
+                    ></strong>
                     Siguiendo
                 </router-link>
                 <router-link
@@ -52,7 +55,10 @@
                     }"
                     class="text-muted ml-2"
                 >
-                    <strong class="font-weight-bold text-white">5</strong>
+                    <strong
+                        class="font-weight-bold text-white"
+                        v-text="user.followers.length"
+                    ></strong>
                     Seguidores
                 </router-link>
             </div>

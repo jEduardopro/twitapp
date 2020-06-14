@@ -2842,6 +2842,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -41997,9 +42003,10 @@ var render = function() {
                 }
               },
               [
-                _c("strong", { staticClass: "font-weight-bold text-white" }, [
-                  _vm._v("10")
-                ]),
+                _c("strong", {
+                  staticClass: "font-weight-bold text-white",
+                  domProps: { textContent: _vm._s(_vm.user.following.length) }
+                }),
                 _vm._v("\n                Siguiendo\n            ")
               ]
             ),
@@ -42016,9 +42023,10 @@ var render = function() {
                 }
               },
               [
-                _c("strong", { staticClass: "font-weight-bold text-white" }, [
-                  _vm._v("5")
-                ]),
+                _c("strong", {
+                  staticClass: "font-weight-bold text-white",
+                  domProps: { textContent: _vm._s(_vm.user.followers.length) }
+                }),
                 _vm._v("\n                Seguidores\n            ")
               ]
             )
