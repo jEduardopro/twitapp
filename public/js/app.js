@@ -2297,6 +2297,39 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Follow/Following.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Follow/Following.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("user", ["profile", "users_following"])),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("user", ["get_users_following"])),
+  created: function created() {
+    this.get_users_following();
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Profile/ModalEditProfile.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Profile/ModalEditProfile.vue?vue&type=script&lang=js& ***!
@@ -59194,15 +59227,17 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Following_vue_vue_type_template_id_2d3b7a7e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Following.vue?vue&type=template&id=2d3b7a7e& */ "./resources/js/components/Follow/Following.vue?vue&type=template&id=2d3b7a7e&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _Following_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Following.vue?vue&type=script&lang=js& */ "./resources/js/components/Follow/Following.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-var script = {}
+
+
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  script,
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Following_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _Following_vue_vue_type_template_id_2d3b7a7e___WEBPACK_IMPORTED_MODULE_0__["render"],
   _Following_vue_vue_type_template_id_2d3b7a7e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
@@ -59216,6 +59251,20 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 if (false) { var api; }
 component.options.__file = "resources/js/components/Follow/Following.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Follow/Following.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/Follow/Following.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Following_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Following.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Follow/Following.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Following_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -59704,6 +59753,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       join_at: "",
       relationships: {}
     },
+    users_following: [],
     profile: {},
     profile_form: {},
     loading: false
@@ -59734,6 +59784,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       state.profile.cover_image = profile.cover_image ? "/storage/users/cover_images/".concat(profile.cover_image) : "";
       state.profile.image = profile.image ? "/storage/users/avatars/".concat(profile.image) : "";
     },
+    SET_USERS_FOLLOWING: function SET_USERS_FOLLOWING(state, users) {
+      state.users_following = users;
+    },
     ADD_FOLLOW: function ADD_FOLLOW(state, follow_id) {
       state.user.relationships.following.push(follow_id);
     },
@@ -59747,7 +59800,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   actions: {
     set_user_information: function set_user_information(_ref) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var commit, user;
+        var commit, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -59758,8 +59811,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return axios.get("me");
 
               case 4:
-                user = _context.sent;
-                commit("SET_USER", user.data.data);
+                response = _context.sent;
+                commit("SET_USER", response.data.data);
                 commit("SET_LOADING", false);
 
               case 7:
@@ -59772,7 +59825,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     show: function show(_ref2, username) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var state, commit, profile;
+        var state, commit, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
@@ -59783,8 +59836,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return axios.get("users/".concat(username));
 
               case 4:
-                profile = _context2.sent;
-                commit("SET_PROFILE", profile.data.data);
+                response = _context2.sent;
+                commit("SET_PROFILE", response.data.data);
                 commit("SET_LOADING", false);
 
               case 7:
@@ -59927,18 +59980,41 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }, _callee3);
       }))();
     },
-    follow: function follow(_ref8, follow_id) {
-      var state = _ref8.state,
-          commit = _ref8.commit;
+    get_users_following: function get_users_following(_ref8) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var state, commit, response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                state = _ref8.state, commit = _ref8.commit;
+                _context4.next = 3;
+                return axios.get("users/".concat(state.profile.id, "/following"));
+
+              case 3:
+                response = _context4.sent;
+                commit("SET_USERS_FOLLOWING", response.data.data);
+
+              case 5:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
+    },
+    follow: function follow(_ref9, follow_id) {
+      var state = _ref9.state,
+          commit = _ref9.commit;
       axios.post("users/".concat(state.user.id, "/follows"), {
         follow_id: follow_id
       }).then(function (res) {
         commit("ADD_FOLLOW", follow_id);
       });
     },
-    unfollow: function unfollow(_ref9, follow_id) {
-      var state = _ref9.state,
-          commit = _ref9.commit;
+    unfollow: function unfollow(_ref10, follow_id) {
+      var state = _ref10.state,
+          commit = _ref10.commit;
       axios["delete"]("users/".concat(state.user.id, "/follows/").concat(follow_id)).then(function (res) {
         commit("REMOVE_FOLLOW", follow_id);
       });

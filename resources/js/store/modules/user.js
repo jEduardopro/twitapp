@@ -14,6 +14,7 @@ export default {
             join_at: "",
             relationships: {}
         },
+        users_following: [],
         profile: {},
         profile_form: {},
         loading: false
@@ -52,6 +53,9 @@ export default {
                 ? `/storage/users/avatars/${profile.image}`
                 : "";
         },
+        SET_USERS_FOLLOWING(state, users) {
+            state.users_following = users;
+        },
         ADD_FOLLOW(state, follow_id) {
             state.user.relationships.following.push(follow_id);
         },
@@ -68,14 +72,14 @@ export default {
     actions: {
         async set_user_information({ commit }) {
             commit("SET_LOADING", true);
-            const user = await axios.get(`me`);
-            commit("SET_USER", user.data.data);
+            const response = await axios.get(`me`);
+            commit("SET_USER", response.data.data);
             commit("SET_LOADING", false);
         },
         async show({ state, commit }, username) {
             commit("SET_LOADING", true);
-            const profile = await axios.get(`users/${username}`);
-            commit("SET_PROFILE", profile.data.data);
+            const response = await axios.get(`users/${username}`);
+            commit("SET_PROFILE", response.data.data);
             commit("SET_LOADING", false);
         },
         edit_profile({ commit }) {
@@ -179,6 +183,12 @@ export default {
                 .catch(err => {
                     dispatch("catch_errors", err, { root: true });
                 });
+        },
+        async get_users_following({ state, commit }) {
+            const response = await axios.get(
+                `users/${state.profile.id}/following`
+            );
+            commit("SET_USERS_FOLLOWING", response.data.data);
         },
         follow({ state, commit }, follow_id) {
             axios

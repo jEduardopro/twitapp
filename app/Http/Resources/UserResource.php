@@ -26,9 +26,24 @@ class UserResource extends JsonResource
             "cover_image" => ($this->cover_image) ? "/storage/users/cover_images/" . $this->cover_image : '',
             "join_at" => Carbon::parse($this->created_at)->translatedFormat('j F Y'),
             "relationships" => [
-                "followers" => $this->followers()->get()->pluck('id')->toArray(),
-                "following" => $this->following()->get()->pluck('id')->toArray(),
-                "twits" => TwitResource::collection($this->twits()->with('user')->get())
+                "followers" => $this->when(
+                    $this->relationLoaded('followers'),
+                    function () {
+                        return $this->followers()->get()->pluck('id')->toArray();
+                    }
+                ),
+                "following" => $this->when(
+                    $this->relationLoaded('following'),
+                    function () {
+                        return $this->following()->get()->pluck('id')->toArray();
+                    }
+                ),
+                "twits" => $this->when(
+                    $this->relationLoaded('twits'),
+                    function () {
+                        return TwitResource::collection($this->twits()->with('user')->get());
+                    }
+                )
             ]
         ];
     }
