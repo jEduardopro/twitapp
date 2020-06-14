@@ -7,7 +7,7 @@ use App\Http\Resources\UserResource;
 use App\User;
 use Illuminate\Http\Request;
 
-class UserFollowingController extends Controller
+class UserFollowersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,6 +16,6 @@ class UserFollowingController extends Controller
      */
     public function index(User $user)
     {
-        return UserResource::collection($user->following);
+        return UserResource::collection($user->followers);
     }
 }

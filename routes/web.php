@@ -15,5 +15,6 @@ Route::resource('users', 'User\UserController');
 Route::get('me', 'User\UserController@me');
 Route::resource('users.follows', 'User\UserFollowsController')->only(['store', 'destroy']);
 Route::resource('users.following', 'User\UserFollowingController')->only(['index']);
+Route::resource('users.followers', 'User\UserFollowersController')->only(['index']);
 // Twits routes
 Route::resource('twits', 'Twit\TwitController');

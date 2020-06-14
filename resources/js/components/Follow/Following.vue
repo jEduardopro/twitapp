@@ -5,9 +5,9 @@
         </p>
         <base-user-card
             v-else
-            :user_following="user_following"
+            :user_follow="user_following"
             v-for="(user_following, i) in users_following"
-            :key="user_following + '-' + i"
+            :key="user_following.id + '-' + i"
         ></base-user-card>
     </div>
 </template>

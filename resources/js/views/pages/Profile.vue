@@ -26,7 +26,7 @@
             >
                 Editar perfil
             </button>
-            <BaseButtonFollow v-else :user="user" :follow_id="profile.id" />
+            <BaseButtonFollow v-else :follow_id="profile.id" />
         </div>
         <div class="text-left pt-4 pl-3">
             <p class="font-weight-bold w-50 h5 mt-1 text-white">

@@ -2123,7 +2123,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["user", "follow_id"],
+  props: ["follow_id"],
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("user", ["user"])),
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("user", ["unfollow", "follow"]))
 });
 
@@ -2347,15 +2348,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
 //
 //
 //
@@ -2385,8 +2377,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["user_following"],
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("user", ["user"]))
+  props: ["user_follow"]
 });
 
 /***/ }),
@@ -2409,6 +2400,47 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["image"]
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Follow/Followers.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Follow/Followers.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("user", ["profile", "followers", "loading_following"])),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("user", ["get_followers"])),
+  created: function created() {
+    this.get_followers();
+  }
 });
 
 /***/ }),
@@ -41363,7 +41395,7 @@ var render = function() {
     [
       _c("BaseUserImage", {
         staticClass: "mr-2",
-        attrs: { image: _vm.user_following.image }
+        attrs: { image: _vm.user_follow.image }
       }),
       _vm._v(" "),
       _c("div", { staticClass: "user-info" }, [
@@ -41377,16 +41409,16 @@ var render = function() {
                 attrs: {
                   to: {
                     name: "perfil",
-                    params: { username: _vm.user_following.username }
+                    params: { username: _vm.user_follow.username }
                   }
                 },
-                domProps: { textContent: _vm._s(_vm.user_following.name) }
+                domProps: { textContent: _vm._s(_vm.user_follow.name) }
               }),
               _vm._v(" "),
               _c("p", { staticClass: "p-0 m-0 text-muted" }, [
                 _vm._v(
                   "\n                    @" +
-                    _vm._s(_vm.user_following.username) +
+                    _vm._s(_vm.user_follow.username) +
                     "\n                "
                 )
               ])
@@ -41399,7 +41431,7 @@ var render = function() {
             { staticClass: "w-50 text-right" },
             [
               _c("BaseButtonFollow", {
-                attrs: { user: _vm.user, follow_id: _vm.user_following.id }
+                attrs: { follow_id: _vm.user_follow.id }
               })
             ],
             1
@@ -41408,7 +41440,7 @@ var render = function() {
         _vm._v(" "),
         _c("p", {
           staticClass: "py-1",
-          domProps: { textContent: _vm._s(_vm.user_following.description) }
+          domProps: { textContent: _vm._s(_vm.user_follow.description) }
         })
       ])
     ],
@@ -41465,16 +41497,24 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    [
+      _vm.loading_following
+        ? _c("p", { staticClass: "text-muted text-center py-5" }, [
+            _c("i", { staticClass: "fas fa-circle-notch fa-2x fa-spin" })
+          ])
+        : _vm._l(_vm.followers, function(follower, i) {
+            return _c("base-user-card", {
+              key: follower.id + "-" + i,
+              attrs: { user_follow: follower }
+            })
+          })
+    ],
+    2
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("h3", [_vm._v("Seguidores")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -41505,8 +41545,8 @@ var render = function() {
           ])
         : _vm._l(_vm.users_following, function(user_following, i) {
             return _c("base-user-card", {
-              key: user_following + "-" + i,
-              attrs: { user_following: user_following }
+              key: user_following.id + "-" + i,
+              attrs: { user_follow: user_following }
             })
           })
     ],
@@ -42357,7 +42397,7 @@ var render = function() {
                     [_vm._v("\n            Editar perfil\n        ")]
                   )
                 : _c("BaseButtonFollow", {
-                    attrs: { user: _vm.user, follow_id: _vm.profile.id }
+                    attrs: { follow_id: _vm.profile.id }
                   })
             ],
             1
@@ -59641,15 +59681,17 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Followers_vue_vue_type_template_id_611f0a02___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Followers.vue?vue&type=template&id=611f0a02& */ "./resources/js/components/Follow/Followers.vue?vue&type=template&id=611f0a02&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _Followers_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Followers.vue?vue&type=script&lang=js& */ "./resources/js/components/Follow/Followers.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-var script = {}
+
+
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  script,
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Followers_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _Followers_vue_vue_type_template_id_611f0a02___WEBPACK_IMPORTED_MODULE_0__["render"],
   _Followers_vue_vue_type_template_id_611f0a02___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
@@ -59663,6 +59705,20 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 if (false) { var api; }
 component.options.__file = "resources/js/components/Follow/Followers.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Follow/Followers.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/Follow/Followers.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Followers_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Followers.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Follow/Followers.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Followers_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -60221,6 +60277,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       relationships: {}
     },
     users_following: [],
+    followers: [],
     profile: {},
     profile_form: {},
     loading: false,
@@ -60254,6 +60311,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     SET_USERS_FOLLOWING: function SET_USERS_FOLLOWING(state, users) {
       state.users_following = users;
+    },
+    SET_FOLLOWERS: function SET_FOLLOWERS(state, users) {
+      state.followers = users;
     },
     ADD_FOLLOW: function ADD_FOLLOW(state, follow_id) {
       state.user.relationships.following.push(follow_id);
@@ -60478,18 +60538,43 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }, _callee4);
       }))();
     },
-    follow: function follow(_ref9, follow_id) {
-      var state = _ref9.state,
-          commit = _ref9.commit;
+    get_followers: function get_followers(_ref9) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        var state, commit, response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                state = _ref9.state, commit = _ref9.commit;
+                commit("SET_LOADING_FOLLOWING", true);
+                _context5.next = 4;
+                return axios.get("users/".concat(state.profile.id, "/followers"));
+
+              case 4:
+                response = _context5.sent;
+                commit("SET_FOLLOWERS", response.data.data);
+                commit("SET_LOADING_FOLLOWING", false);
+
+              case 7:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }))();
+    },
+    follow: function follow(_ref10, follow_id) {
+      var state = _ref10.state,
+          commit = _ref10.commit;
       axios.post("users/".concat(state.user.id, "/follows"), {
         follow_id: follow_id
       }).then(function (res) {
         commit("ADD_FOLLOW", follow_id);
       });
     },
-    unfollow: function unfollow(_ref10, follow_id) {
-      var state = _ref10.state,
-          commit = _ref10.commit;
+    unfollow: function unfollow(_ref11, follow_id) {
+      var state = _ref11.state,
+          commit = _ref11.commit;
       axios["delete"]("users/".concat(state.user.id, "/follows/").concat(follow_id)).then(function (res) {
         commit("REMOVE_FOLLOW", follow_id);
       });

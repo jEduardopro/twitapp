@@ -22,9 +22,12 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 export default {
-    props: ["user", "follow_id"],
+    props: ["follow_id"],
+    computed: {
+        ...mapState("user", ["user"])
+    },
     methods: {
         ...mapActions("user", ["unfollow", "follow"])
     }

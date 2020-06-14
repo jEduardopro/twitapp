@@ -15,6 +15,7 @@ export default {
             relationships: {}
         },
         users_following: [],
+        followers: [],
         profile: {},
         profile_form: {},
         loading: false,
@@ -56,6 +57,9 @@ export default {
         },
         SET_USERS_FOLLOWING(state, users) {
             state.users_following = users;
+        },
+        SET_FOLLOWERS(state, users) {
+            state.followers = users;
         },
         ADD_FOLLOW(state, follow_id) {
             state.user.relationships.following.push(follow_id);
@@ -199,6 +203,14 @@ export default {
                 `users/${state.profile.id}/following`
             );
             commit("SET_USERS_FOLLOWING", response.data.data);
+            commit("SET_LOADING_FOLLOWING", false);
+        },
+        async get_followers({ state, commit }) {
+            commit("SET_LOADING_FOLLOWING", true);
+            const response = await axios.get(
+                `users/${state.profile.id}/followers`
+            );
+            commit("SET_FOLLOWERS", response.data.data);
             commit("SET_LOADING_FOLLOWING", false);
         },
         follow({ state, commit }, follow_id) {
