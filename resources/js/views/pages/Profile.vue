@@ -26,29 +26,7 @@
             >
                 Editar perfil
             </button>
-            <button
-                v-else
-                type="button"
-                @click="
-                    user.relationships.following.includes(profile.id)
-                        ? unfollow(profile.id)
-                        : follow(profile.id)
-                "
-                :class="[
-                    'btn twit-btn font-weight-bold btn-primary',
-                    user.relationships.following.includes(profile.id)
-                        ? 'btn-unfollow'
-                        : 'btn-follow'
-                ]"
-            >
-                <template
-                    v-if="user.relationships.following.includes(profile.id)"
-                >
-                    <span class="following_text">Siguiendo</span>
-                    <span class="unfollow_text">Dejar de seguir</span>
-                </template>
-                <span v-else>Seguir</span>
-            </button>
+            <BaseButtonFollow v-else :user="user" :follow_id="profile.id" />
         </div>
         <div class="text-left pt-4 pl-3">
             <p class="font-weight-bold w-50 h5 mt-1 text-white">
@@ -125,7 +103,7 @@ export default {
         ...mapState("user", ["user", "profile", "loading"])
     },
     methods: {
-        ...mapActions("user", ["show", "edit_profile", "unfollow", "follow"])
+        ...mapActions("user", ["show", "edit_profile"])
     },
     created() {
         this.show(this.username);

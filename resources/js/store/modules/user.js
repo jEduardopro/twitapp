@@ -59,10 +59,15 @@ export default {
         },
         ADD_FOLLOW(state, follow_id) {
             state.user.relationships.following.push(follow_id);
+            state.profile.relationships.followers.push(follow_id);
         },
         REMOVE_FOLLOW(state, follow_id) {
             state.user.relationships.following.splice(
                 state.user.relationships.following.indexOf(follow_id),
+                1
+            );
+            state.profile.relationships.followers.splice(
+                state.profile.relationships.followers.indexOf(follow_id),
                 1
             );
         },

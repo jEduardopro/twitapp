@@ -17,36 +17,10 @@
                     </p>
                 </div>
                 <div class="w-50 text-right">
-                    <button
-                        type="button"
-                        @click="
-                            user.relationships.following.includes(
-                                user_following.id
-                            )
-                                ? unfollow(user_following.id)
-                                : follow(user_following.id)
-                        "
-                        :class="[
-                            'btn twit-btn btn-sm font-weight-bold btn-primary',
-                            user.relationships.following.includes(
-                                user_following.id
-                            )
-                                ? 'btn-unfollow'
-                                : 'btn-follow'
-                        ]"
-                    >
-                        <template
-                            v-if="
-                                user.relationships.following.includes(
-                                    user_following.id
-                                )
-                            "
-                        >
-                            <span class="following_text">Siguiendo</span>
-                            <span class="unfollow_text">Dejar de seguir</span>
-                        </template>
-                        <span v-else>Seguir</span>
-                    </button>
+                    <BaseButtonFollow
+                        :user="user"
+                        :follow_id="user_following.id"
+                    />
                 </div>
             </div>
             <p class="py-1" v-text="user_following.description"></p>

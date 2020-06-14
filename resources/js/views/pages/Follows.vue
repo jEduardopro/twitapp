@@ -46,7 +46,7 @@ export default {
         ...mapState("user", ["user", "profile", "loading"])
     },
     methods: {
-        ...mapActions("user", ["show", "edit_profile", "unfollow", "follow"])
+        ...mapActions("user", ["show", "edit_profile"])
     },
     created() {
         if (!this.profile.id) {
