@@ -21,7 +21,6 @@ export default {
         loading: false,
         loading_following: false
     },
-    getters: {},
     mutations: {
         SET_USER(state, user) {
             state.user = user;

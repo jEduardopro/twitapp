@@ -40,13 +40,18 @@ textarea {
 }
 
 .close_modal {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     text-align: center;
     color: $white;
     border: none;
     background: transparent;
+
+    i {
+        line-height: 40px;
+    }
+
     @include outline-none;
 
     &:hover {

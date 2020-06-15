@@ -22,7 +22,7 @@
                 v-if="user.id == profile.id"
                 type="button"
                 @click="edit_profile"
-                class="btn twit-btn font-weight-bold btn-primary"
+                class="btn twit-btn btn-primary"
             >
                 Editar perfil
             </button>

@@ -7,6 +7,7 @@
             </div>
         </div>
         <BaseSearch />
+        <BaseModalComment />
     </div>
 </template>
 
@@ -16,6 +17,7 @@ export default {
     watch: {
         $route(to, from) {
             $("body, html").animate({ scrollTop: 0 });
+            $("#modal_comment").modal("hide");
         }
     },
     computed: {

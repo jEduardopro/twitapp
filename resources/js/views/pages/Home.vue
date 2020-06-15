@@ -26,22 +26,25 @@
                 type="button"
                 :disabled="!form.twit || form.twit.length > 280"
                 @click="create"
-                class="btn twit-btn font-weight-bold btn-primary"
+                class="btn twit-btn "
             >
                 Twittear
             </button>
         </div>
         <hr class="mt-2" />
         <div>
-            <div v-if="twits.length">
-                <BaseTwit
-                    v-for="(twit, index) in twits"
-                    :twit="twit"
-                    :key="twit.id + '_' + index"
-                />
-            </div>
-            <template v-else>
-                <template v-if="!loading">
+            <p class="text-muted text-center py-5" v-if="loading">
+                <i class="fas fa-circle-notch fa-2x fa-spin"></i>
+            </p>
+            <div v-else>
+                <template v-if="twits.length">
+                    <BaseTwit
+                        v-for="(twit, index) in twits"
+                        :twit="twit"
+                        :key="twit.id + '_' + index"
+                    />
+                </template>
+                <template v-else>
                     <h1 class="text-center text-white mb-0">
                         Bienvenido a TwitApp
                     </h1>
@@ -49,7 +52,7 @@
                         Comienza a twittear sin limites.
                     </p>
                 </template>
-            </template>
+            </div>
         </div>
     </div>
 </template>

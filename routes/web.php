@@ -18,3 +18,4 @@ Route::resource('users.following', 'User\UserFollowingController')->only(['index
 Route::resource('users.followers', 'User\UserFollowersController')->only(['index']);
 // Twits routes
 Route::resource('twits', 'Twit\TwitController');
+Route::resource('twits.comments', 'Twit\TwitCommentsController')->only(['store', 'destroy']);

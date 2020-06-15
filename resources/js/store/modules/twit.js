@@ -4,11 +4,14 @@ export default {
         form: {
             twit: ""
         },
+        twit: {},
         twits: [],
         loading: false
     },
-    getters: {},
     mutations: {
+        SET_TWIT(state, twit) {
+            state.twit = twit;
+        },
         SET_TWITS(state, twits) {
             state.twits = twits;
         },

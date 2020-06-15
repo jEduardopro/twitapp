@@ -7,7 +7,7 @@
                 : follow(follow_id)
         "
         :class="[
-            'btn twit-btn btn-sm font-weight-bold btn-primary',
+            'btn twit-btn btn-sm btn-primary',
             user.relationships.following.includes(follow_id)
                 ? 'btn-unfollow'
                 : 'btn-follow'

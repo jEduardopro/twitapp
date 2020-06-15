@@ -1963,19 +1963,44 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     ModalRegister: _ModalRegister_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['errors'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('auth', ['form'])),
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(["errors"])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("auth", ["form"])),
   data: function data() {
     return {
       isOpenRegister: false
     };
   },
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('auth', ['login'])), {}, {
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("auth", ["login"])), {}, {
     open_register: function open_register() {
       this.isOpenRegister = true;
       $("#modal_register").modal("show");
@@ -1986,7 +2011,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }),
   mounted: function mounted() {
     var closeFn = this.close_register;
-    $('#modal_register').on('hidden.bs.modal', function (e) {
+    $("#modal_register").on("hidden.bs.modal", function (e) {
       closeFn();
     });
   }
@@ -2060,16 +2085,76 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['form'],
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['errors'])),
+  props: ["form"],
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(["errors"])),
   data: function data() {
     return {
       useEmail: false
     };
   },
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('auth', ['register'])), {}, {
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("auth", ["register"])), {}, {
     minChar: function minChar(evt, chars) {
       if (evt.target.value.length <= chars) {
         return true;
@@ -2244,6 +2329,91 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Base/BaseModalComment.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Base/BaseModalComment.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("twit", ["twit"])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("user", ["user"])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("comment", ["form"])),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("comment", ["create", "close_modal"]))
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Base/BaseSearch.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Base/BaseSearch.vue?vue&type=script&lang=js& ***!
@@ -2294,6 +2464,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2332,8 +2509,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["twit"]
+  props: ["twit", "hide_buttons"],
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("comment", ["show_modal"]))
 });
 
 /***/ }),
@@ -2686,8 +2872,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2744,6 +2928,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   watch: {
@@ -2751,6 +2936,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       $("body, html").animate({
         scrollTop: 0
       });
+      $("#modal_comment").modal("hide");
     }
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("user", ["user"])),
@@ -2871,6 +3057,9 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
 //
 //
 //
@@ -40644,7 +40833,7 @@ var render = function() {
                 "button",
                 {
                   class: [
-                    "btn h49 twit-btn btn-block font-weight-bold btn-primary",
+                    "btn h49 twit-btn btn-block btn-primary",
                     !_vm.form.input_login || !_vm.form.password
                       ? "disabled"
                       : ""
@@ -40658,7 +40847,7 @@ var render = function() {
                     }
                   }
                 },
-                [_vm._v("\n                Iniciar sesíon\n        ")]
+                [_vm._v("\n            Iniciar sesíon\n        ")]
               ),
               _vm._v(" "),
               _c(
@@ -40667,7 +40856,7 @@ var render = function() {
                   staticClass: "w-100 btn btn-link d-block text-center mt-4",
                   on: { click: _vm.open_register }
                 },
-                [_vm._v("Registrate en TwitApp")]
+                [_vm._v("\n            Registrate en TwitApp\n        ")]
               )
             ],
             1
@@ -40877,7 +41066,7 @@ var render = function() {
               "button",
               {
                 class: [
-                  "btn twit-btn btn-block h49 font-weight-bold btn-primary",
+                  "btn twit-btn btn-block h49 btn-primary",
                   !_vm.form.name ||
                   !_vm.form.input_register ||
                   !_vm.form.password_register ||
@@ -40897,7 +41086,7 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("\n                        Registrate\n                ")]
+              [_vm._v("\n                    Registrate\n                ")]
             )
           ])
         ])
@@ -40931,7 +41120,7 @@ var render = function() {
     "button",
     {
       class: [
-        "btn twit-btn btn-sm font-weight-bold btn-primary",
+        "btn twit-btn btn-sm btn-primary",
         _vm.user.relationships.following.includes(_vm.follow_id)
           ? "btn-unfollow"
           : "btn-follow"
@@ -41217,6 +41406,142 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Base/BaseModalComment.vue?vue&type=template&id=88870bb4&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Base/BaseModalComment.vue?vue&type=template&id=88870bb4& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "modal fade",
+      attrs: {
+        id: "modal_comment",
+        tabindex: "-1",
+        role: "dialog",
+        "aria-hidden": "true"
+      }
+    },
+    [
+      _c(
+        "div",
+        { staticClass: "modal-dialog modal-lg modal-dialog-scrollable" },
+        [
+          _c("div", { staticClass: "modal-content" }, [
+            _c("div", { staticClass: "modal-header p-2" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "close_modal",
+                  attrs: { type: "button" },
+                  on: { click: _vm.close_modal }
+                },
+                [_c("i", { staticClass: "fa fa-times fa-2x" })]
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "modal-body py-2" },
+              [
+                _vm.twit.id
+                  ? _c("BaseTwit", {
+                      attrs: { twit: _vm.twit, hide_buttons: true }
+                    })
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "twit-form mt-1 mb-4 pb-4" },
+                  [
+                    _c("BaseUserImage", { attrs: { image: _vm.user.image } }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "content-twit" }, [
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.comment,
+                            expression: "form.comment"
+                          }
+                        ],
+                        staticClass: "d-inline-block border-0 bg-transparent",
+                        attrs: { placeholder: "Agrega tu respuesta" },
+                        domProps: { value: _vm.form.comment },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "comment", $event.target.value)
+                          }
+                        }
+                      })
+                    ])
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-footer border-0 p-1" }, [
+              _vm.form.comment.length > 0
+                ? _c(
+                    "span",
+                    {
+                      class: [
+                        "font-weight-bold mr-2 lead",
+                        _vm.form.comment.length > 280
+                          ? "text-danger"
+                          : "text-muted"
+                      ]
+                    },
+                    [_vm._v(_vm._s(_vm.form.comment.length) + "/280")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn twit-btn btn-primary",
+                  attrs: {
+                    type: "button",
+                    disabled: !_vm.form.comment || _vm.form.comment.length > 280
+                  },
+                  on: {
+                    click: function($event) {
+                      return _vm.create(_vm.twit.id)
+                    }
+                  }
+                },
+                [_vm._v("\n                    Responder\n                ")]
+              )
+            ])
+          ])
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Base/BaseSearch.vue?vue&type=template&id=8b274a48&":
 /*!******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Base/BaseSearch.vue?vue&type=template&id=8b274a48& ***!
@@ -41334,7 +41659,33 @@ var render = function() {
           domProps: { textContent: _vm._s(_vm.twit.content) }
         }),
         _vm._v(" "),
-        _vm._m(0)
+        !_vm.hide_buttons
+          ? _c("div", { staticClass: "twit-footer" }, [
+              _c("div", { staticClass: "btn-comment mr-3" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-comment",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        return _vm.show_modal(_vm.twit)
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "far fa-comment" })]
+                ),
+                _vm._v(" "),
+                _vm.twit.comments_count > 0
+                  ? _c("span", {
+                      domProps: { textContent: _vm._s(_vm.twit.comments_count) }
+                    })
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _vm._m(0)
+            ])
+          : _vm._e()
       ])
     ],
     1
@@ -41345,26 +41696,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "twit-footer" }, [
-      _c("div", { staticClass: "btn-comment mr-3" }, [
-        _c(
-          "button",
-          { staticClass: "btn btn-comment", attrs: { type: "button" } },
-          [_c("i", { staticClass: "far fa-comment" })]
-        ),
-        _vm._v(" "),
-        _c("span", [_vm._v("1")])
+    return _c("div", { staticClass: "btn-like" }, [
+      _c("button", { staticClass: "btn btn-like", attrs: { type: "button" } }, [
+        _c("i", { staticClass: "far fa-heart" })
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "btn-like" }, [
-        _c(
-          "button",
-          { staticClass: "btn btn-like", attrs: { type: "button" } },
-          [_c("i", { staticClass: "far fa-heart" })]
-        ),
-        _vm._v(" "),
-        _c("span", [_vm._v("12")])
-      ])
+      _c("span", [_vm._v("12")])
     ])
   }
 ]
@@ -41629,43 +41966,36 @@ var render = function() {
         id: "edit_profile",
         tabindex: "-1",
         role: "dialog",
-        "aria-labelledby": "exampleModalLabel",
         "aria-hidden": "true"
       }
     },
     [
       _c("div", { staticClass: "modal-dialog modal-dialog-scrollable" }, [
         _c("div", { staticClass: "modal-content" }, [
-          _c("div", { staticClass: "modal-header p-1" }, [
-            _c(
-              "h5",
-              {
-                staticClass:
-                  "modal-title d-flex justify-content-between text-left w-100",
-                attrs: { id: "exampleModalLabel" }
-              },
-              [
-                _vm._m(0),
-                _vm._v(" "),
-                _c("span", [_vm._v("Editar perfil")]),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass:
-                      "btn twit-btn font-weight-bold btn-sm btn-primary",
-                    attrs: { type: "button" },
-                    on: { click: _vm.update }
-                  },
-                  [
-                    _vm._v(
-                      "\n                        Guardar\n                    "
-                    )
-                  ]
-                )
-              ]
-            )
-          ]),
+          _c(
+            "div",
+            {
+              staticClass:
+                "modal-header d-flex justify-content-between align-items-center p-2"
+            },
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("span", { staticClass: "font-weight-bold h5 m-0 p-0" }, [
+                _vm._v("Editar perfil")
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn twit-btn btn-sm btn-primary",
+                  attrs: { type: "button" },
+                  on: { click: _vm.update }
+                },
+                [_vm._v("\n                    Guardar\n                ")]
+              )
+            ]
+          ),
           _vm._v(" "),
           _c(
             "div",
@@ -42023,7 +42353,7 @@ var staticRenderFns = [
         staticClass: "close_modal",
         attrs: { type: "button", "data-dismiss": "modal" }
       },
-      [_c("i", { staticClass: "fa fa-times" })]
+      [_c("i", { staticClass: "fa fa-times fa-2x" })]
     )
   }
 ]
@@ -42059,7 +42389,9 @@ var render = function() {
             _c("div", { staticClass: "content" }, [_c("router-view")], 1)
           ]),
           _vm._v(" "),
-          _c("BaseSearch")
+          _c("BaseSearch"),
+          _vm._v(" "),
+          _c("BaseModalComment")
         ],
         1
       )
@@ -42252,7 +42584,7 @@ var render = function() {
           _c(
             "button",
             {
-              staticClass: "btn twit-btn font-weight-bold btn-primary",
+              staticClass: "btn twit-btn ",
               attrs: {
                 type: "button",
                 disabled: !_vm.form.twit || _vm.form.twit.length > 280
@@ -42266,23 +42598,22 @@ var render = function() {
       _vm._v(" "),
       _c("hr", { staticClass: "mt-2" }),
       _vm._v(" "),
-      _c(
-        "div",
-        [
-          _vm.twits.length
-            ? _c(
-                "div",
-                _vm._l(_vm.twits, function(twit, index) {
-                  return _c("BaseTwit", {
-                    key: twit.id + "_" + index,
-                    attrs: { twit: twit }
-                  })
-                }),
-                1
-              )
-            : [
-                !_vm.loading
-                  ? [
+      _c("div", [
+        _vm.loading
+          ? _c("p", { staticClass: "text-muted text-center py-5" }, [
+              _c("i", { staticClass: "fas fa-circle-notch fa-2x fa-spin" })
+            ])
+          : _c(
+              "div",
+              [
+                _vm.twits.length
+                  ? _vm._l(_vm.twits, function(twit, index) {
+                      return _c("BaseTwit", {
+                        key: twit.id + "_" + index,
+                        attrs: { twit: twit }
+                      })
+                    })
+                  : [
                       _c("h1", { staticClass: "text-center text-white mb-0" }, [
                         _vm._v(
                           "\n                    Bienvenido a TwitApp\n                "
@@ -42299,11 +42630,10 @@ var render = function() {
                         ]
                       )
                     ]
-                  : _vm._e()
-              ]
-        ],
-        2
-      )
+              ],
+              2
+            )
+      ])
     ],
     1
   )
@@ -42390,7 +42720,7 @@ var render = function() {
                 ? _c(
                     "button",
                     {
-                      staticClass: "btn twit-btn font-weight-bold btn-primary",
+                      staticClass: "btn twit-btn btn-primary",
                       attrs: { type: "button" },
                       on: { click: _vm.edit_profile }
                     },
@@ -59054,6 +59384,7 @@ var map = {
 	"./BaseInput.vue": "./resources/js/components/Base/BaseInput.vue",
 	"./BaseLogo.vue": "./resources/js/components/Base/BaseLogo.vue",
 	"./BaseMenu.vue": "./resources/js/components/Base/BaseMenu.vue",
+	"./BaseModalComment.vue": "./resources/js/components/Base/BaseModalComment.vue",
 	"./BaseSearch.vue": "./resources/js/components/Base/BaseSearch.vue",
 	"./BaseTwit.vue": "./resources/js/components/Base/BaseTwit.vue",
 	"./BaseUserCard.vue": "./resources/js/components/Base/BaseUserCard.vue",
@@ -59390,6 +59721,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BaseMenu_vue_vue_type_template_id_10654e13___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BaseMenu_vue_vue_type_template_id_10654e13___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Base/BaseModalComment.vue":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/Base/BaseModalComment.vue ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _BaseModalComment_vue_vue_type_template_id_88870bb4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BaseModalComment.vue?vue&type=template&id=88870bb4& */ "./resources/js/components/Base/BaseModalComment.vue?vue&type=template&id=88870bb4&");
+/* harmony import */ var _BaseModalComment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BaseModalComment.vue?vue&type=script&lang=js& */ "./resources/js/components/Base/BaseModalComment.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _BaseModalComment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _BaseModalComment_vue_vue_type_template_id_88870bb4___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _BaseModalComment_vue_vue_type_template_id_88870bb4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Base/BaseModalComment.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Base/BaseModalComment.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/Base/BaseModalComment.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BaseModalComment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./BaseModalComment.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Base/BaseModalComment.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BaseModalComment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Base/BaseModalComment.vue?vue&type=template&id=88870bb4&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/Base/BaseModalComment.vue?vue&type=template&id=88870bb4& ***!
+  \******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BaseModalComment_vue_vue_type_template_id_88870bb4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./BaseModalComment.vue?vue&type=template&id=88870bb4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Base/BaseModalComment.vue?vue&type=template&id=88870bb4&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BaseModalComment_vue_vue_type_template_id_88870bb4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BaseModalComment_vue_vue_type_template_id_88870bb4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -60039,7 +60439,6 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
     errors: {}
   },
-  getters: {},
   mutations: {
     SET_ERRORS: function SET_ERRORS(state, errors) {
       state.errors = errors;
@@ -60059,8 +60458,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 
       switch (status) {
         case 422:
-          commit('SET_ERRORS', data.errors);
-          commit('CLEAN_ERRORS');
+          commit("SET_ERRORS", data.errors);
+          commit("CLEAN_ERRORS");
           break;
       }
     }
@@ -60084,28 +60483,26 @@ __webpack_require__.r(__webpack_exports__);
   namespaced: true,
   state: {
     form: {
-      input_login: '',
-      input_register: '',
-      name: '',
-      password: '',
-      password_register: '',
-      password_confirmation: ''
+      input_login: "",
+      input_register: "",
+      name: "",
+      password: "",
+      password_register: "",
+      password_confirmation: ""
     }
   },
-  getters: {},
-  mutations: {},
   actions: {
     login: function login(_ref) {
       var state = _ref.state,
           commit = _ref.commit,
           dispatch = _ref.dispatch;
-      axios.post('login', {
+      axios.post("login", {
         login: state.form.input_login,
         password: state.form.password
       }).then(function (res) {
-        location.href = 'https://twitapp.dev/';
+        location.href = "https://twitapp.dev/";
       })["catch"](function (err) {
-        dispatch('catch_errors', err, {
+        dispatch("catch_errors", err, {
           root: true
         });
       });
@@ -60114,17 +60511,66 @@ __webpack_require__.r(__webpack_exports__);
       var state = _ref2.state,
           commit = _ref2.commit,
           dispatch = _ref2.dispatch;
-      axios.post('register', {
+      axios.post("register", {
         name: state.form.name,
         login: state.form.input_register,
         password: state.form.password_register,
         password_confirmation: state.form.password_confirmation
       }).then(function (res) {
-        location.href = 'https://twitapp.dev/';
+        location.href = "https://twitapp.dev/";
       })["catch"](function (err) {
-        dispatch('catch_errors', err, {
+        dispatch("catch_errors", err, {
           root: true
         });
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/comment.js":
+/*!***********************************************!*\
+  !*** ./resources/js/store/modules/comment.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
+  state: {
+    form: {
+      comment: ""
+    }
+  },
+  mutations: {
+    CLEAN: function CLEAN(state) {
+      state.form.comment = "";
+    }
+  },
+  actions: {
+    show_modal: function show_modal(_ref, twit) {
+      var commit = _ref.commit;
+      commit("twit/SET_TWIT", twit, {
+        root: true
+      });
+      $("#modal_comment").modal("show");
+    },
+    close_modal: function close_modal(_ref2) {
+      var commit = _ref2.commit;
+      commit("twit/SET_TWIT", {}, {
+        root: true
+      });
+      $("#modal_comment").modal("hide");
+    },
+    create: function create(_ref3, twit_id) {
+      var state = _ref3.state,
+          commit = _ref3.commit;
+      axios.post("twits/".concat(twit_id, "/comments"), state.form).then(function (res) {
+        commit("CLEAN");
+        $("#modal_comment").modal("hide");
       });
     }
   }
@@ -60144,13 +60590,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./auth */ "./resources/js/store/modules/auth.js");
 /* harmony import */ var _user__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./user */ "./resources/js/store/modules/user.js");
 /* harmony import */ var _twit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./twit */ "./resources/js/store/modules/twit.js");
+/* harmony import */ var _comment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./comment */ "./resources/js/store/modules/comment.js");
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   auth: _auth__WEBPACK_IMPORTED_MODULE_0__["default"],
   user: _user__WEBPACK_IMPORTED_MODULE_1__["default"],
-  twit: _twit__WEBPACK_IMPORTED_MODULE_2__["default"]
+  twit: _twit__WEBPACK_IMPORTED_MODULE_2__["default"],
+  comment: _comment__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
 
 /***/ }),
@@ -60178,11 +60627,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     form: {
       twit: ""
     },
+    twit: {},
     twits: [],
     loading: false
   },
-  getters: {},
   mutations: {
+    SET_TWIT: function SET_TWIT(state, twit) {
+      state.twit = twit;
+    },
     SET_TWITS: function SET_TWITS(state, twits) {
       state.twits = twits;
     },
@@ -60283,7 +60735,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     loading: false,
     loading_following: false
   },
-  getters: {},
   mutations: {
     SET_USER: function SET_USER(state, user) {
       state.user = user;

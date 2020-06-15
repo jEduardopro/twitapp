@@ -4,32 +4,30 @@
         id="edit_profile"
         tabindex="-1"
         role="dialog"
-        aria-labelledby="exampleModalLabel"
         aria-hidden="true"
     >
         <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
-                <div class="modal-header p-1">
-                    <h5
-                        class="modal-title d-flex justify-content-between text-left w-100"
-                        id="exampleModalLabel"
+                <div
+                    class="modal-header d-flex justify-content-between align-items-center p-2"
+                >
+                    <button
+                        type="button"
+                        class="close_modal"
+                        data-dismiss="modal"
                     >
-                        <button
-                            type="button"
-                            class="close_modal"
-                            data-dismiss="modal"
-                        >
-                            <i class="fa fa-times"></i>
-                        </button>
-                        <span>Editar perfil</span>
-                        <button
-                            type="button"
-                            @click="update"
-                            class="btn twit-btn font-weight-bold btn-sm btn-primary"
-                        >
-                            Guardar
-                        </button>
-                    </h5>
+                        <i class="fa fa-times fa-2x"></i>
+                    </button>
+                    <span class="font-weight-bold h5 m-0 p-0"
+                        >Editar perfil</span
+                    >
+                    <button
+                        type="button"
+                        @click="update"
+                        class="btn twit-btn btn-sm btn-primary"
+                    >
+                        Guardar
+                    </button>
                 </div>
                 <div class="modal-body p-0 pb-5">
                     <cover-avatar-image>

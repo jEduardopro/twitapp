@@ -18,12 +18,19 @@
                 </router-link>
             </div>
             <div class="twit-content py-1" v-text="twit.content"></div>
-            <div class="twit-footer">
+            <div class="twit-footer" v-if="!hide_buttons">
                 <div class="btn-comment mr-3">
-                    <button type="button" class="btn btn-comment">
+                    <button
+                        type="button"
+                        class="btn btn-comment"
+                        @click="show_modal(twit)"
+                    >
                         <i class="far fa-comment"></i>
                     </button>
-                    <span>1</span>
+                    <span
+                        v-if="twit.comments_count > 0"
+                        v-text="twit.comments_count"
+                    ></span>
                 </div>
                 <div class="btn-like">
                     <button type="button" class="btn btn-like">
@@ -37,7 +44,11 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
-    props: ["twit"]
+    props: ["twit", "hide_buttons"],
+    methods: {
+        ...mapActions("comment", ["show_modal"])
+    }
 };
 </script>
