@@ -26,7 +26,7 @@
                 type="button"
                 :disabled="!form.twit || form.twit.length > 280"
                 @click="create"
-                class="btn twit-btn "
+                class="btn twit-btn font-weight-bold btn-primary"
             >
                 Twittear
             </button>
@@ -38,11 +38,17 @@
             </p>
             <div v-else>
                 <template v-if="twits.length">
-                    <BaseTwit
+                    <router-link
+                        :to="{
+                            name: 'twit-show',
+                            params: { twit_id: twit.id }
+                        }"
                         v-for="(twit, index) in twits"
-                        :twit="twit"
                         :key="twit.id + '_' + index"
-                    />
+                        class="link-twit"
+                    >
+                        <BaseTwit :twit="twit" />
+                    </router-link>
                 </template>
                 <template v-else>
                     <h1 class="text-center text-white mb-0">

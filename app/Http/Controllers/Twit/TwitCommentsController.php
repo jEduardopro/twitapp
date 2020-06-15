@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Twit;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CommentResource;
+use App\Models\Comment;
 use App\Models\Twit;
 use Illuminate\Http\Request;
 
@@ -16,10 +18,11 @@ class TwitCommentsController extends Controller
      */
     public function store(Twit $twit, Request $request)
     {
-        $twit->comments()->create([
+        $comment = $twit->comments()->create([
             "user_id" => auth()->id(),
             "content" => $request->comment
         ]);
+        return CommentResource::make(Comment::with('user')->where('id', $comment->id)->first());
     }
 
     /**

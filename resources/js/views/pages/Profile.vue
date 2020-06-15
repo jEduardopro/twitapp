@@ -73,11 +73,14 @@
         </div>
         <div class="border-top">
             <div v-if="profile.relationships.twits.length">
-                <BaseTwit
-                    v-for="twit in profile.relationships.twits"
-                    :twit="twit"
-                    :key="twit.id"
-                />
+                <router-link
+                    :to="{ name: 'twit-show', params: { twit_id: twit.id } }"
+                    v-for="(twit, index) in profile.relationships.twits"
+                    :key="twit.id + '_' + index"
+                    class="link-twit"
+                >
+                    <BaseTwit :twit="twit" />
+                </router-link>
             </div>
             <h1 v-else class="text-center text-muted mb-0">
                 No hay twits

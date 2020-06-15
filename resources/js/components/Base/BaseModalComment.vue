@@ -48,7 +48,7 @@
                     <button
                         type="button"
                         :disabled="!form.comment || form.comment.length > 280"
-                        @click="create(twit.id)"
+                        @click="create(twit)"
                         class="btn twit-btn btn-primary"
                     >
                         Responder
@@ -63,9 +63,8 @@
 import { mapState, mapActions } from "vuex";
 export default {
     computed: {
-        ...mapState("twit", ["twit"]),
         ...mapState("user", ["user"]),
-        ...mapState("comment", ["form"])
+        ...mapState("comment", ["form", "twit"])
     },
     methods: {
         ...mapActions("comment", ["create", "close_modal"])

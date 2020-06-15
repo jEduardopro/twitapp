@@ -1,0 +1,110 @@
+.link-twit {
+    color: $white;
+    display: block;
+
+    &:hover {
+        text-decoration: none;
+        color: $white;
+        background: $dark-light-input;
+    }
+}
+
+.twit-card,
+.comment-card {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+
+    &.border-bottom {
+        border-bottom-color: $gray-light !important;
+    }
+
+    .body {
+        width: 90%;
+
+        .header a {
+            font-weight: bold;
+            font-size: $fs-md;
+
+            &:hover {
+                text-decoration: none;
+
+                strong {
+                    text-decoration: underline;
+                }
+            }
+
+            span {
+                color: $gray;
+                font-weight: normal;
+            }
+        }
+
+        .content-text {
+            font-size: $fs-md;
+        }
+
+        .footer {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: flex-start;
+        }
+    }
+}
+
+.btn-comment,
+.btn-like {
+    display: flex;
+    align-items: center;
+
+    span {
+        color: $gray;
+    }
+
+    .btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        i {
+            color: $gray;
+            font-size: 20px;
+            line-height: 40px;
+        }
+    }
+
+    &:hover {
+        .btn {
+            background: $white-light;
+        }
+    }
+}
+
+.btn-comment:hover {
+    .btn.btn-comment {
+        i {
+            color: $blue;
+        }
+    }
+
+    span {
+        color: $blue;
+    }
+}
+
+.btn-like:hover {
+    .btn.btn-like {
+        i {
+            color: $pink;
+        }
+    }
+
+    span {
+        color: $pink;
+    }
+}

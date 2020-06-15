@@ -7,6 +7,7 @@ import Profile from "../views/pages/Profile.vue";
 import Follows from "../views/pages/Follows.vue";
 import Followers from "../components/Follow/Followers.vue";
 import Following from "../components/Follow/Following.vue";
+import TwitShow from "../views/pages/TwitShow.vue";
 
 const routes = [
     { path: "/login", component: Login, name: "login" },
@@ -37,6 +38,12 @@ const routes = [
                         name: "siguiendo"
                     }
                 ]
+            },
+            {
+                path: "twits/:twit_id",
+                component: TwitShow,
+                name: "twit-show",
+                props: true
             }
         ]
     }

@@ -34,6 +34,11 @@ export default {
                 ? `/storage/users/avatars/${user.image}`
                 : "";
         },
+        INCREMENT_COMMENTS(state, comment) {
+            state.user.relationships.twits.filter(
+                t => t.id == comment.twit_id
+            )[0].comments_count++;
+        },
         SET_PROFILE_FORM(state) {
             state.profile_form = { ...state.user };
             state.profile_form.cover_image = "";

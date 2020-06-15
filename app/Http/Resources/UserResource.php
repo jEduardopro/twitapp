@@ -41,7 +41,7 @@ class UserResource extends JsonResource
                 "twits" => $this->when(
                     $this->relationLoaded('twits'),
                     function () {
-                        return TwitResource::collection($this->twits()->with('user')->get());
+                        return TwitResource::collection($this->twits()->with(['comments', 'comments.user', 'user'])->get());
                     }
                 )
             ]

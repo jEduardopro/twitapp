@@ -11142,62 +11142,82 @@ h1 {
   display: block;
 }
 
-.twit-card {
+.link-twit {
+  color: #ffffff;
+  display: block;
+}
+
+.link-twit:hover {
+  text-decoration: none;
+  color: #ffffff;
+  background: #192734;
+}
+
+.twit-card,
+.comment-card {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
 }
 
-.twit-card.border-bottom {
+.twit-card.border-bottom,
+.comment-card.border-bottom {
   border-bottom-color: #38444D !important;
 }
 
-.twit-card .twit-body {
+.twit-card .body,
+.comment-card .body {
   width: 90%;
 }
 
-.twit-card .twit-body .twit-header a {
+.twit-card .body .header a,
+.comment-card .body .header a {
   font-weight: bold;
   font-size: 16px;
 }
 
-.twit-card .twit-body .twit-header a:hover {
+.twit-card .body .header a:hover,
+.comment-card .body .header a:hover {
   text-decoration: none;
 }
 
-.twit-card .twit-body .twit-header a:hover strong {
+.twit-card .body .header a:hover strong,
+.comment-card .body .header a:hover strong {
   text-decoration: underline;
 }
 
-.twit-card .twit-body .twit-header a span {
+.twit-card .body .header a span,
+.comment-card .body .header a span {
   color: #8899a6;
   font-weight: normal;
 }
 
-.twit-card .twit-body .twit-content {
+.twit-card .body .content-text,
+.comment-card .body .content-text {
   font-size: 16px;
 }
 
-.twit-card .twit-body .twit-footer {
+.twit-card .body .footer,
+.comment-card .body .footer {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: flex-start;
 }
 
-.twit-card .twit-body .twit-footer .btn-comment,
-.twit-card .twit-body .twit-footer .btn-like {
+.btn-comment,
+.btn-like {
   display: flex;
   align-items: center;
 }
 
-.twit-card .twit-body .twit-footer .btn-comment span,
-.twit-card .twit-body .twit-footer .btn-like span {
+.btn-comment span,
+.btn-like span {
   color: #8899a6;
 }
 
-.twit-card .twit-body .twit-footer .btn-comment .btn,
-.twit-card .twit-body .twit-footer .btn-like .btn {
+.btn-comment .btn,
+.btn-like .btn {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -11207,31 +11227,31 @@ h1 {
   align-items: center;
 }
 
-.twit-card .twit-body .twit-footer .btn-comment .btn i,
-.twit-card .twit-body .twit-footer .btn-like .btn i {
+.btn-comment .btn i,
+.btn-like .btn i {
   color: #8899a6;
   font-size: 20px;
   line-height: 40px;
 }
 
-.twit-card .twit-body .twit-footer .btn-comment:hover .btn,
-.twit-card .twit-body .twit-footer .btn-like:hover .btn {
+.btn-comment:hover .btn,
+.btn-like:hover .btn {
   background: rgba(255, 255, 255, 0.2);
 }
 
-.twit-card .twit-body .twit-footer .btn-comment:hover .btn.btn-comment i {
+.btn-comment:hover .btn.btn-comment i {
   color: #1DA1F2;
 }
 
-.twit-card .twit-body .twit-footer .btn-comment:hover span {
+.btn-comment:hover span {
   color: #1DA1F2;
 }
 
-.twit-card .twit-body .twit-footer .btn-like:hover .btn.btn-like i {
+.btn-like:hover .btn.btn-like i {
   color: #f66d9b;
 }
 
-.twit-card .twit-body .twit-footer .btn-like:hover span {
+.btn-like:hover span {
   color: #f66d9b;
 }
 
