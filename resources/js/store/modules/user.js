@@ -16,6 +16,8 @@ export default {
         },
         users_following: [],
         followers: [],
+        page: 1,
+        twits: [],
         profile: {},
         profile_form: {},
         loading: false,
@@ -33,11 +35,6 @@ export default {
             state.user.image = user.image
                 ? `/storage/users/avatars/${user.image}`
                 : "";
-        },
-        INCREMENT_COMMENTS(state, comment) {
-            state.user.relationships.twits.filter(
-                t => t.id == comment.twit_id
-            )[0].comments_count++;
         },
         SET_PROFILE_FORM(state) {
             state.profile_form = { ...state.user };
@@ -64,6 +61,9 @@ export default {
         },
         SET_FOLLOWERS(state, users) {
             state.followers = users;
+        },
+        SET_TWITS(state, twits) {
+            state.twits = state.twits.concat(twits);
         },
         ADD_FOLLOW(state, follow_id) {
             state.user.relationships.following.push(follow_id);
@@ -98,6 +98,17 @@ export default {
             const response = await axios.get(`users/${username}`);
             commit("SET_PROFILE", response.data.data);
             commit("SET_LOADING", false);
+        },
+        get_twits({ state, commit }, { $state, username }) {
+            let page = state.page++;
+            axios.get(`users/${username}/twits?page=${page}`).then(res => {
+                if (res.data.data.length) {
+                    commit("SET_TWITS", res.data.data);
+                    $state.loaded();
+                } else {
+                    $state.complete();
+                }
+            });
         },
         edit_profile({ commit }) {
             commit("SET_PROFILE_FORM");

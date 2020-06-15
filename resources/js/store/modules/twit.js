@@ -5,6 +5,7 @@ export default {
             twit: ""
         },
         twit: {},
+        page: 1,
         twits: [],
         loading: false
     },
@@ -19,7 +20,7 @@ export default {
             }
         },
         SET_TWITS(state, twits) {
-            state.twits = twits;
+            state.twits = state.twits.concat(twits);
         },
         SET_LOADING(state, status) {
             state.loading = status;
@@ -29,11 +30,16 @@ export default {
         }
     },
     actions: {
-        async get_twits({ commit }) {
-            commit("SET_LOADING", true);
-            const twits = await axios.get("twits");
-            commit("SET_TWITS", twits.data.data);
-            commit("SET_LOADING", false);
+        get_twits({ state, commit }, $state) {
+            let page = state.page++;
+            axios.get(`twits?page=${page}`).then(res => {
+                if (res.data.data.length) {
+                    commit("SET_TWITS", res.data.data);
+                    $state.loaded();
+                } else {
+                    $state.complete();
+                }
+            });
         },
         create({ state, commit, dispatch }) {
             axios

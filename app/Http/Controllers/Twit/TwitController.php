@@ -19,7 +19,7 @@ class TwitController extends Controller
     {
         $users_ids = auth()->user()->following()->pluck('followers.followed_id')->toArray();
         array_push($users_ids, auth()->id());
-        $twits = Twit::whereIn('user_id', $users_ids)->with(['user', 'comments', 'comments.user'])->latest()->get();
+        $twits = Twit::whereIn('user_id', $users_ids)->with(['user', 'comments', 'comments.user'])->latest()->paginate();
         return TwitResource::collection($twits);
     }
 

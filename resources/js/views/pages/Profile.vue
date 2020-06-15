@@ -1,9 +1,9 @@
 <template>
-    <div v-if="!loading">
+    <div v-if="!loading" class="pb-5">
         <base-header>
             {{ profile.name }}
             <small class="text-muted p-0 m-0 d-block">
-                {{ profile.relationships.twits.length }} Tweets
+                {{ twits.length }} Tweets
             </small>
         </base-header>
         <cover-avatar-image>
@@ -72,19 +72,28 @@
             </div>
         </div>
         <div class="border-top">
-            <div v-if="profile.relationships.twits.length">
-                <router-link
-                    :to="{ name: 'twit-show', params: { twit_id: twit.id } }"
-                    v-for="(twit, index) in profile.relationships.twits"
-                    :key="twit.id + '_' + index"
-                    class="link-twit"
-                >
-                    <BaseTwit :twit="twit" />
-                </router-link>
-            </div>
-            <h1 v-else class="text-center text-muted mb-0">
-                No hay twits
-            </h1>
+            <router-link
+                :to="{
+                    name: 'twit-show',
+                    params: { twit_id: twit.id }
+                }"
+                v-for="(twit, index) in twits"
+                :key="twit.id + '_' + index"
+                class="link-twit"
+            >
+                <BaseTwit :twit="twit" />
+            </router-link>
+            <infinite-loading
+                spinner="waveDots"
+                @infinite="get_twits({ $state: $event, username: username })"
+            >
+                <div slot="no-more"></div>
+                <div slot="no-results">
+                    <p class="text-muted p-0 m-0 text-center">
+                        No hay Twits
+                    </p>
+                </div>
+            </infinite-loading>
         </div>
         <modal-edit-profile></modal-edit-profile>
     </div>
@@ -103,10 +112,10 @@ export default {
     },
     components: { ModalEditProfile, CoverAvatarImage },
     computed: {
-        ...mapState("user", ["user", "profile", "loading"])
+        ...mapState("user", ["user", "profile", "twits", "loading"])
     },
     methods: {
-        ...mapActions("user", ["show", "edit_profile"])
+        ...mapActions("user", ["show", "edit_profile", "get_twits"])
     },
     created() {
         this.show(this.username);

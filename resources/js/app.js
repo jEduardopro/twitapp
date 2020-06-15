@@ -35,6 +35,8 @@ Vue.component(
     "login-register",
     require("./components/Auth/LoginRegister.vue").default
 );
+import InfiniteLoading from "vue-infinite-loading";
+Vue.use(InfiniteLoading);
 
 // Store vuex
 import store from "./store/index";
