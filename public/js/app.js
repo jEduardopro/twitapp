@@ -3291,15 +3291,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -3314,8 +3305,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     ModalEditProfile: _components_Profile_ModalEditProfile_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     CoverAvatarImage: _components_Profile_CoverAvatarImage_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("user", ["user", "profile", "twits", "loading"])),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("user", ["show", "edit_profile", "get_twits"])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("user", ["user", "profile", "loading"])),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("user", ["show", "edit_profile"])),
   created: function created() {
     this.show(this.username);
   }
@@ -42944,7 +42935,7 @@ var render = function() {
             _c("small", { staticClass: "text-muted p-0 m-0 d-block" }, [
               _vm._v(
                 "\n            " +
-                  _vm._s(_vm.twits.length) +
+                  _vm._s(_vm.profile.relationships.twits.length) +
                   " Tweets\n        "
               )
             ])
@@ -43094,64 +43085,36 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "border-top" },
-            [
-              _vm._l(_vm.twits, function(twit, index) {
-                return _c(
-                  "router-link",
-                  {
-                    key: twit.id + "_" + index,
-                    staticClass: "link-twit",
-                    attrs: {
-                      to: {
-                        name: "twit-show",
-                        params: { twit_id: twit.id }
-                      }
-                    }
-                  },
-                  [_c("BaseTwit", { attrs: { twit: twit } })],
+          _c("div", { staticClass: "border-top" }, [
+            _vm.profile.relationships.twits.length
+              ? _c(
+                  "div",
+                  _vm._l(_vm.profile.relationships.twits, function(
+                    twit,
+                    index
+                  ) {
+                    return _c(
+                      "router-link",
+                      {
+                        key: twit.id + "_" + index,
+                        staticClass: "link-twit",
+                        attrs: {
+                          to: {
+                            name: "twit-show",
+                            params: { twit_id: twit.id }
+                          }
+                        }
+                      },
+                      [_c("BaseTwit", { attrs: { twit: twit } })],
+                      1
+                    )
+                  }),
                   1
                 )
-              }),
-              _vm._v(" "),
-              _c(
-                "infinite-loading",
-                {
-                  attrs: { spinner: "waveDots" },
-                  on: {
-                    infinite: function($event) {
-                      return _vm.get_twits({
-                        $state: $event,
-                        username: _vm.username
-                      })
-                    }
-                  }
-                },
-                [
-                  _c("div", { attrs: { slot: "no-more" }, slot: "no-more" }),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { attrs: { slot: "no-results" }, slot: "no-results" },
-                    [
-                      _c(
-                        "p",
-                        { staticClass: "text-muted p-0 m-0 text-center" },
-                        [
-                          _vm._v(
-                            "\n                    No hay Twits\n                "
-                          )
-                        ]
-                      )
-                    ]
-                  )
-                ]
-              )
-            ],
-            2
-          ),
+              : _c("h1", { staticClass: "text-center text-muted mb-0" }, [
+                  _vm._v("\n            No hay twits\n        ")
+                ])
+          ]),
           _vm._v(" "),
           _c("modal-edit-profile")
         ],
@@ -61092,7 +61055,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     ADD_COMMENT: function ADD_COMMENT(state, comment) {
       if (state.twit.id) {
-        state.twit.comments_count++;
         state.twit.relationships.comments.unshift(comment);
       }
     },
@@ -61204,8 +61166,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     users_following: [],
     followers: [],
-    page: 1,
-    twits: [],
     profile: {},
     profile_form: {},
     loading: false,
@@ -61217,8 +61177,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       state.user.email = user.email ? user.email : "";
       state.user.phone = user.phone ? user.phone : "";
       state.user.description = user.description ? user.description : "";
-      state.user.cover_image = user.cover_image ? "/storage/users/cover_images/".concat(user.cover_image) : "";
-      state.user.image = user.image ? "/storage/users/avatars/".concat(user.image) : "";
+      state.user.cover_image = user.cover_image ? user.cover_image : "";
+      state.user.image = user.image ? user.image : "";
     },
     SET_PROFILE_FORM: function SET_PROFILE_FORM(state) {
       state.profile_form = _objectSpread({}, state.user);
@@ -61233,17 +61193,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     SET_PROFILE: function SET_PROFILE(state, profile) {
       state.profile = profile;
-      state.profile.cover_image = profile.cover_image ? "/storage/users/cover_images/".concat(profile.cover_image) : "";
-      state.profile.image = profile.image ? "/storage/users/avatars/".concat(profile.image) : "";
     },
     SET_USERS_FOLLOWING: function SET_USERS_FOLLOWING(state, users) {
       state.users_following = users;
     },
     SET_FOLLOWERS: function SET_FOLLOWERS(state, users) {
       state.followers = users;
-    },
-    SET_TWITS: function SET_TWITS(state, twits) {
-      state.twits = state.twits.concat(twits);
     },
     ADD_FOLLOW: function ADD_FOLLOW(state, follow_id) {
       state.user.relationships.following.push(follow_id);
@@ -61311,28 +61266,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }, _callee2);
       }))();
     },
-    get_twits: function get_twits(_ref3, _ref4) {
-      var state = _ref3.state,
-          commit = _ref3.commit;
-      var $state = _ref4.$state,
-          username = _ref4.username;
-      var page = state.page++;
-      axios.get("users/".concat(username, "/twits?page=").concat(page)).then(function (res) {
-        if (res.data.data.length) {
-          commit("SET_TWITS", res.data.data);
-          $state.loaded();
-        } else {
-          $state.complete();
-        }
-      });
-    },
-    edit_profile: function edit_profile(_ref5) {
-      var commit = _ref5.commit;
+    edit_profile: function edit_profile(_ref3) {
+      var commit = _ref3.commit;
       commit("SET_PROFILE_FORM");
       $("#edit_profile").modal("show");
     },
-    set_cover_image: function set_cover_image(_ref6, evt) {
-      var commit = _ref6.commit;
+    set_cover_image: function set_cover_image(_ref4, evt) {
+      var commit = _ref4.commit;
       var files = evt.target.files;
 
       if (files.length > 0) {
@@ -61346,23 +61286,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         reader.readAsDataURL(evt.target.files[0]);
       }
     },
-    set_avatar: function set_avatar(_ref7, evt) {
-      var commit = _ref7.commit;
+    set_avatar: function set_avatar(_ref5, evt) {
+      var state = _ref5.state,
+          commit = _ref5.commit;
       var files = evt.target.files;
 
       if (files.length > 0) {
-        commit("SET_AVATAR", evt.target.files[0]);
         var reader = new FileReader();
 
-        reader.onloadend = function () {
+        reader.onload = function (e) {
+          commit("SET_AVATAR", files[0]);
           $(".modal-body .cover_image img.avatar_image_preview").attr("src", reader.result);
         };
 
-        reader.readAsDataURL(evt.target.files[0]);
+        reader.readAsDataURL(files[0]);
       }
     },
-    create_form_data: function create_form_data(_ref8) {
-      var state = _ref8.state;
+    create_form_data: function create_form_data(_ref6) {
+      var state = _ref6.state;
       var form_data = new FormData();
 
       if (state.profile_form.email) {
@@ -61387,14 +61328,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       form_data.append("_method", "PUT");
       return form_data;
     },
-    update: function update(_ref9) {
+    update: function update(_ref7) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         var state, commit, dispatch, data, method;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                state = _ref9.state, commit = _ref9.commit, dispatch = _ref9.dispatch;
+                state = _ref7.state, commit = _ref7.commit, dispatch = _ref7.dispatch;
 
                 if (!(state.profile_form.cover_image || state.profile_form.image)) {
                   _context3.next = 8;
@@ -61434,7 +61375,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   data: data
                 }).then(function (res) {
                   console.log(res.data);
-                  commit("SET_USER", res.data);
+                  commit("SET_PROFILE", res.data);
 
                   if (_routes_index__WEBPACK_IMPORTED_MODULE_1__["default"].history.current.params.username != res.data.username) {
                     _routes_index__WEBPACK_IMPORTED_MODULE_1__["default"].push({
@@ -61458,14 +61399,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }, _callee3);
       }))();
     },
-    get_users_following: function get_users_following(_ref10) {
+    get_users_following: function get_users_following(_ref8) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
         var state, commit, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                state = _ref10.state, commit = _ref10.commit;
+                state = _ref8.state, commit = _ref8.commit;
                 commit("SET_LOADING_FOLLOWING", true);
                 _context4.next = 4;
                 return axios.get("users/".concat(state.profile.id, "/following"));
@@ -61483,14 +61424,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }, _callee4);
       }))();
     },
-    get_followers: function get_followers(_ref11) {
+    get_followers: function get_followers(_ref9) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
         var state, commit, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                state = _ref11.state, commit = _ref11.commit;
+                state = _ref9.state, commit = _ref9.commit;
                 commit("SET_LOADING_FOLLOWING", true);
                 _context5.next = 4;
                 return axios.get("users/".concat(state.profile.id, "/followers"));
@@ -61508,18 +61449,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }, _callee5);
       }))();
     },
-    follow: function follow(_ref12, follow_id) {
-      var state = _ref12.state,
-          commit = _ref12.commit;
+    follow: function follow(_ref10, follow_id) {
+      var state = _ref10.state,
+          commit = _ref10.commit;
       axios.post("users/".concat(state.user.id, "/follows"), {
         follow_id: follow_id
       }).then(function (res) {
         commit("ADD_FOLLOW", follow_id);
       });
     },
-    unfollow: function unfollow(_ref13, follow_id) {
-      var state = _ref13.state,
-          commit = _ref13.commit;
+    unfollow: function unfollow(_ref11, follow_id) {
+      var state = _ref11.state,
+          commit = _ref11.commit;
       axios["delete"]("users/".concat(state.user.id, "/follows/").concat(follow_id)).then(function (res) {
         commit("REMOVE_FOLLOW", follow_id);
       });

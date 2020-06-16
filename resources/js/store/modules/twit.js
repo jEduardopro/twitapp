@@ -15,7 +15,6 @@ export default {
         },
         ADD_COMMENT(state, comment) {
             if (state.twit.id) {
-                state.twit.comments_count++;
                 state.twit.relationships.comments.unshift(comment);
             }
         },

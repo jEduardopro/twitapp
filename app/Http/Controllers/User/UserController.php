@@ -30,7 +30,7 @@ class UserController extends Controller
      */
     public function show($username)
     {
-        $user = User::where('username', $username)->with(['followers', 'following'])->first();
+        $user = User::where('username', $username)->with(['twits', 'followers', 'following'])->first();
         if (is_object($user)) {
             return UserResource::make($user);
         }
@@ -39,7 +39,7 @@ class UserController extends Controller
 
     public function me()
     {
-        $user = User::where('id', auth()->id())->with(['followers', 'following'])->first();
+        $user = User::where('id', auth()->id())->with(['twits', 'followers', 'following'])->first();
         return UserResource::make($user);
     }
 

@@ -13,7 +13,6 @@ Route::redirect('/', '/home');
 // Users routes
 Route::resource('users', 'User\UserController');
 Route::get('me', 'User\UserController@me');
-Route::get('users/{user:username}/twits', 'User\UserTwitsController@index');
 Route::resource('users.follows', 'User\UserFollowsController')->only(['store', 'destroy']);
 Route::resource('users.following', 'User\UserFollowingController')->only(['index']);
 Route::resource('users.followers', 'User\UserFollowersController')->only(['index']);

@@ -16,8 +16,6 @@ export default {
         },
         users_following: [],
         followers: [],
-        page: 1,
-        twits: [],
         profile: {},
         profile_form: {},
         loading: false,
@@ -29,12 +27,8 @@ export default {
             state.user.email = user.email ? user.email : "";
             state.user.phone = user.phone ? user.phone : "";
             state.user.description = user.description ? user.description : "";
-            state.user.cover_image = user.cover_image
-                ? `/storage/users/cover_images/${user.cover_image}`
-                : "";
-            state.user.image = user.image
-                ? `/storage/users/avatars/${user.image}`
-                : "";
+            state.user.cover_image = user.cover_image ? user.cover_image : "";
+            state.user.image = user.image ? user.image : "";
         },
         SET_PROFILE_FORM(state) {
             state.profile_form = { ...state.user };
@@ -49,21 +43,12 @@ export default {
         },
         SET_PROFILE(state, profile) {
             state.profile = profile;
-            state.profile.cover_image = profile.cover_image
-                ? `/storage/users/cover_images/${profile.cover_image}`
-                : "";
-            state.profile.image = profile.image
-                ? `/storage/users/avatars/${profile.image}`
-                : "";
         },
         SET_USERS_FOLLOWING(state, users) {
             state.users_following = users;
         },
         SET_FOLLOWERS(state, users) {
             state.followers = users;
-        },
-        SET_TWITS(state, twits) {
-            state.twits = state.twits.concat(twits);
         },
         ADD_FOLLOW(state, follow_id) {
             state.user.relationships.following.push(follow_id);
@@ -99,17 +84,6 @@ export default {
             commit("SET_PROFILE", response.data.data);
             commit("SET_LOADING", false);
         },
-        get_twits({ state, commit }, { $state, username }) {
-            let page = state.page++;
-            axios.get(`users/${username}/twits?page=${page}`).then(res => {
-                if (res.data.data.length) {
-                    commit("SET_TWITS", res.data.data);
-                    $state.loaded();
-                } else {
-                    $state.complete();
-                }
-            });
-        },
         edit_profile({ commit }) {
             commit("SET_PROFILE_FORM");
             $("#edit_profile").modal("show");
@@ -128,18 +102,18 @@ export default {
                 reader.readAsDataURL(evt.target.files[0]);
             }
         },
-        set_avatar({ commit }, evt) {
+        set_avatar({ state, commit }, evt) {
             let files = evt.target.files;
             if (files.length > 0) {
-                commit("SET_AVATAR", evt.target.files[0]);
                 let reader = new FileReader();
-                reader.onloadend = function() {
+                reader.onload = function(e) {
+                    commit("SET_AVATAR", files[0]);
                     $(".modal-body .cover_image img.avatar_image_preview").attr(
                         "src",
                         reader.result
                     );
                 };
-                reader.readAsDataURL(evt.target.files[0]);
+                reader.readAsDataURL(files[0]);
             }
         },
         create_form_data({ state }) {
@@ -197,7 +171,7 @@ export default {
             })
                 .then(res => {
                     console.log(res.data);
-                    commit("SET_USER", res.data);
+                    commit("SET_PROFILE", res.data);
                     if (
                         router.history.current.params.username !=
                         res.data.username
