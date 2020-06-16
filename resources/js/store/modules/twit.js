@@ -5,7 +5,6 @@ export default {
             twit: ""
         },
         twit: {},
-        page: 1,
         twits: [],
         loading: false
     },
@@ -29,15 +28,11 @@ export default {
         }
     },
     actions: {
-        get_twits({ state, commit }, $state) {
-            let page = state.page++;
-            axios.get(`twits?page=${page}`).then(res => {
-                if (res.data.data.length) {
-                    commit("SET_TWITS", res.data.data);
-                    $state.loaded();
-                } else {
-                    $state.complete();
-                }
+        get_twits({ commit }) {
+            commit("SET_LOADING", true);
+            axios.get("twits").then(res => {
+                commit("SET_TWITS", res.data.data);
+                commit("SET_LOADING", false);
             });
         },
         create({ state, commit, dispatch }) {

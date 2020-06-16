@@ -24,22 +24,21 @@
                     <button
                         type="button"
                         @click="update"
+                        :disabled="updating"
                         class="btn twit-btn btn-sm btn-primary"
                     >
-                        Guardar
+                        <i
+                            v-if="updating"
+                            class="fas fa-circle-notch fa-spin"
+                        ></i>
+                        <span v-else>Guardar</span>
                     </button>
                 </div>
                 <div class="modal-body p-0 pb-5">
                     <cover-avatar-image>
-                        <template v-if="user.cover_image" v-slot:cover_image>
-                            <img
-                                :src="user.cover_image"
-                                class="cover_image_preview"
-                            />
-                        </template>
-                        <template v-else v-slot:cover_image>
+                        <template v-slot:cover_image>
                             <template v-if="profile_form.cover_image">
-                                <img src="" class="cover_image_preview" />
+                                <img :src="profile_form.src_cover_image" />
                             </template>
                         </template>
                         <template v-slot:btn_cover>
@@ -54,17 +53,11 @@
                                 </label>
                             </div>
                         </template>
-                        <template v-if="user.image" v-slot:avatar>
-                            <img
-                                :src="user.image"
-                                class="avatar_image_preview rounded-circle"
-                            />
-                        </template>
-                        <template v-else v-slot:avatar>
+                        <template v-slot:avatar>
                             <template v-if="profile_form.image">
                                 <img
-                                    src=""
-                                    class="avatar_image_preview rounded-circle"
+                                    :src="profile_form.src_avatar"
+                                    class="rounded-circle"
                                 />
                             </template>
                         </template>
@@ -187,7 +180,7 @@ import CoverAvatarImage from "./CoverAvatarImage.vue";
 export default {
     components: { CoverAvatarImage },
     computed: {
-        ...mapState("user", ["user", "profile_form"]),
+        ...mapState("user", ["profile_form", "updating"]),
         ...mapState(["errors"])
     },
     methods: {

@@ -17,9 +17,10 @@ class TwitController extends Controller
      */
     public function index()
     {
-        $users_ids = auth()->user()->following()->pluck('followers.followed_id')->toArray();
-        array_push($users_ids, auth()->id());
-        $twits = Twit::whereIn('user_id', $users_ids)->with(['user', 'comments', 'comments.user'])->latest()->paginate();
+        $user = User::where('id', auth()->id())->first();
+        $users_ids = $user->following()->pluck('followers.followed_id')->toArray();
+        array_push($users_ids, $user->id);
+        $twits = Twit::whereIn('user_id', $users_ids)->with(['user', 'comments', 'comments.user'])->latest()->get();
         return TwitResource::collection($twits);
     }
 

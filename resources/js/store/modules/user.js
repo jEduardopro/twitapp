@@ -19,30 +19,30 @@ export default {
         profile: {},
         profile_form: {},
         loading: false,
-        loading_following: false
+        loading_following: false,
+        updating: false
     },
     mutations: {
         SET_USER(state, user) {
             state.user = user;
-            state.user.email = user.email ? user.email : "";
-            state.user.phone = user.phone ? user.phone : "";
-            state.user.description = user.description ? user.description : "";
-            state.user.cover_image = user.cover_image ? user.cover_image : "";
-            state.user.image = user.image ? user.image : "";
-        },
-        SET_PROFILE_FORM(state) {
-            state.profile_form = { ...state.user };
-            state.profile_form.cover_image = "";
-            state.profile_form.image = "";
-        },
-        SET_COVER_IMAGE(state, file) {
-            state.profile_form.cover_image = file;
-        },
-        SET_AVATAR(state, file) {
-            state.profile_form.image = file;
+            state.user.src_cover_image = user.cover_image;
+            state.user.src_avatar = user.image;
+
+            state.profile = state.user;
         },
         SET_PROFILE(state, profile) {
             state.profile = profile;
+        },
+        SET_PROFILE_FORM(state) {
+            state.profile_form = { ...state.user };
+        },
+        SET_COVER_IMAGE(state, payload) {
+            state.profile_form.cover_image = payload.file;
+            state.profile_form.src_cover_image = payload.src;
+        },
+        SET_AVATAR(state, payload) {
+            state.profile_form.image = payload.file;
+            state.profile_form.src_avatar = payload.src;
         },
         SET_USERS_FOLLOWING(state, users) {
             state.users_following = users;
@@ -64,25 +64,22 @@ export default {
                 1
             );
         },
-        SET_LOADING(state, status) {
-            state.loading = status;
-        },
-        SET_LOADING_FOLLOWING(state, status) {
-            state.loading_following = status;
+        SET_LOADING(state, payload) {
+            state[payload.loader] = payload.status;
         }
     },
     actions: {
         async set_user_information({ commit }) {
-            commit("SET_LOADING", true);
+            commit("SET_LOADING", { loader: "loading", status: true });
             const response = await axios.get(`me`);
             commit("SET_USER", response.data.data);
-            commit("SET_LOADING", false);
+            commit("SET_LOADING", { loader: "loading", status: false });
         },
-        async show({ state, commit }, username) {
-            commit("SET_LOADING", true);
+        async show({ commit }, username) {
+            commit("SET_LOADING", { loader: "loading", status: true });
             const response = await axios.get(`users/${username}`);
             commit("SET_PROFILE", response.data.data);
-            commit("SET_LOADING", false);
+            commit("SET_LOADING", { loader: "loading", status: false });
         },
         edit_profile({ commit }) {
             commit("SET_PROFILE_FORM");
@@ -91,27 +88,25 @@ export default {
         set_cover_image({ commit }, evt) {
             let files = evt.target.files;
             if (files.length > 0) {
-                commit("SET_COVER_IMAGE", evt.target.files[0]);
                 let reader = new FileReader();
-                reader.onloadend = function() {
-                    $(".modal-body .cover_image img.cover_image_preview").attr(
-                        "src",
-                        reader.result
-                    );
+                reader.onload = function() {
+                    commit("SET_COVER_IMAGE", {
+                        file: files[0],
+                        src: reader.result
+                    });
                 };
-                reader.readAsDataURL(evt.target.files[0]);
+                reader.readAsDataURL(files[0]);
             }
         },
-        set_avatar({ state, commit }, evt) {
+        set_avatar({ commit }, evt) {
             let files = evt.target.files;
             if (files.length > 0) {
                 let reader = new FileReader();
-                reader.onload = function(e) {
-                    commit("SET_AVATAR", files[0]);
-                    $(".modal-body .cover_image img.avatar_image_preview").attr(
-                        "src",
-                        reader.result
-                    );
+                reader.onload = function() {
+                    commit("SET_AVATAR", {
+                        file: files[0],
+                        src: reader.result
+                    });
                 };
                 reader.readAsDataURL(files[0]);
             }
@@ -124,14 +119,14 @@ export default {
             if (state.profile_form.phone) {
                 form_data.append("phone", state.profile_form.phone);
             }
-            if (state.profile_form.cover_image) {
+            if (typeof state.profile_form.cover_image == "object") {
                 form_data.append(
                     "cover_image",
                     state.profile_form.cover_image,
                     state.profile_form.cover_image.name
                 );
             }
-            if (state.profile_form.image) {
+            if (typeof state.profile_form.image == "object") {
                 form_data.append(
                     "image",
                     state.profile_form.image,
@@ -146,7 +141,11 @@ export default {
         },
         async update({ state, commit, dispatch }) {
             let data, method;
-            if (state.profile_form.cover_image || state.profile_form.image) {
+            commit("SET_LOADING", { loader: "updating", status: true });
+            if (
+                typeof state.profile_form.cover_image == "object" ||
+                typeof state.profile_form.image == "object"
+            ) {
                 data = await dispatch("create_form_data");
                 method = "POST";
             } else {
@@ -170,37 +169,53 @@ export default {
                 data: data
             })
                 .then(res => {
-                    console.log(res.data);
-                    commit("SET_PROFILE", res.data);
+                    commit("SET_USER", res.data.data);
                     if (
                         router.history.current.params.username !=
-                        res.data.username
+                        res.data.data.username
                     ) {
                         router.push({
                             name: "perfil",
-                            params: { username: res.data.username }
+                            params: { username: res.data.data.username }
                         });
                     }
+                    commit("SET_LOADING", {
+                        loader: "updating",
+                        status: false
+                    });
+                    $("#edit_profile").modal("hide");
                 })
                 .catch(err => {
                     dispatch("catch_errors", err, { root: true });
                 });
         },
         async get_users_following({ state, commit }) {
-            commit("SET_LOADING_FOLLOWING", true);
+            commit("SET_LOADING", {
+                loader: "loading_following",
+                status: true
+            });
             const response = await axios.get(
                 `users/${state.profile.id}/following`
             );
             commit("SET_USERS_FOLLOWING", response.data.data);
-            commit("SET_LOADING_FOLLOWING", false);
+            commit("SET_LOADING", {
+                loader: "loading_following",
+                status: false
+            });
         },
         async get_followers({ state, commit }) {
-            commit("SET_LOADING_FOLLOWING", true);
+            commit("SET_LOADING", {
+                loader: "loading_following",
+                status: true
+            });
             const response = await axios.get(
                 `users/${state.profile.id}/followers`
             );
             commit("SET_FOLLOWERS", response.data.data);
-            commit("SET_LOADING_FOLLOWING", false);
+            commit("SET_LOADING", {
+                loader: "loading_following",
+                status: false
+            });
         },
         follow({ state, commit }, follow_id) {
             axios

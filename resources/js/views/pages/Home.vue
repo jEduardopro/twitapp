@@ -37,28 +37,27 @@
                 <i class="fas fa-circle-notch fa-2x fa-spin"></i>
             </p>
             <div v-else>
-                <router-link
-                    :to="{
-                        name: 'twit-show',
-                        params: { twit_id: twit.id }
-                    }"
-                    v-for="(twit, index) in twits"
-                    :key="twit.id + '_' + index"
-                    class="link-twit"
-                >
-                    <BaseTwit :twit="twit" />
-                </router-link>
-                <infinite-loading spinner="waveDots" @infinite="get_twits">
-                    <div slot="no-more"></div>
-                    <div slot="no-results">
-                        <h1 class="text-center text-white mb-0">
-                            Bienvenido a TwitApp
-                        </h1>
-                        <p class="text-muted p-0 m-0 text-center">
-                            Comienza a twittear sin limites.
-                        </p>
-                    </div>
-                </infinite-loading>
+                <template v-if="twits.length">
+                    <router-link
+                        :to="{
+                            name: 'twit-show',
+                            params: { twit_id: twit.id }
+                        }"
+                        v-for="(twit, index) in twits"
+                        :key="twit.id + '_' + index"
+                        class="link-twit"
+                    >
+                        <BaseTwit :twit="twit" />
+                    </router-link>
+                </template>
+                <template v-else>
+                    <h1 class="text-center text-white mb-0">
+                        Bienvenido a TwitApp
+                    </h1>
+                    <p class="text-muted p-0 m-0 text-center">
+                        Comienza a twittear sin limites.
+                    </p>
+                </template>
             </div>
         </div>
     </div>
@@ -73,6 +72,9 @@ export default {
     },
     methods: {
         ...mapActions("twit", ["get_twits", "create"])
+    },
+    created() {
+        this.get_twits();
     }
 };
 </script>

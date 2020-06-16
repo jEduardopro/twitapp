@@ -89,7 +89,7 @@ class UserController extends Controller
         $data['cover_image'] = ($filename_cover_image) ? $filename_cover_image : $user->cover_image;
         $data['image'] = ($filename_image) ? $filename_image : $user->image;
         $user->update($data);
-        return $user;
+        return UserResource::make($this->me());
     }
 
     /**

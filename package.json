@@ -24,7 +24,6 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "vue-infinite-loading": "^2.4.5",
         "vue-router": "^3.3.2",
         "vuex": "^3.4.0"
     }
