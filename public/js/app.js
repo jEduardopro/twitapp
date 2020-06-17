@@ -2206,6 +2206,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["follow_id"],
@@ -2983,16 +2984,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("user", ["user"]))
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("user", ["user"])),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("user", ["set_user_information"])),
+  created: function created() {
+    if (!this.user.id) {
+      this.set_user_information();
+    }
+  }
 });
 
 /***/ }),
@@ -3072,13 +3072,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["username"],
-  watch: {
-    $route: function $route(to, from) {
-      if (!this.profile.id || this.username != this.profile.username) {
-        this.show(to.params.username);
-      }
-    }
-  },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("user", ["user", "profile", "loading"])),
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("user", ["show", "edit_profile"])),
   created: function created() {
@@ -3194,9 +3187,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _components_Profile_ModalEditProfile_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Profile/ModalEditProfile.vue */ "./resources/js/components/Profile/ModalEditProfile.vue");
-/* harmony import */ var _components_Profile_CoverAvatarImage_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Profile/CoverAvatarImage.vue */ "./resources/js/components/Profile/CoverAvatarImage.vue");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _components_Profile_ModalEditProfile_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Profile/ModalEditProfile.vue */ "./resources/js/components/Profile/ModalEditProfile.vue");
+/* harmony import */ var _components_Profile_CoverAvatarImage_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Profile/CoverAvatarImage.vue */ "./resources/js/components/Profile/CoverAvatarImage.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -3312,13 +3313,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   components: {
-    ModalEditProfile: _components_Profile_ModalEditProfile_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    CoverAvatarImage: _components_Profile_CoverAvatarImage_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    ModalEditProfile: _components_Profile_ModalEditProfile_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    CoverAvatarImage: _components_Profile_CoverAvatarImage_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("user", ["user", "profile", "loading"])),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("user", ["show", "edit_profile"])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])("user", ["user", "profile", "loading"])),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])("user", ["show", "edit_profile", "set_user_information"])),
   created: function created() {
-    this.show(this.username);
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              if (_this.user.id) {
+                _context.next = 3;
+                break;
+              }
+
+              _context.next = 3;
+              return _this.set_user_information();
+
+            case 3:
+              _this.show(_this.username);
+
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
   }
 });
 
@@ -41232,39 +41257,41 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "button",
-    {
-      class: [
-        "btn twit-btn btn-sm btn-primary",
-        _vm.user.relationships.following.includes(_vm.follow_id)
-          ? "btn-unfollow"
-          : "btn-follow"
-      ],
-      attrs: { type: "button" },
-      on: {
-        click: function($event) {
+  return _vm.user.id != _vm.follow_id
+    ? _c(
+        "button",
+        {
+          class: [
+            "btn twit-btn btn-sm btn-primary",
+            _vm.user.relationships.following.includes(_vm.follow_id)
+              ? "btn-unfollow"
+              : "btn-follow"
+          ],
+          attrs: { type: "button" },
+          on: {
+            click: function($event) {
+              _vm.user.relationships.following.includes(_vm.follow_id)
+                ? _vm.unfollow(_vm.follow_id)
+                : _vm.follow(_vm.follow_id)
+            }
+          }
+        },
+        [
           _vm.user.relationships.following.includes(_vm.follow_id)
-            ? _vm.unfollow(_vm.follow_id)
-            : _vm.follow(_vm.follow_id)
-        }
-      }
-    },
-    [
-      _vm.user.relationships.following.includes(_vm.follow_id)
-        ? [
-            _c("span", { staticClass: "following_text" }, [
-              _vm._v("Siguiendo")
-            ]),
-            _vm._v(" "),
-            _c("span", { staticClass: "unfollow_text" }, [
-              _vm._v("Dejar de seguir")
-            ])
-          ]
-        : _c("span", [_vm._v("Seguir")])
-    ],
-    2
-  )
+            ? [
+                _c("span", { staticClass: "following_text" }, [
+                  _vm._v("Siguiendo")
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "unfollow_text" }, [
+                  _vm._v("Dejar de seguir")
+                ])
+              ]
+            : _c("span", [_vm._v("Seguir")])
+        ],
+        2
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -42582,24 +42609,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.user.id
-    ? _c(
-        "div",
-        { staticClass: "container-fluid" },
-        [
-          _c("BaseMenu"),
-          _vm._v(" "),
-          _c("div", { staticClass: "main" }, [
-            _c("div", { staticClass: "content" }, [_c("router-view")], 1)
-          ]),
-          _vm._v(" "),
-          _c("BaseSearch"),
-          _vm._v(" "),
-          _c("BaseModalComment")
-        ],
-        1
-      )
-    : _vm._e()
+  return _vm.user.id ? _c("div", [_c("router-view")], 1) : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -59479,9 +59489,6 @@ var app = new Vue({
       });
       $("#modal_comment").modal("hide");
     }
-  },
-  created: function created() {
-    _store_index__WEBPACK_IMPORTED_MODULE_2__["default"].dispatch("user/set_user_information");
   }
 });
 
@@ -59516,7 +59523,7 @@ try {
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
-window.axios.defaults.baseURL = window.location.origin + "/api/";
+window.axios.defaults.baseURL = window.location.origin;
 console.log(window.axios.defaults.baseURL);
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
@@ -60761,44 +60768,25 @@ var routes = [{
   name: "login"
 }, {
   path: "/home",
-  component: _views_pages_Home_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-  name: "inicio"
-}, // children: [
-//     { path: "", component: Home, name: "inicio" },
-//     {
-//         path: "profile/:username",
-//         component: Profile,
-//         name: "perfil",
-//         props: true
-//     },
-//     {
-//         path: ":username",
-//         component: Follows,
-//         props: true,
-//         children: [
-//             {
-//                 path: "followers",
-//                 component: Followers,
-//                 name: "seguidores"
-//             },
-//             {
-//                 path: "following",
-//                 component: Following,
-//                 name: "siguiendo"
-//             }
-//         ]
-//     },
-//     {
-//         path: "twits/:twit_id",
-//         component: TwitShow,
-//         name: "twit-show",
-//         props: true
-//     }
-// ]
-{
-  path: "/:username",
+  component: _views_App_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+  children: [{
+    path: "",
+    component: _views_pages_Home_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    name: "inicio"
+  }]
+}, {
+  path: "/@:username",
   component: _views_pages_Profile_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
   name: "perfil",
+  props: true
+}, {
+  path: "/@:username/status/:twit_id",
+  component: _views_pages_TwitShow_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+  name: "twit-show",
+  props: true
+}, {
+  path: "/@:username",
+  component: _views_pages_Follows_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
   props: true,
   children: [{
     path: "followers",
@@ -60808,11 +60796,6 @@ var routes = [{
     path: "following",
     component: _components_Follow_Following_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
     name: "siguiendo"
-  }, {
-    path: "status/:twit_id",
-    component: _views_pages_TwitShow_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
-    name: "twit-show",
-    props: true
   }]
 }];
 /* harmony default export */ __webpack_exports__["default"] = (routes);

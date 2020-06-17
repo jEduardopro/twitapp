@@ -1,21 +1,22 @@
 <template>
-    <div v-if="user.id" class="container-fluid">
-        <BaseMenu />
-        <div class="main">
-            <div class="content">
-                <router-view></router-view>
-            </div>
-        </div>
-        <BaseSearch />
-        <BaseModalComment />
+    <div v-if="user.id">
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 export default {
     computed: {
         ...mapState("user", ["user"])
+    },
+    methods: {
+        ...mapActions("user", ["set_user_information"])
+    },
+    created() {
+        if (!this.user.id) {
+            this.set_user_information();
+        }
     }
 };
 </script>

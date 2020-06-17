@@ -1,5 +1,6 @@
 <template>
     <button
+        v-if="user.id != follow_id"
         type="button"
         @click="
             user.relationships.following.includes(follow_id)

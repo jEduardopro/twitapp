@@ -51,8 +51,5 @@ const app = new Vue({
             $("body, html").animate({ scrollTop: 0 });
             $("#modal_comment").modal("hide");
         }
-    },
-    created() {
-        store.dispatch("user/set_user_information");
     }
 });

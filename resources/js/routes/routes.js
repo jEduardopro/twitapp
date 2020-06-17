@@ -13,45 +13,24 @@ const routes = [
     { path: "/login", component: Login, name: "login" },
     {
         path: "/home",
-        component: Home,
-        name: "inicio"
+        component: App,
+        children: [{ path: "", component: Home, name: "inicio" }]
     },
-    // children: [
-    //     { path: "", component: Home, name: "inicio" },
-    //     {
-    //         path: "profile/:username",
-    //         component: Profile,
-    //         name: "perfil",
-    //         props: true
-    //     },
-    //     {
-    //         path: ":username",
-    //         component: Follows,
-    //         props: true,
-    //         children: [
-    //             {
-    //                 path: "followers",
-    //                 component: Followers,
-    //                 name: "seguidores"
-    //             },
-    //             {
-    //                 path: "following",
-    //                 component: Following,
-    //                 name: "siguiendo"
-    //             }
-    //         ]
-    //     },
-    //     {
-    //         path: "twits/:twit_id",
-    //         component: TwitShow,
-    //         name: "twit-show",
-    //         props: true
-    //     }
-    // ]
     {
-        path: "/:username",
+        path: "/@:username",
         component: Profile,
         name: "perfil",
+        props: true
+    },
+    {
+        path: "/@:username/status/:twit_id",
+        component: TwitShow,
+        name: "twit-show",
+        props: true
+    },
+    {
+        path: "/@:username",
+        component: Follows,
         props: true,
         children: [
             {
@@ -63,12 +42,6 @@ const routes = [
                 path: "following",
                 component: Following,
                 name: "siguiendo"
-            },
-            {
-                path: "status/:twit_id",
-                component: TwitShow,
-                name: "twit-show",
-                props: true
             }
         ]
     }

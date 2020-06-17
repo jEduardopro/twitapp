@@ -112,9 +112,12 @@ export default {
         ...mapState("user", ["user", "profile", "loading"])
     },
     methods: {
-        ...mapActions("user", ["show", "edit_profile"])
+        ...mapActions("user", ["show", "edit_profile", "set_user_information"])
     },
-    created() {
+    async created() {
+        if (!this.user.id) {
+            await this.set_user_information();
+        }
         this.show(this.username);
     }
 };

@@ -35,13 +35,6 @@
 import { mapState, mapActions } from "vuex";
 export default {
     props: ["username"],
-    watch: {
-        $route(to, from) {
-            if (!this.profile.id || this.username != this.profile.username) {
-                this.show(to.params.username);
-            }
-        }
-    },
     computed: {
         ...mapState("user", ["user", "profile", "loading"])
     },
