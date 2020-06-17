@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UserSeeder::class);
         factory(User::class, 20)->create();
-        factory(Twit::class, 300)->create();
+        factory(Twit::class, 100)->create();
 
         $users = User::all();
         User::all()->each(function ($user) use ($users) {

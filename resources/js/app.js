@@ -45,5 +45,14 @@ import router from "./routes/index";
 const app = new Vue({
     el: "#app",
     store,
-    router
+    router,
+    watch: {
+        $route(to, from) {
+            $("body, html").animate({ scrollTop: 0 });
+            $("#modal_comment").modal("hide");
+        }
+    },
+    created() {
+        store.dispatch("user/set_user_information");
+    }
 });

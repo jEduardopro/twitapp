@@ -71,7 +71,7 @@ export default {
     actions: {
         async set_user_information({ commit }) {
             commit("SET_LOADING", { loader: "loading", status: true });
-            const response = await axios.get(`me`);
+            const response = await axios.get(`auth/me`);
             commit("SET_USER", response.data.data);
             commit("SET_LOADING", { loader: "loading", status: false });
         },

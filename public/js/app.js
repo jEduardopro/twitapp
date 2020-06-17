@@ -2366,14 +2366,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      csrf: $("meta[name='csrf-token']").attr('content')
+      csrf: $("meta[name='csrf-token']").attr("content")
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('user', ['user']))
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("user", ["user"]))
 });
 
 /***/ }),
@@ -2974,19 +2992,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  watch: {
-    $route: function $route(to, from) {
-      $("body, html").animate({
-        scrollTop: 0
-      });
-      $("#modal_comment").modal("hide");
-    }
-  },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("user", ["user"])),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("user", ["set_user_information"])),
-  created: function created() {
-    this.set_user_information();
-  }
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("user", ["user"]))
 });
 
 /***/ }),
@@ -3165,6 +3171,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("user", ["user"])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("twit", ["form", "twits", "loading"])),
@@ -3194,6 +3203,12 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -41534,26 +41549,31 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "mb-4",
-              attrs: {
-                exact: "",
-                to: { name: "perfil", params: { username: _vm.user.username } },
-                "active-class": "active"
-              }
-            },
-            [
-              _c("div", [
-                _c("i", { staticClass: "far fa-user" }),
-                _vm._v(" "),
-                _c("span", { staticClass: "ml-3 font-weight-bold" }, [
-                  _vm._v("Perfil")
-                ])
-              ])
-            ]
-          ),
+          _vm.user.id
+            ? _c(
+                "router-link",
+                {
+                  staticClass: "mb-4",
+                  attrs: {
+                    exact: "",
+                    to: {
+                      name: "perfil",
+                      params: { username: _vm.user.username }
+                    },
+                    "active-class": "active"
+                  }
+                },
+                [
+                  _c("div", [
+                    _c("i", { staticClass: "far fa-user" }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "ml-3 font-weight-bold" }, [
+                      _vm._v("Perfil")
+                    ])
+                  ])
+                ]
+              )
+            : _vm._e(),
           _vm._v(" "),
           _vm._m(0),
           _vm._v(" "),
@@ -42801,7 +42821,10 @@ var render = function() {
                           attrs: {
                             to: {
                               name: "twit-show",
-                              params: { twit_id: twit.id }
+                              params: {
+                                username: twit.relationships.user.username,
+                                twit_id: twit.id
+                              }
                             }
                           }
                         },
@@ -43032,7 +43055,10 @@ var render = function() {
                         attrs: {
                           to: {
                             name: "twit-show",
-                            params: { twit_id: twit.id }
+                            params: {
+                              username: twit.relationships.user.username,
+                              twit_id: twit.id
+                            }
                           }
                         }
                       },
@@ -59445,7 +59471,18 @@ Vue.component("login-register", __webpack_require__(/*! ./components/Auth/LoginR
 var app = new Vue({
   el: "#app",
   store: _store_index__WEBPACK_IMPORTED_MODULE_2__["default"],
-  router: _routes_index__WEBPACK_IMPORTED_MODULE_3__["default"]
+  router: _routes_index__WEBPACK_IMPORTED_MODULE_3__["default"],
+  watch: {
+    $route: function $route(to, from) {
+      $("body, html").animate({
+        scrollTop: 0
+      });
+      $("#modal_comment").modal("hide");
+    }
+  },
+  created: function created() {
+    _store_index__WEBPACK_IMPORTED_MODULE_2__["default"].dispatch("user/set_user_information");
+  }
 });
 
 /***/ }),
@@ -59478,8 +59515,9 @@ try {
 
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-window.axios.defaults.baseURL = window.location.origin;
+window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
+window.axios.defaults.baseURL = window.location.origin + "/api/";
+console.log(window.axios.defaults.baseURL);
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
@@ -60723,31 +60761,55 @@ var routes = [{
   name: "login"
 }, {
   path: "/home",
-  component: _views_App_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+  component: _views_pages_Home_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+  name: "inicio"
+}, // children: [
+//     { path: "", component: Home, name: "inicio" },
+//     {
+//         path: "profile/:username",
+//         component: Profile,
+//         name: "perfil",
+//         props: true
+//     },
+//     {
+//         path: ":username",
+//         component: Follows,
+//         props: true,
+//         children: [
+//             {
+//                 path: "followers",
+//                 component: Followers,
+//                 name: "seguidores"
+//             },
+//             {
+//                 path: "following",
+//                 component: Following,
+//                 name: "siguiendo"
+//             }
+//         ]
+//     },
+//     {
+//         path: "twits/:twit_id",
+//         component: TwitShow,
+//         name: "twit-show",
+//         props: true
+//     }
+// ]
+{
+  path: "/:username",
+  component: _views_pages_Profile_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+  name: "perfil",
+  props: true,
   children: [{
-    path: "",
-    component: _views_pages_Home_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    name: "inicio"
+    path: "followers",
+    component: _components_Follow_Followers_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+    name: "seguidores"
   }, {
-    path: "profile/:username",
-    component: _views_pages_Profile_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    name: "perfil",
-    props: true
+    path: "following",
+    component: _components_Follow_Following_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+    name: "siguiendo"
   }, {
-    path: ":username",
-    component: _views_pages_Follows_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
-    props: true,
-    children: [{
-      path: "followers",
-      component: _components_Follow_Followers_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
-      name: "seguidores"
-    }, {
-      path: "following",
-      component: _components_Follow_Following_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
-      name: "siguiendo"
-    }]
-  }, {
-    path: "twits/:twit_id",
+    path: "status/:twit_id",
     component: _views_pages_TwitShow_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
     name: "twit-show",
     props: true
@@ -61148,7 +61210,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   status: true
                 });
                 _context.next = 4;
-                return axios.get("me");
+                return axios.get("auth/me");
 
               case 4:
                 response = _context.sent;

@@ -13,34 +13,59 @@ const routes = [
     { path: "/login", component: Login, name: "login" },
     {
         path: "/home",
-        component: App,
+        component: Home,
+        name: "inicio"
+    },
+    // children: [
+    //     { path: "", component: Home, name: "inicio" },
+    //     {
+    //         path: "profile/:username",
+    //         component: Profile,
+    //         name: "perfil",
+    //         props: true
+    //     },
+    //     {
+    //         path: ":username",
+    //         component: Follows,
+    //         props: true,
+    //         children: [
+    //             {
+    //                 path: "followers",
+    //                 component: Followers,
+    //                 name: "seguidores"
+    //             },
+    //             {
+    //                 path: "following",
+    //                 component: Following,
+    //                 name: "siguiendo"
+    //             }
+    //         ]
+    //     },
+    //     {
+    //         path: "twits/:twit_id",
+    //         component: TwitShow,
+    //         name: "twit-show",
+    //         props: true
+    //     }
+    // ]
+    {
+        path: "/:username",
+        component: Profile,
+        name: "perfil",
+        props: true,
         children: [
-            { path: "", component: Home, name: "inicio" },
             {
-                path: "profile/:username",
-                component: Profile,
-                name: "perfil",
-                props: true
+                path: "followers",
+                component: Followers,
+                name: "seguidores"
             },
             {
-                path: ":username",
-                component: Follows,
-                props: true,
-                children: [
-                    {
-                        path: "followers",
-                        component: Followers,
-                        name: "seguidores"
-                    },
-                    {
-                        path: "following",
-                        component: Following,
-                        name: "siguiendo"
-                    }
-                ]
+                path: "following",
+                component: Following,
+                name: "siguiendo"
             },
             {
-                path: "twits/:twit_id",
+                path: "status/:twit_id",
                 component: TwitShow,
                 name: "twit-show",
                 props: true

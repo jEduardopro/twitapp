@@ -41,7 +41,10 @@
                     <router-link
                         :to="{
                             name: 'twit-show',
-                            params: { twit_id: twit.id }
+                            params: {
+                                username: twit.relationships.user.username,
+                                twit_id: twit.id
+                            }
                         }"
                         v-for="(twit, index) in twits"
                         :key="twit.id + '_' + index"

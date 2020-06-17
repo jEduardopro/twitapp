@@ -74,7 +74,13 @@
         <div class="border-top">
             <div v-if="profile.relationships.twits.length">
                 <router-link
-                    :to="{ name: 'twit-show', params: { twit_id: twit.id } }"
+                    :to="{
+                        name: 'twit-show',
+                        params: {
+                            username: twit.relationships.user.username,
+                            twit_id: twit.id
+                        }
+                    }"
                     v-for="(twit, index) in profile.relationships.twits"
                     :key="twit.id + '_' + index"
                     class="link-twit"
