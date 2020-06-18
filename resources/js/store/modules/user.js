@@ -2,6 +2,7 @@ import router from "../../routes/index";
 export default {
     namespaced: true,
     state: {
+        user_twits_id: +new Date(),
         user: {
             id: "",
             name: "",
@@ -14,6 +15,8 @@ export default {
             join_at: "",
             relationships: {}
         },
+        page: 1,
+        twits: [],
         users_following: [],
         followers: [],
         profile: {},
@@ -29,6 +32,7 @@ export default {
             state.user.src_avatar = user.image;
 
             state.profile = state.user;
+            state.user_twits_id += 1;
         },
         SET_PROFILE(state, profile) {
             state.profile = profile;
@@ -43,6 +47,13 @@ export default {
         SET_AVATAR(state, payload) {
             state.profile_form.image = payload.file;
             state.profile_form.src_avatar = payload.src;
+        },
+        SET_TWITS(state, twits) {
+            state.twits = state.twits.concat(twits);
+        },
+        CLEAN_TWITS(state) {
+            state.page = 1;
+            state.twits = [];
         },
         SET_USERS_FOLLOWING(state, users) {
             state.users_following = users;
@@ -85,25 +96,12 @@ export default {
             commit("SET_PROFILE_FORM");
             $("#edit_profile").modal("show");
         },
-        set_cover_image({ commit }, evt) {
+        set_image_preview({ commit }, { evt, mutation_type }) {
             let files = evt.target.files;
             if (files.length > 0) {
                 let reader = new FileReader();
                 reader.onload = function() {
-                    commit("SET_COVER_IMAGE", {
-                        file: files[0],
-                        src: reader.result
-                    });
-                };
-                reader.readAsDataURL(files[0]);
-            }
-        },
-        set_avatar({ commit }, evt) {
-            let files = evt.target.files;
-            if (files.length > 0) {
-                let reader = new FileReader();
-                reader.onload = function() {
-                    commit("SET_AVATAR", {
+                    commit(mutation_type, {
                         file: files[0],
                         src: reader.result
                     });
@@ -169,6 +167,7 @@ export default {
                 data: data
             })
                 .then(res => {
+                    commit("CLEAN_TWITS");
                     commit("SET_USER", res.data.data);
                     if (
                         router.history.current.params.username !=
@@ -188,6 +187,17 @@ export default {
                 .catch(err => {
                     dispatch("catch_errors", err, { root: true });
                 });
+        },
+        get_twits_by_user({ state, commit }, { $state, username }) {
+            let page = state.page++;
+            axios.get(`users/${username}/twits/?page=${page}`).then(res => {
+                if (res.data.data.length) {
+                    commit("SET_TWITS", res.data.data);
+                    $state.loaded();
+                } else {
+                    $state.complete();
+                }
+            });
         },
         async get_users_following({ state, commit }) {
             commit("SET_LOADING", {
@@ -230,6 +240,9 @@ export default {
                 .then(res => {
                     commit("REMOVE_FOLLOW", follow_id);
                 });
+        },
+        clean_twits({ commit }) {
+            commit("CLEAN_TWITS");
         }
     }
 };

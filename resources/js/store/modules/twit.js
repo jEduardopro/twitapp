@@ -6,6 +6,7 @@ export default {
         },
         twit: {},
         twits: [],
+        page: 1,
         loading: false
     },
     mutations: {
@@ -25,14 +26,22 @@ export default {
         },
         CLEAN_FORM(state) {
             state.form.twit = "";
+        },
+        CLEAN_TWITS(state) {
+            state.page = 1;
+            state.twits = [];
         }
     },
     actions: {
-        get_twits({ commit }) {
-            commit("SET_LOADING", true);
-            axios.get("twits").then(res => {
-                commit("SET_TWITS", res.data.data);
-                commit("SET_LOADING", false);
+        get_twits({ state, commit }, $state) {
+            let page = state.page++;
+            axios.get("twits/?page=" + page).then(res => {
+                if (res.data.data.length) {
+                    commit("SET_TWITS", res.data.data);
+                    $state.loaded();
+                } else {
+                    $state.complete();
+                }
             });
         },
         create({ state, commit, dispatch }) {
@@ -50,6 +59,9 @@ export default {
             const response = await axios.get(`twits/${twit_id}`);
             commit("SET_TWIT", response.data.data);
             commit("SET_LOADING", false);
+        },
+        clean_twits({ commit }) {
+            commit("CLEAN_TWITS");
         }
     }
 };

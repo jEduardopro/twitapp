@@ -47,7 +47,12 @@
                                     <i class="fas fa-camera"></i>
                                     <input
                                         type="file"
-                                        @change="set_cover_image"
+                                        @change="
+                                            set_image_preview({
+                                                evt: $event,
+                                                mutation_type: 'SET_COVER_IMAGE'
+                                            })
+                                        "
                                         id="upload_cover_image"
                                     />
                                 </label>
@@ -67,7 +72,12 @@
                                     <i class="fas fa-camera"></i>
                                     <input
                                         type="file"
-                                        @change="set_avatar"
+                                        @change="
+                                            set_image_preview({
+                                                evt: $event,
+                                                mutation_type: 'SET_AVATAR'
+                                            })
+                                        "
                                         id="upload_avatar"
                                     />
                                 </label>
@@ -184,7 +194,7 @@ export default {
         ...mapState(["errors"])
     },
     methods: {
-        ...mapActions("user", ["set_cover_image", "set_avatar", "update"]),
+        ...mapActions("user", ["set_image_preview", "set_avatar", "update"]),
         minChar(evt, chars) {
             if (evt.target.value.length <= chars) {
                 return true;

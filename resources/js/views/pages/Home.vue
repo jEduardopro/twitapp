@@ -37,30 +37,31 @@
                 <i class="fas fa-circle-notch fa-2x fa-spin"></i>
             </p>
             <div v-else>
-                <template v-if="twits.length">
-                    <router-link
-                        :to="{
-                            name: 'twit-show',
-                            params: {
-                                username: twit.relationships.user.username,
-                                twit_id: twit.id
-                            }
-                        }"
-                        v-for="(twit, index) in twits"
-                        :key="twit.id + '_' + index"
-                        class="link-twit"
-                    >
-                        <BaseTwit :twit="twit" />
-                    </router-link>
-                </template>
-                <template v-else>
-                    <h1 class="text-center text-white mb-0">
-                        Bienvenido a TwitApp
-                    </h1>
-                    <p class="text-muted p-0 m-0 text-center">
-                        Comienza a twittear sin limites.
-                    </p>
-                </template>
+                <router-link
+                    :to="{
+                        name: 'twit-show',
+                        params: {
+                            username: twit.relationships.user.username,
+                            twit_id: twit.id
+                        }
+                    }"
+                    v-for="(twit, index) in twits"
+                    :key="twit.id + '_' + index"
+                    class="link-twit"
+                >
+                    <BaseTwit :twit="twit" />
+                </router-link>
+                <infinite-loading spinner="waveDots" @infinite="get_twits">
+                    <div slot="no-more">No more message</div>
+                    <div slot="no-results">
+                        <h1 class="text-center text-white mb-0">
+                            Bienvenido a TwitApp
+                        </h1>
+                        <p class="text-muted p-0 m-0 text-center">
+                            Comienza a twittear sin limites.
+                        </p>
+                    </div>
+                </infinite-loading>
             </div>
         </div>
     </div>
@@ -74,10 +75,10 @@ export default {
         ...mapState("twit", ["form", "twits", "loading"])
     },
     methods: {
-        ...mapActions("twit", ["get_twits", "create"])
+        ...mapActions("twit", ["get_twits", "create", "clean_twits"])
     },
-    created() {
-        this.get_twits();
+    beforeDestroy() {
+        this.clean_twits();
     }
 };
 </script>
