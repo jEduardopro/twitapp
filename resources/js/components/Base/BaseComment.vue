@@ -5,7 +5,7 @@
             <div class="header">
                 <router-link
                     :to="{
-                        name: 'perfil',
+                        name: 'profile',
                         params: {
                             username: comment.relationships.user.username
                         }
@@ -21,12 +21,7 @@
             </div>
             <div class="content-text py-1" v-text="comment.content"></div>
             <div class="footer">
-                <div class="btn-like">
-                    <button type="button" class="btn btn-like">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <span>12</span>
-                </div>
+                <BaseButtonLike :model="comment" url_base="comments" />
             </div>
         </div>
     </div>

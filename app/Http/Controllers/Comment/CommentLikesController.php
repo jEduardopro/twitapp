@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Comment;
 
 use App\Http\Controllers\Controller;
-use App\User;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
-class UserFollowsController extends Controller
+class CommentLikesController extends Controller
 {
     /**
      * Store a newly created resource in storage.
@@ -14,19 +14,19 @@ class UserFollowsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(User $user)
+    public function store(Comment $comment)
     {
-        auth()->user()->following()->attach($user->id);
+        $comment->like();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\User  $user
+     * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Comment $comment)
     {
-        auth()->user()->following()->detach($user->id);
+        $comment->unlike();
     }
 }

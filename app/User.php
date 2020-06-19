@@ -40,6 +40,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getImageAttribute($value)
+    {
+        return ($value) ?  "/storage/users/avatars/{$value}" : "";
+    }
+
+    public function getCoverImageAttribute($value)
+    {
+        return ($value) ?  "/storage/users/cover_images/{$value}" : "";
+    }
+
     public function twits()
     {
         return $this->hasMany(Twit::class);
@@ -66,5 +76,4 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(User::class, 'followers', 'follower_id', 'followed_id');
     }
-
 }

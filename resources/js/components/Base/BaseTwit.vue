@@ -5,7 +5,7 @@
             <div class="header">
                 <router-link
                     :to="{
-                        name: 'perfil',
+                        name: 'profile',
                         params: { username: twit.relationships.user.username }
                     }"
                     class="text-white"
@@ -32,13 +32,9 @@
                         v-text="twit.comments_count"
                     ></span>
                 </div>
-                <div class="btn-like">
-                    <button type="button" class="btn btn-like">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <span>12</span>
-                </div>
+                <BaseButtonLike :model="twit" url_base="twits" />
             </div>
+            <!-- Slot para mostrar comentarios aqui -->
             <slot></slot>
         </div>
     </div>
@@ -49,7 +45,7 @@ import { mapActions } from "vuex";
 export default {
     props: ["twit", "hide_buttons"],
     methods: {
-        ...mapActions("comment", ["show_modal"])
+        ...mapActions("twit", ["show_modal"])
     }
 };
 </script>

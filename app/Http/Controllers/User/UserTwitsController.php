@@ -16,6 +16,6 @@ class UserTwitsController extends Controller
      */
     public function index(User $user)
     {
-        return TwitResource::collection($user->twits()->with(['user', 'comments', 'comments.user'])->latest()->paginate());
+        return TwitResource::collection($user->twits()->with(['user', 'likes', 'comments', 'comments.user'])->latest()->paginate());
     }
 }

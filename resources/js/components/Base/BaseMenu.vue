@@ -4,7 +4,7 @@
         <ul class="menu">
             <router-link
                 exact
-                :to="{ name: 'inicio' }"
+                :to="{ name: 'home' }"
                 active-class="active"
                 class="mb-4"
             >
@@ -20,9 +20,11 @@
                 </div>
             </router-link>
             <router-link
-                v-if="user.id"
                 exact
-                :to="{ name: 'perfil', params: { username: user.username } }"
+                :to="{
+                    name: 'profile',
+                    params: { username: user_auth.username }
+                }"
                 active-class="active"
                 class="mb-4"
             >
@@ -55,15 +57,19 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapActions } from "vuex";
 export default {
+    props: ["user_auth"],
     data() {
         return {
             csrf: $("meta[name='csrf-token']").attr("content")
         };
     },
-    computed: {
-        ...mapState("user", ["user"])
+    methods: {
+        ...mapActions("user", ["set_user_auth"])
+    },
+    created() {
+        this.set_user_auth(this.user_auth);
     }
 };
 </script>

@@ -2,43 +2,33 @@ import router from "../../routes/index";
 export default {
     namespaced: true,
     state: {
+        user_auth: {},
+        profile: {},
+        profile_form: {},
         user_twits_id: +new Date(),
-        user: {
-            id: "",
-            name: "",
-            username: "",
-            phone: "",
-            email: "",
-            description: "",
-            image: "",
-            cover_image: "",
-            join_at: "",
-            relationships: {}
-        },
         page: 1,
         twits: [],
         users_following: [],
         followers: [],
-        profile: {},
-        profile_form: {},
         loading: false,
         loading_following: false,
         updating: false
     },
     mutations: {
-        SET_USER(state, user) {
-            state.user = user;
-            state.user.src_cover_image = user.cover_image;
-            state.user.src_avatar = user.image;
-
-            state.profile = state.user;
-            state.user_twits_id += 1;
+        SET_USER_AUTH(state, user) {
+            state.user_auth = user;
+            let ids = [];
+            user.following.map(f => ids.push(f.id));
+            state.user_auth.following = ids;
         },
         SET_PROFILE(state, profile) {
             state.profile = profile;
+            state.profile.src_cover_image = profile.cover_image;
+            state.profile.src_avatar = profile.image;
+            state.user_twits_id += 1;
         },
         SET_PROFILE_FORM(state) {
-            state.profile_form = { ...state.user };
+            state.profile_form = { ...state.profile };
         },
         SET_COVER_IMAGE(state, payload) {
             state.profile_form.cover_image = payload.file;
@@ -62,12 +52,12 @@ export default {
             state.followers = users;
         },
         ADD_FOLLOW(state, follow_id) {
-            state.user.relationships.following.push(follow_id);
+            state.user_auth.following.push(follow_id);
             state.profile.relationships.followers.push(follow_id);
         },
         REMOVE_FOLLOW(state, follow_id) {
-            state.user.relationships.following.splice(
-                state.user.relationships.following.indexOf(follow_id),
+            state.user_auth.following.splice(
+                state.user_auth.following.indexOf(follow_id),
                 1
             );
             state.profile.relationships.followers.splice(
@@ -80,17 +70,20 @@ export default {
         }
     },
     actions: {
-        async set_user_information({ commit }) {
-            commit("SET_LOADING", { loader: "loading", status: true });
-            const response = await axios.get(`auth/me`);
-            commit("SET_USER", response.data.data);
-            commit("SET_LOADING", { loader: "loading", status: false });
+        set_user_auth({ commit }, user) {
+            commit("SET_USER_AUTH", user);
         },
-        async show({ commit }, username) {
+        show({ commit }, username) {
             commit("SET_LOADING", { loader: "loading", status: true });
-            const response = await axios.get(`users/${username}`);
-            commit("SET_PROFILE", response.data.data);
-            commit("SET_LOADING", { loader: "loading", status: false });
+            axios
+                .get(`users/${username}`)
+                .then(res => {
+                    commit("SET_PROFILE", res.data.data);
+                    commit("SET_LOADING", { loader: "loading", status: false });
+                })
+                .catch(err => {
+                    commit("SET_LOADING", { loader: "loading", status: false });
+                });
         },
         edit_profile({ commit }) {
             commit("SET_PROFILE_FORM");
@@ -163,12 +156,12 @@ export default {
 
             axios({
                 method: method,
-                url: `users/${state.user.id}`,
+                url: `users/${state.profile.id}`,
                 data: data
             })
                 .then(res => {
                     commit("CLEAN_TWITS");
-                    commit("SET_USER", res.data.data);
+                    commit("SET_PROFILE", res.data.data);
                     if (
                         router.history.current.params.username !=
                         res.data.data.username
@@ -227,19 +220,15 @@ export default {
                 status: false
             });
         },
-        follow({ state, commit }, follow_id) {
-            axios
-                .post(`users/${state.user.id}/follows`, { follow_id })
-                .then(res => {
-                    commit("ADD_FOLLOW", follow_id);
-                });
+        follow({ commit }, follow_id) {
+            axios.post(`users/${follow_id}/follows`).then(res => {
+                commit("ADD_FOLLOW", follow_id);
+            });
         },
-        unfollow({ state, commit }, follow_id) {
-            axios
-                .delete(`users/${state.user.id}/follows/${follow_id}`)
-                .then(res => {
-                    commit("REMOVE_FOLLOW", follow_id);
-                });
+        unfollow({ commit }, follow_id) {
+            axios.delete(`users/${follow_id}/follows`).then(res => {
+                commit("REMOVE_FOLLOW", follow_id);
+            });
         },
         clean_twits({ commit }) {
             commit("CLEAN_TWITS");

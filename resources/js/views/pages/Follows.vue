@@ -8,14 +8,14 @@
         </base-header>
         <nav class="d-flex pt-2 nav-follows">
             <router-link
-                :to="{ name: 'seguidores' }"
+                :to="{ name: 'followers' }"
                 class="w-50 p-3 text-center h5 border-bottom"
                 active-class="active"
                 exact
                 >Seguidores
             </router-link>
             <router-link
-                :to="{ name: 'siguiendo' }"
+                :to="{ name: 'following' }"
                 class="w-50 p-3 text-center h5 border-bottom"
                 active-class="active"
                 exact
@@ -36,7 +36,7 @@ import { mapState, mapActions } from "vuex";
 export default {
     props: ["username"],
     computed: {
-        ...mapState("user", ["user", "profile", "loading"])
+        ...mapState("user", ["profile", "loading"])
     },
     methods: {
         ...mapActions("user", ["show", "edit_profile"])

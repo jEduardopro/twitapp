@@ -6,7 +6,7 @@
                 <div class="d-flex flex-column justify-content-start">
                     <router-link
                         :to="{
-                            name: 'perfil',
+                            name: 'profile',
                             params: { username: user_follow.username }
                         }"
                         class="text-white font-weight-bold"
@@ -16,7 +16,10 @@
                         @{{ user_follow.username }}
                     </p>
                 </div>
-                <div class="w-50 text-right">
+                <div
+                    v-if="user_auth.id != user_follow.id"
+                    class="w-50 text-right"
+                >
                     <BaseButtonFollow :follow_id="user_follow.id" />
                 </div>
             </div>
@@ -28,6 +31,9 @@
 <script>
 import { mapState } from "vuex";
 export default {
-    props: ["user_follow"]
+    props: ["user_follow"],
+    computed: {
+        ...mapState("user", ["user_auth"])
+    }
 };
 </script>

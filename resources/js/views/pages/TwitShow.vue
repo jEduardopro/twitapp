@@ -5,16 +5,16 @@
             <i class="fas fa-circle-notch fa-2x fa-spin"></i>
         </p>
         <template v-else>
-            <h4 v-if="!twit.id" class="text-center text-muted">
-                Algo salío mal.
-            </h4>
-            <base-twit v-else :twit="twit">
+            <base-twit v-if="twit.id" :twit="twit">
                 <BaseComment
                     :comment="comment"
                     v-for="(comment, i) in twit.relationships.comments"
                     :key="comment.id + '_' + i"
                 />
             </base-twit>
+            <h4 v-else class="text-center py-4">
+                Esta pagina no existe.
+            </h4>
         </template>
     </div>
 </template>

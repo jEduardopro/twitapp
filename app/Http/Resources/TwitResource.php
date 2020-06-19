@@ -20,6 +20,10 @@ class TwitResource extends JsonResource
             "comments_count" => count($this->comments),
             "created_at" => $this->created_at->diffForHumans(),
             "relationships" => [
+                "likes" => [
+                    'liked' => $this->liked(),
+                    'likes_count' => $this->likes_count()
+                ],
                 "user" => $this->when(
                     $this->relationLoaded('user'),
                     function () {
@@ -27,7 +31,7 @@ class TwitResource extends JsonResource
                             "id" => $this->user->id,
                             "name" => $this->user->name,
                             "username" => $this->user->username,
-                            "image" => ($this->user->image) ? "/storage/users/avatars/" . $this->user->image : ''
+                            "image" => ($this->user->image) ? $this->user->image : ''
                         ];
                     }
                 ),

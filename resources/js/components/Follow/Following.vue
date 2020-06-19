@@ -16,7 +16,7 @@
 import { mapState, mapActions } from "vuex";
 export default {
     computed: {
-        ...mapState("user", ["profile", "users_following", "loading_following"])
+        ...mapState("user", ["users_following", "loading_following"])
     },
     methods: {
         ...mapActions("user", ["get_users_following"])

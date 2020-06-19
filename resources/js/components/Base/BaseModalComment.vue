@@ -24,10 +24,10 @@
                         :hide_buttons="true"
                     />
                     <div class="twit-form mt-1 mb-4 pb-4">
-                        <BaseUserImage :image="user.image" />
+                        <BaseUserImage :image="user_auth.image" />
                         <div class="content-twit">
                             <textarea
-                                v-model="form.comment"
+                                v-model="comment_form.comment"
                                 class="d-inline-block border-0 bg-transparent"
                                 placeholder="Agrega tu respuesta"
                             ></textarea>
@@ -38,17 +38,20 @@
                     <span
                         :class="[
                             'font-weight-bold mr-2 lead',
-                            form.comment.length > 280
+                            comment_form.comment.length > 280
                                 ? 'text-danger'
                                 : 'text-muted'
                         ]"
-                        v-if="form.comment.length > 0"
-                        >{{ form.comment.length }}/280</span
+                        v-if="comment_form.comment.length > 0"
+                        >{{ comment_form.comment.length }}/280</span
                     >
                     <button
                         type="button"
-                        :disabled="!form.comment || form.comment.length > 280"
-                        @click="create(twit)"
+                        :disabled="
+                            !comment_form.comment ||
+                                comment_form.comment.length > 280
+                        "
+                        @click="create_comment(twit)"
                         class="btn twit-btn btn-primary"
                     >
                         Responder
@@ -63,11 +66,11 @@
 import { mapState, mapActions } from "vuex";
 export default {
     computed: {
-        ...mapState("user", ["user"]),
-        ...mapState("comment", ["form", "twit"])
+        ...mapState("user", ["user_auth"]),
+        ...mapState("twit", ["twit", "comment_form"])
     },
     methods: {
-        ...mapActions("comment", ["create", "close_modal"])
+        ...mapActions("twit", ["create_comment", "close_modal"])
     }
 };
 </script>

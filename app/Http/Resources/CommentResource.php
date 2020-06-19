@@ -21,6 +21,10 @@ class CommentResource extends JsonResource
             "content" => $this->content,
             "created_at" => $this->created_at->diffForHumans(),
             "relationships" => [
+                "likes" => [
+                    'liked' => $this->liked(),
+                    'likes_count' => $this->likes_count()
+                ],
                 "user" => $this->whenLoaded('user', UserResource::make($this->user))
             ]
         ];

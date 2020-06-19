@@ -1,24 +1,20 @@
 <template>
     <button
-        v-if="user.id != follow_id"
+        v-if="user_auth.following.includes(follow_id)"
         type="button"
-        @click="
-            user.relationships.following.includes(follow_id)
-                ? unfollow(follow_id)
-                : follow(follow_id)
-        "
-        :class="[
-            'btn twit-btn btn-sm btn-primary',
-            user.relationships.following.includes(follow_id)
-                ? 'btn-unfollow'
-                : 'btn-follow'
-        ]"
+        @click="unfollow(follow_id)"
+        class="btn twit-btn btn-sm btn-primary btn-unfollow"
     >
-        <template v-if="user.relationships.following.includes(follow_id)">
-            <span class="following_text">Siguiendo</span>
-            <span class="unfollow_text">Dejar de seguir</span>
-        </template>
-        <span v-else>Seguir</span>
+        <span class="following_text">Siguiendo</span>
+        <span class="unfollow_text">Dejar de seguir</span>
+    </button>
+    <button
+        v-else
+        type="button"
+        @click="follow(follow_id)"
+        class="btn twit-btn btn-sm btn-primary btn-follow"
+    >
+        Seguir
     </button>
 </template>
 
@@ -27,10 +23,15 @@ import { mapActions, mapState } from "vuex";
 export default {
     props: ["follow_id"],
     computed: {
-        ...mapState("user", ["user"])
+        ...mapState("user", ["user_auth"])
     },
     methods: {
         ...mapActions("user", ["unfollow", "follow"])
+        // is_followed(follow_id) {
+        //     let ids = [];
+        //     this.user_auth.following.map(f => ids.push(f.id));
+        //     return ids.includes(follow_id);
+        // }
     }
 };
 </script>

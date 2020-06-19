@@ -2,7 +2,7 @@
     <div class="pb-5">
         <base-header>Home</base-header>
         <div class="twit-form px-3 pt-3">
-            <BaseUserImage :image="user.image" />
+            <BaseUserImage :image="user_auth.image" />
             <div class="content-twit">
                 <textarea
                     v-model="form.twit"
@@ -25,7 +25,7 @@
             <button
                 type="button"
                 :disabled="!form.twit || form.twit.length > 280"
-                @click="create"
+                @click="create_twit"
                 class="btn twit-btn font-weight-bold btn-primary"
             >
                 Twittear
@@ -52,7 +52,7 @@
                     <BaseTwit :twit="twit" />
                 </router-link>
                 <infinite-loading spinner="waveDots" @infinite="get_twits">
-                    <div slot="no-more">No more message</div>
+                    <div slot="no-more"></div>
                     <div slot="no-results">
                         <h1 class="text-center text-white mb-0">
                             Bienvenido a TwitApp
@@ -71,11 +71,11 @@
 import { mapState, mapActions } from "vuex";
 export default {
     computed: {
-        ...mapState("user", ["user"]),
+        ...mapState("user", ["user_auth"]),
         ...mapState("twit", ["form", "twits", "loading"])
     },
     methods: {
-        ...mapActions("twit", ["get_twits", "create", "clean_twits"])
+        ...mapActions("twit", ["get_twits", "create_twit", "clean_twits"])
     },
     beforeDestroy() {
         this.clean_twits();
