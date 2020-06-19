@@ -22,6 +22,11 @@ class UserController extends Controller
         //
     }
 
+    public function suggestions(Request $request)
+    {
+        return User::where('name', 'like', '%' . $request->q . '%')->orWhere('username', 'like', '%' . $request->q . '%')->get()->take(10);
+    }
+
     /**
      * Display the specified resource.
      *

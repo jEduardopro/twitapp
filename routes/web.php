@@ -17,6 +17,8 @@ Route::post('users/{user}/follows', 'User\UserFollowsController@store');
 Route::delete('users/{user}/follows', 'User\UserFollowsController@destroy');
 Route::resource('users.following', 'User\UserFollowingController')->only(['index']);
 Route::resource('users.followers', 'User\UserFollowersController')->only(['index']);
+// Search
+Route::get('suggestions/users', 'User\UserController@suggestions');
 // Twits routes
 Route::resource('twits', 'Twit\TwitController');
 Route::post('twits/{twit}/likes', 'Twit\TwitLikesController@store');
