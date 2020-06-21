@@ -25,6 +25,8 @@ export default {
             state.profile = profile;
             state.profile.src_cover_image = profile.cover_image;
             state.profile.src_avatar = profile.image;
+
+            state.user_auth = state.profile;
             state.user_twits_id += 1;
         },
         SET_PROFILE_FORM(state) {
@@ -167,7 +169,7 @@ export default {
                         res.data.data.username
                     ) {
                         router.push({
-                            name: "perfil",
+                            name: "profile",
                             params: { username: res.data.data.username }
                         });
                     }

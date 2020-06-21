@@ -57,9 +57,12 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 export default {
-    props: ["user_auth"],
+    props: ["user"],
+    computed: {
+        ...mapState("user", ["user_auth"])
+    },
     data() {
         return {
             csrf: $("meta[name='csrf-token']").attr("content")
@@ -69,7 +72,7 @@ export default {
         ...mapActions("user", ["set_user_auth"])
     },
     created() {
-        this.set_user_auth(this.user_auth);
+        this.set_user_auth(this.user);
     }
 };
 </script>

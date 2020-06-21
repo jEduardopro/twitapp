@@ -26,6 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         $user = User::whereId(auth()->id())->with(['following'])->first();
+        $user->image = ($user->image) ? $user->url_image('avatars', $user->image) : "";
         return view('home', compact('user'));
     }
 }

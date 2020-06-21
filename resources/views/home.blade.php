@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid">
     {{-- {{$user}} --}}
-    <base-menu :user_auth="{{$user}}"></base-menu>
+    <base-menu :user="{{$user}}"></base-menu>
         <div class="main">
             <div class="content">
                 <router-view></router-view>

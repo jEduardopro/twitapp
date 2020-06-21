@@ -40,14 +40,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getImageAttribute($value)
+    public function url_image($path, $file)
     {
-        return ($value) ?  "/storage/users/avatars/{$value}" : "";
-    }
-
-    public function getCoverImageAttribute($value)
-    {
-        return ($value) ?  "/storage/users/cover_images/{$value}" : "";
+        return "/storage/users/{$path}/{$file}";
     }
 
     public function twits()

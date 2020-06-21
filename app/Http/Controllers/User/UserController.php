@@ -22,7 +22,7 @@ class UserController extends Controller
         //
     }
 
-    public function suggestions(Request $request)
+    public function search(Request $request)
     {
         return User::where('name', 'like', '%' . $request->q . '%')->orWhere('username', 'like', '%' . $request->q . '%')->get()->take(10);
     }

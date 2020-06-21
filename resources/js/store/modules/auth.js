@@ -7,37 +7,37 @@ export default {
             name: "",
             password: "",
             password_register: "",
-            password_confirmation: ""
-        }
+            password_confirmation: "",
+        },
     },
     actions: {
-        login({ state, commit, dispatch }) {
+        login({ state, dispatch }) {
             axios
                 .post("login", {
                     login: state.form.input_login,
-                    password: state.form.password
+                    password: state.form.password,
                 })
-                .then(res => {
-                    location.href = "https://twitapp.dev/";
+                .then((res) => {
+                    location.href = "http://twitapp.test/";
                 })
-                .catch(err => {
+                .catch((err) => {
                     dispatch("catch_errors", err, { root: true });
                 });
         },
-        register({ state, commit, dispatch }) {
+        register({ state, dispatch }) {
             axios
                 .post("register", {
                     name: state.form.name,
                     login: state.form.input_register,
                     password: state.form.password_register,
-                    password_confirmation: state.form.password_confirmation
+                    password_confirmation: state.form.password_confirmation,
                 })
-                .then(res => {
-                    location.href = "https://twitapp.dev/";
+                .then((res) => {
+                    location.href = "http://twitapp.test/";
                 })
-                .catch(err => {
+                .catch((err) => {
                     dispatch("catch_errors", err, { root: true });
                 });
-        }
-    }
+        },
+    },
 };
