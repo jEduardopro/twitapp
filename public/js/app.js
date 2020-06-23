@@ -42357,7 +42357,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.user_auth.following.includes(_vm.follow_id)
+  return _vm.user_auth.relationships.following.includes(_vm.follow_id)
     ? _c(
         "button",
         {
@@ -62529,17 +62529,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mutations: {
     SET_USER_AUTH: function SET_USER_AUTH(state, user) {
       state.user_auth = user;
-      var ids = [];
-      user.following.map(function (f) {
-        return ids.push(f.id);
-      });
-      state.user_auth.following = ids;
     },
     SET_PROFILE: function SET_PROFILE(state, profile) {
       state.profile = profile;
       state.profile.src_cover_image = profile.cover_image;
       state.profile.src_avatar = profile.image;
-      state.user_auth = state.profile;
+
+      if (state.user_auth.id == state.profile.id) {
+        state.user_auth = state.profile;
+      }
+
       state.user_twits_id += 1;
     },
     SET_PROFILE_FORM: function SET_PROFILE_FORM(state) {
@@ -62567,11 +62566,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       state.followers = users;
     },
     ADD_FOLLOW: function ADD_FOLLOW(state, follow_id) {
-      state.user_auth.following.push(follow_id);
+      state.user_auth.relationships.following.push(follow_id);
       state.profile.relationships.followers.push(follow_id);
     },
     REMOVE_FOLLOW: function REMOVE_FOLLOW(state, follow_id) {
-      state.user_auth.following.splice(state.user_auth.following.indexOf(follow_id), 1);
+      state.user_auth.relationships.following.splice(state.user_auth.relationships.following.indexOf(follow_id), 1);
       state.profile.relationships.followers.splice(state.profile.relationships.followers.indexOf(follow_id), 1);
     },
     SET_LOADING: function SET_LOADING(state, payload) {
@@ -62582,6 +62581,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     set_user_auth: function set_user_auth(_ref, user) {
       var commit = _ref.commit;
       commit("SET_USER_AUTH", user);
+      axios.get("users/".concat(user.username)).then(function (res) {
+        commit("SET_USER_AUTH", res.data.data);
+      })["catch"](function (err) {
+        console.error(err);
+      });
     },
     show: function show(_ref2, username) {
       var commit = _ref2.commit;
