@@ -3,6 +3,9 @@
 namespace App\Traits;
 
 use App\Models\Like;
+use Illuminate\Support\Str;
+use App\Events\ModelIsLiked;
+use App\Events\ModelIsUnLiked;
 
 trait Likes
 {
@@ -16,16 +19,24 @@ trait Likes
         $this->likes()->firstOrCreate([
             "user_id" => auth()->id()
         ]);
+
+        event(new ModelIsLiked($this));
+    }
+
+    public function name_event()
+    {
+        return Str::lower(Str::plural(class_basename($this))) . "-" . $this->id . "-likes";
     }
 
     public function unlike()
     {
         $this->likes()->where('user_id', auth()->id())->delete();
+        event(new ModelIsUnLiked($this));
     }
 
     public function liked()
     {
-        return $this->likes()->where('user_id',auth()->id())->exists();
+        return $this->likes()->where('user_id', auth()->id())->exists();
     }
 
     public function likes_count()

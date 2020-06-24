@@ -46,6 +46,27 @@ export default {
     props: ["twit", "hide_buttons"],
     methods: {
         ...mapActions("twit", ["show_modal"])
+    },
+    mounted() {
+        Echo.channel(`twits-${this.twit.id}-likes`).listen(
+            "ModelIsLiked",
+            e => {
+                this.twit.relationships.likes.likes_count++;
+            }
+        );
+        Echo.channel(`twits-${this.twit.id}-likes`).listen(
+            "ModelIsUnLiked",
+            e => {
+                this.twit.relationships.likes.likes_count--;
+            }
+        );
+
+        Echo.channel(`new-comment-${this.twit.id}`).listen(
+            "TwitHasNewComment",
+            e => {
+                this.twit.comments_count++;
+            }
+        );
     }
 };
 </script>
