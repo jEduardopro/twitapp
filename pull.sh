@@ -10,6 +10,8 @@ git pull
 export COMPOSER_HOME='tmp/composer'
 composer install --no-interaction --no-dev --prefer-dist
 
+npm run dev
+
 # limpiamos cache
 php artisan cache:clear
 

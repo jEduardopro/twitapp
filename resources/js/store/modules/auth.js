@@ -7,20 +7,20 @@ export default {
             name: "",
             password: "",
             password_register: "",
-            password_confirmation: "",
-        },
+            password_confirmation: ""
+        }
     },
     actions: {
         login({ state, dispatch }) {
             axios
                 .post("login", {
                     login: state.form.input_login,
-                    password: state.form.password,
+                    password: state.form.password
                 })
-                .then((res) => {
-                    location.href = "http://167.71.123.63";
+                .then(res => {
+                    location.href = window.location.origin;
                 })
-                .catch((err) => {
+                .catch(err => {
                     dispatch("catch_errors", err, { root: true });
                 });
         },
@@ -30,14 +30,14 @@ export default {
                     name: state.form.name,
                     login: state.form.input_register,
                     password: state.form.password_register,
-                    password_confirmation: state.form.password_confirmation,
+                    password_confirmation: state.form.password_confirmation
                 })
-                .then((res) => {
-                    location.href = "http://167.71.123.63";
+                .then(res => {
+                    location.href = window.location.origin;
                 })
-                .catch((err) => {
+                .catch(err => {
                     dispatch("catch_errors", err, { root: true });
                 });
-        },
-    },
+        }
+    }
 };
