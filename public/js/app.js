@@ -66880,8 +66880,8 @@ console.log(window.axios.defaults.baseURL);
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: "pusher",
-  key: "911dbf096fdac2766016",
-  cluster: "us2",
+  key: "",
+  cluster: "mt1",
   forceTLS: true
 });
 
@@ -68306,7 +68306,7 @@ __webpack_require__.r(__webpack_exports__);
         login: state.form.input_login,
         password: state.form.password
       }).then(function (res) {
-        location.href = "http://twitapp.test/";
+        location.href = "http://167.71.123.63";
       })["catch"](function (err) {
         dispatch("catch_errors", err, {
           root: true
@@ -68322,7 +68322,7 @@ __webpack_require__.r(__webpack_exports__);
         password: state.form.password_register,
         password_confirmation: state.form.password_confirmation
       }).then(function (res) {
-        location.href = "http://twitapp.test/";
+        location.href = "http://167.71.123.63";
       })["catch"](function (err) {
         dispatch("catch_errors", err, {
           root: true
@@ -69164,8 +69164,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\laravel-homestead\twitapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\laravel-homestead\twitapp\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /var/www/html/twitapp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/html/twitapp/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

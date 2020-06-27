@@ -18,7 +18,7 @@ export default {
                     password: state.form.password,
                 })
                 .then((res) => {
-                    location.href = "http://twitapp.test/";
+                    location.href = "http://167.71.123.63";
                 })
                 .catch((err) => {
                     dispatch("catch_errors", err, { root: true });
@@ -33,7 +33,7 @@ export default {
                     password_confirmation: state.form.password_confirmation,
                 })
                 .then((res) => {
-                    location.href = "http://twitapp.test/";
+                    location.href = "http://167.71.123.63";
                 })
                 .catch((err) => {
                     dispatch("catch_errors", err, { root: true });

@@ -21,6 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::post('webhook/github', function () {
+//   return response()->json(["path"=>base_path()]);
     $githubPayload = request()->getContent();
     $githubHash = request()->header('X-Hub-Signature');
 
@@ -32,7 +33,7 @@ Route::post('webhook/github', function () {
 
     if (hash_equals($githubHash, $localHash)) {
         try {
-            $process = new Process(['pull.sh'], 'C:\\xampp\\htdocs\\laravel-homestead\\twitapp\\');
+            $process = new Process(['pull.sh']);
             $process->run();
             return response()->json(true);
         } catch (\Throwable $th) {
