@@ -6,7 +6,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('@{username}/{a?}/{b?}', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
-Route::redirect('/', '/home');
+// Route::redirect('/', '/home');
+
+Route::get('/', function () {
+    return 'hola';
+});
 
 Auth::routes();
 // Users routes
