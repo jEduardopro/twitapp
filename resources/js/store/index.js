@@ -7,7 +7,8 @@ import modules from "./modules/modules";
 
 const store = new Vuex.Store({
     state: {
-        errors: {}
+        errors: {},
+        nueva: ""
     },
     mutations: {
         SET_ERRORS(state, errors) {
