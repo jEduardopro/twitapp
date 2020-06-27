@@ -68306,7 +68306,7 @@ __webpack_require__.r(__webpack_exports__);
         login: state.form.input_login,
         password: state.form.password
       }).then(function (res) {
-        location.href = "http://167.71.123.63";
+        location.href = window.location.origin;
       })["catch"](function (err) {
         dispatch("catch_errors", err, {
           root: true
@@ -68322,7 +68322,7 @@ __webpack_require__.r(__webpack_exports__);
         password: state.form.password_register,
         password_confirmation: state.form.password_confirmation
       }).then(function (res) {
-        location.href = "http://167.71.123.63";
+        location.href = window.location.origin;
       })["catch"](function (err) {
         dispatch("catch_errors", err, {
           root: true
