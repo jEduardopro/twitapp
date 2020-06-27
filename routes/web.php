@@ -11,7 +11,7 @@ Route::redirect('/', '/home');
 Auth::routes();
 // Users routes
 Route::resource('users', 'User\UserController');
-Route::get('auth/me', 'User\UserController@me');
+Route::get('me', 'User\UserController@me');
 Route::get('users/{user:username}/twits', 'User\UserTwitsController@index');
 Route::post('users/{user}/follows', 'User\UserFollowsController@store');
 Route::delete('users/{user}/follows', 'User\UserFollowsController@destroy');

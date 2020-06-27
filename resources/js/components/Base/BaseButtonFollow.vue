@@ -1,6 +1,6 @@
 <template>
     <button
-        v-if="user_auth.following.includes(follow_id)"
+        v-if="user_auth.relationships.following.includes(follow_id)"
         type="button"
         @click="unfollow(follow_id)"
         class="btn twit-btn btn-sm btn-primary btn-unfollow"

@@ -16,6 +16,7 @@ class TwitResource extends JsonResource
     {
         return [
             "id" => $this->id,
+            'event_name' => $this->name_event(),
             "content" => $this->content,
             "comments_count" => count($this->comments),
             "created_at" => $this->created_at->diffForHumans(),

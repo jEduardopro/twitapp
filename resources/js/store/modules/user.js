@@ -17,16 +17,14 @@ export default {
     mutations: {
         SET_USER_AUTH(state, user) {
             state.user_auth = user;
-            let ids = [];
-            user.following.map(f => ids.push(f.id));
-            state.user_auth.following = ids;
         },
         SET_PROFILE(state, profile) {
             state.profile = profile;
             state.profile.src_cover_image = profile.cover_image;
             state.profile.src_avatar = profile.image;
-
-            state.user_auth = state.profile;
+            if (state.user_auth.id == state.profile.id) {
+                state.user_auth = state.profile;
+            }
             state.user_twits_id += 1;
         },
         SET_PROFILE_FORM(state) {
@@ -54,12 +52,12 @@ export default {
             state.followers = users;
         },
         ADD_FOLLOW(state, follow_id) {
-            state.user_auth.following.push(follow_id);
+            state.user_auth.relationships.following.push(follow_id);
             state.profile.relationships.followers.push(follow_id);
         },
         REMOVE_FOLLOW(state, follow_id) {
-            state.user_auth.following.splice(
-                state.user_auth.following.indexOf(follow_id),
+            state.user_auth.relationships.following.splice(
+                state.user_auth.relationships.following.indexOf(follow_id),
                 1
             );
             state.profile.relationships.followers.splice(
@@ -74,6 +72,14 @@ export default {
     actions: {
         set_user_auth({ commit }, user) {
             commit("SET_USER_AUTH", user);
+            axios
+                .get(`users/${user.username}`)
+                .then(res => {
+                    commit("SET_USER_AUTH", res.data.data);
+                })
+                .catch(err => {
+                    console.error(err);
+                });
         },
         show({ commit }, username) {
             commit("SET_LOADING", { loader: "loading", status: true });

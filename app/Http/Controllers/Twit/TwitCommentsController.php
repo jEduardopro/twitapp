@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Twit;
 
+use App\Events\TwitHasNewComment;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CommentResource;
 use App\Models\Comment;
@@ -22,6 +23,7 @@ class TwitCommentsController extends Controller
             "user_id" => auth()->id(),
             "content" => $request->comment
         ]);
+        event(new TwitHasNewComment($twit));
         return CommentResource::make(Comment::with('user')->where('id', $comment->id)->first());
     }
 

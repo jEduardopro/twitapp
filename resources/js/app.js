@@ -54,5 +54,14 @@ const app = new Vue({
             $("body, html").animate({ scrollTop: 0 });
             $("#modal_comment").modal("hide");
         }
+    },
+    mounted() {
+        // console.log(store.state.user.user_auth);
+        Echo.private(`App.User.${store.state.user.user_auth.id}`).notification(
+            e => {
+                console.log(e);
+                store.commit("twit/ADD_TWIT", e.twit);
+            }
+        );
     }
 });

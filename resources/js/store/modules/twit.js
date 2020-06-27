@@ -16,6 +16,9 @@ export default {
         SET_TWIT(state, twit) {
             state.twit = twit;
         },
+        ADD_TWIT(state, twit) {
+            state.twits.unshift(twit);
+        },
         ADD_COMMENT(state, comment) {
             state.twit.relationships.comments.unshift(comment);
         },
@@ -53,6 +56,7 @@ export default {
                 .post("twits", state.form)
                 .then(res => {
                     commit("CLEAN_FORM");
+                    commit("ADD_TWIT", res.data.data);
                 })
                 .catch(err => {
                     dispatch("catch_errors", err, { root: true });

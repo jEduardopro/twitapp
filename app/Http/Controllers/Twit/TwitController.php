@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Twit;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\TwitResource;
 use App\Models\Twit;
+use App\Notifications\NewTwit;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class TwitController extends Controller
 {
@@ -36,7 +38,9 @@ class TwitController extends Controller
             'user_id' => auth()->id(),
             'content' => $request->twit
         ]);
-        return TwitResource::make($twit);
+        $twit_fresh = Twit::whereId($twit->id)->with('user')->first();
+        Notification::send(auth()->user()->followers, new NewTwit(TwitResource::make($twit_fresh)));
+        return TwitResource::make($twit_fresh);
     }
 
     /**
