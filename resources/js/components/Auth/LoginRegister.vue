@@ -3,7 +3,7 @@
         <div v-if="!isOpenRegister" class="form-login">
             <BaseLogo />
             <h1 class="text-center mb-4">
-                Inicia sesión en TwitApp
+                Inicia sesión jhdfbhd en TwitApp
             </h1>
             <div class="form-group">
                 <base-input
