@@ -2,7 +2,9 @@
     <div class="container">
         <div v-if="!isOpenRegister" class="form-login">
             <BaseLogo />
-            <h1 class="text-center mb-4">Inicia sesión en TwitApp</h1>
+            <h1 class="text-center mb-4">
+                Inicia sesión Cambios hooks automated en TwitApp
+            </h1>
             <div class="form-group">
                 <base-input
                     v-model="form.input_login"
