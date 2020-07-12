@@ -1988,6 +1988,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -48023,7 +48025,7 @@ var render = function() {
               _c("BaseLogo"),
               _vm._v(" "),
               _c("h1", { staticClass: "text-center mb-4" }, [
-                _vm._v("Inicia sesión en TwitApp")
+                _vm._v("\n            Inicia sesión en TwitApp\n        ")
               ]),
               _vm._v(" "),
               _c(
@@ -66880,8 +66882,8 @@ console.log(window.axios.defaults.baseURL);
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: "pusher",
-  key: "",
-  cluster: "mt1",
+  key: "911dbf096fdac2766016",
+  cluster: "us2",
   forceTLS: true
 });
 
@@ -69164,8 +69166,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/html/twitapp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /var/www/html/twitapp/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\laravel-homestead\twitapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\laravel-homestead\twitapp\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

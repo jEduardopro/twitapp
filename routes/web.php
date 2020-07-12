@@ -28,9 +28,3 @@ Route::resource('twits.comments', 'Twit\TwitCommentsController')->only(['store',
 
 Route::post('comments/{comment}/likes', 'Comment\CommentLikesController@store');
 Route::delete('comments/{comment}/likes', 'Comment\CommentLikesController@destroy');
-
-Route::get('send/mail', function () {
-    Mail::raw('Email de prueba', function ($message) {
-        $message->to('jesus.edu2122@gmail.com', 'Jesus Eduardo');
-    });
-});
