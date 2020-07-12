@@ -3,8 +3,6 @@
 /public/storage
 /storage/*.key
 /vendor
-/tmp
-/%SystemDrive%
 .env
 .env.backup
 .phpunit.result.cache
