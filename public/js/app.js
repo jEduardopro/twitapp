@@ -2429,10 +2429,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["user"],
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("user", ["user_auth"])),
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("user", ["user_auth"])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])("notification", ["unread_notifications"])),
   data: function data() {
     return {
       csrf: $("meta[name='csrf-token']").attr("content")
@@ -3267,9 +3275,90 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("user", ["user_auth"])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("twit", ["form", "twits", "loading"])),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("twit", ["get_twits", "create_twit", "clean_twits"])),
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("twit", ["get_twits", "create_twit", "clean_twits"])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("notification", ["get_notifications"])),
+  created: function created() {
+    this.get_notifications();
+  },
   beforeDestroy: function beforeDestroy() {
     this.clean_twits();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/pages/Notifications.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/pages/Notifications.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("notification", ["notifications"])),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("notification", ["get_notifications", "mark_unread_notifications"])),
+  created: function created() {
+    this.mark_unread_notifications();
   }
 });
 
@@ -48751,15 +48840,31 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
-          _c("router-link", { staticClass: "mb-4", attrs: { to: "#" } }, [
-            _c("div", [
-              _c("i", { staticClass: "far fa-bell" }),
-              _vm._v(" "),
-              _c("span", { staticClass: "ml-3 font-weight-bold" }, [
-                _vm._v("Notificaciones")
+          _c(
+            "router-link",
+            {
+              staticClass: "mb-4 notifications",
+              attrs: { to: { name: "notifications" } }
+            },
+            [
+              _c("div", [
+                _c("i", { staticClass: "far fa-bell" }),
+                _vm._v(" "),
+                _c("span", { staticClass: "ml-3 font-weight-bold" }, [
+                  _vm._v("Notificaciones")
+                ]),
+                _vm._v(" "),
+                _vm.unread_notifications > 0
+                  ? _c("span", {
+                      staticClass: "unread_notifications",
+                      domProps: {
+                        textContent: _vm._s(_vm.unread_notifications)
+                      }
+                    })
+                  : _vm._e()
               ])
-            ])
-          ]),
+            ]
+          ),
           _vm._v(" "),
           _c(
             "router-link",
@@ -50126,6 +50231,117 @@ var render = function() {
               2
             )
       ])
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/pages/Notifications.vue?vue&type=template&id=72e46be4&":
+/*!*****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/pages/Notifications.vue?vue&type=template&id=72e46be4& ***!
+  \*****************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("base-header", [_vm._v("\n        Notificaciones\n    ")]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "content-notifications" },
+        [
+          _vm._l(_vm.notifications.data, function(notification, i) {
+            return _c(
+              "div",
+              { key: i, staticClass: "twit-card px-3 py-2 border-bottom" },
+              [
+                _c("BaseUserImage", {
+                  staticClass: "mr-2",
+                  attrs: {
+                    image: notification.data.twit.relationships.user.image
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "body" }, [
+                  _c(
+                    "div",
+                    { staticClass: "header" },
+                    [
+                      _vm._v(
+                        "\n                    Twit reciente de\n                    "
+                      ),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "text-white",
+                          attrs: {
+                            to: {
+                              name: "profile",
+                              params: {
+                                username:
+                                  notification.data.twit.relationships.user
+                                    .username
+                              }
+                            }
+                          }
+                        },
+                        [
+                          _c("strong", {
+                            domProps: {
+                              textContent: _vm._s(
+                                notification.data.twit.relationships.user.name
+                              )
+                            }
+                          })
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("div", {
+                    staticClass: "content-text py-1",
+                    domProps: {
+                      textContent: _vm._s(notification.data.twit.content)
+                    }
+                  })
+                ])
+              ],
+              1
+            )
+          }),
+          _vm._v(" "),
+          _c(
+            "infinite-loading",
+            {
+              attrs: { spinner: "waveDots" },
+              on: { infinite: _vm.get_notifications }
+            },
+            [
+              _c("div", { attrs: { slot: "no-more" }, slot: "no-more" }),
+              _vm._v(" "),
+              _c("div", { attrs: { slot: "no-results" }, slot: "no-results" })
+            ]
+          )
+        ],
+        2
+      )
     ],
     1
   )
@@ -66806,6 +67022,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_infinite_loading__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_infinite_loading__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _store_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/index */ "./resources/js/store/index.js");
 /* harmony import */ var _routes_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./routes/index */ "./resources/js/routes/index.js");
+/* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
+/* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(pusher_js__WEBPACK_IMPORTED_MODULE_5__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
@@ -66832,6 +67050,7 @@ Vue.use(vue_infinite_loading__WEBPACK_IMPORTED_MODULE_2___default.a); // Store v
  // Router
 
 
+
 var app = new Vue({
   el: "#app",
   store: _store_index__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -66845,9 +67064,15 @@ var app = new Vue({
     }
   },
   mounted: function mounted() {
-    // console.log(store.state.user.user_auth);
     Echo["private"]("App.User.".concat(_store_index__WEBPACK_IMPORTED_MODULE_3__["default"].state.user.user_auth.id)).notification(function (e) {
+      var notification = {
+        read_at: null,
+        data: {
+          twit: e.twit
+        }
+      };
       console.log(e);
+      _store_index__WEBPACK_IMPORTED_MODULE_3__["default"].commit("notification/ADD_NOTIFICATION", notification);
       _store_index__WEBPACK_IMPORTED_MODULE_3__["default"].commit("twit/ADD_TWIT", e.twit);
     });
   }
@@ -68182,10 +68407,11 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_pages_Home_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../views/pages/Home.vue */ "./resources/js/views/pages/Home.vue");
 /* harmony import */ var _views_pages_Profile_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../views/pages/Profile.vue */ "./resources/js/views/pages/Profile.vue");
-/* harmony import */ var _views_pages_Follows_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../views/pages/Follows.vue */ "./resources/js/views/pages/Follows.vue");
-/* harmony import */ var _components_Follow_Followers_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Follow/Followers.vue */ "./resources/js/components/Follow/Followers.vue");
-/* harmony import */ var _components_Follow_Following_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Follow/Following.vue */ "./resources/js/components/Follow/Following.vue");
-/* harmony import */ var _views_pages_TwitShow_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../views/pages/TwitShow.vue */ "./resources/js/views/pages/TwitShow.vue");
+/* harmony import */ var _views_pages_TwitShow_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../views/pages/TwitShow.vue */ "./resources/js/views/pages/TwitShow.vue");
+/* harmony import */ var _views_pages_Follows_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../views/pages/Follows.vue */ "./resources/js/views/pages/Follows.vue");
+/* harmony import */ var _components_Follow_Followers_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Follow/Followers.vue */ "./resources/js/components/Follow/Followers.vue");
+/* harmony import */ var _components_Follow_Following_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Follow/Following.vue */ "./resources/js/components/Follow/Following.vue");
+/* harmony import */ var _views_pages_Notifications_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../views/pages/Notifications.vue */ "./resources/js/views/pages/Notifications.vue");
 // Views
 
 
@@ -68193,8 +68419,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var routes = [// { path: "/login", component: Login, name: "login" },
-{
+
+var routes = [{
   path: "/home",
   component: _views_pages_Home_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
   name: "home"
@@ -68205,22 +68431,26 @@ var routes = [// { path: "/login", component: Login, name: "login" },
   props: true
 }, {
   path: "/@:username/status/:twit_id",
-  component: _views_pages_TwitShow_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+  component: _views_pages_TwitShow_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
   name: "twit-show",
   props: true
 }, {
   path: "/@:username",
-  component: _views_pages_Follows_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+  component: _views_pages_Follows_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
   props: true,
   children: [{
     path: "followers",
-    component: _components_Follow_Followers_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    component: _components_Follow_Followers_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
     name: "followers"
   }, {
     path: "following",
-    component: _components_Follow_Following_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    component: _components_Follow_Following_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
     name: "following"
   }]
+}, {
+  path: "/notifications",
+  component: _views_pages_Notifications_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+  name: "notifications"
 }];
 /* harmony default export */ __webpack_exports__["default"] = (routes);
 
@@ -68392,6 +68622,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _user__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./user */ "./resources/js/store/modules/user.js");
 /* harmony import */ var _twit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./twit */ "./resources/js/store/modules/twit.js");
 /* harmony import */ var _like__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./like */ "./resources/js/store/modules/like.js");
+/* harmony import */ var _notification__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./notification */ "./resources/js/store/modules/notification.js");
+
 
 
 
@@ -68400,7 +68632,75 @@ __webpack_require__.r(__webpack_exports__);
   auth: _auth__WEBPACK_IMPORTED_MODULE_0__["default"],
   user: _user__WEBPACK_IMPORTED_MODULE_1__["default"],
   twit: _twit__WEBPACK_IMPORTED_MODULE_2__["default"],
-  like: _like__WEBPACK_IMPORTED_MODULE_3__["default"]
+  like: _like__WEBPACK_IMPORTED_MODULE_3__["default"],
+  notification: _notification__WEBPACK_IMPORTED_MODULE_4__["default"]
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/notification.js":
+/*!****************************************************!*\
+  !*** ./resources/js/store/modules/notification.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
+  state: {
+    notifications: {
+      page: 1,
+      data: []
+    }
+  },
+  getters: {
+    unread_notifications: function unread_notifications(state) {
+      return state.notifications.data.filter(function (n) {
+        return n.read_at == null;
+      }).length;
+    }
+  },
+  mutations: {
+    SET_NOTIFICATIONS: function SET_NOTIFICATIONS(state, data) {
+      state.notifications.data = state.notifications.data.concat(data);
+    },
+    UPDATE_NOTIFICATIONS: function UPDATE_NOTIFICATIONS(state, data) {
+      state.notifications.data = data;
+    },
+    ADD_NOTIFICATION: function ADD_NOTIFICATION(state, notification) {
+      state.notifications.data.unshift(notification);
+    }
+  },
+  actions: {
+    get_notifications: function get_notifications(_ref, $state) {
+      var state = _ref.state,
+          rootState = _ref.rootState,
+          commit = _ref.commit;
+      var page = state.notifications.page++;
+      axios.get("users/".concat(rootState.user.user_auth.id, "/notifications/?page=").concat(page)).then(function (res) {
+        if (res.data.data.length) {
+          commit("SET_NOTIFICATIONS", res.data.data);
+
+          if ($state) {
+            $state.loaded();
+          }
+        } else {
+          if ($state) {
+            $state.complete();
+          }
+        }
+      });
+    },
+    mark_unread_notifications: function mark_unread_notifications(_ref2) {
+      var commit = _ref2.commit,
+          rootState = _ref2.rootState;
+      axios.put("users/".concat(rootState.user.user_auth.id, "/notifications")).then(function (res) {
+        commit("UPDATE_NOTIFICATIONS", res.data);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -69005,6 +69305,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_template_id_4592b1a9___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_template_id_4592b1a9___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/views/pages/Notifications.vue":
+/*!****************************************************!*\
+  !*** ./resources/js/views/pages/Notifications.vue ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Notifications_vue_vue_type_template_id_72e46be4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Notifications.vue?vue&type=template&id=72e46be4& */ "./resources/js/views/pages/Notifications.vue?vue&type=template&id=72e46be4&");
+/* harmony import */ var _Notifications_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Notifications.vue?vue&type=script&lang=js& */ "./resources/js/views/pages/Notifications.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Notifications_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Notifications_vue_vue_type_template_id_72e46be4___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Notifications_vue_vue_type_template_id_72e46be4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/pages/Notifications.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/views/pages/Notifications.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/views/pages/Notifications.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Notifications_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Notifications.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/pages/Notifications.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Notifications_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/views/pages/Notifications.vue?vue&type=template&id=72e46be4&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/views/pages/Notifications.vue?vue&type=template&id=72e46be4& ***!
+  \***********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Notifications_vue_vue_type_template_id_72e46be4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Notifications.vue?vue&type=template&id=72e46be4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/pages/Notifications.vue?vue&type=template&id=72e46be4&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Notifications_vue_vue_type_template_id_72e46be4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Notifications_vue_vue_type_template_id_72e46be4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

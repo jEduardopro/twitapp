@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('@{username}/{a?}/{b?}', 'HomeController@index');
+Route::get('notifications', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::redirect('/', '/home');
 
@@ -28,3 +29,6 @@ Route::resource('twits.comments', 'Twit\TwitCommentsController')->only(['store',
 
 Route::post('comments/{comment}/likes', 'Comment\CommentLikesController@store');
 Route::delete('comments/{comment}/likes', 'Comment\CommentLikesController@destroy');
+
+Route::get('users/{user}/notifications', 'User\UserNotificationsController@index');
+Route::put('users/{user}/notifications', 'User\UserNotificationsController@update');

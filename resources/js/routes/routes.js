@@ -1,13 +1,13 @@
 // Views
 import Home from "../views/pages/Home.vue";
 import Profile from "../views/pages/Profile.vue";
+import TwitShow from "../views/pages/TwitShow.vue";
 import Follows from "../views/pages/Follows.vue";
 import Followers from "../components/Follow/Followers.vue";
 import Following from "../components/Follow/Following.vue";
-import TwitShow from "../views/pages/TwitShow.vue";
+import Notifications from "../views/pages/Notifications.vue";
 
 const routes = [
-    // { path: "/login", component: Login, name: "login" },
     {
         path: "/home",
         component: Home,
@@ -41,6 +41,11 @@ const routes = [
                 name: "following"
             }
         ]
+    },
+    {
+        path: "/notifications",
+        component: Notifications,
+        name: "notifications"
     }
 ];
 

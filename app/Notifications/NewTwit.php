@@ -32,7 +32,7 @@ class NewTwit extends Notification implements ShouldBroadcast
      */
     public function via($notifiable)
     {
-        return ['broadcast'];
+        return ['broadcast', 'database'];
     }
 
     /**
@@ -63,6 +63,13 @@ class NewTwit extends Notification implements ShouldBroadcast
     }
 
     public function toBroadcast($notifiable)
+    {
+        return [
+            "twit" => $this->twit
+        ];
+    }
+
+    public function toDatabase($notifiable)
     {
         return [
             "twit" => $this->twit

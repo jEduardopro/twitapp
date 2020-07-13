@@ -45,6 +45,26 @@
                     background: $hover-light;
                 }
             }
+
+            &.notifications {
+                position: relative;
+
+                .unread_notifications {
+                    position: absolute;
+                    left: 25px;
+                    top: -5px;
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 20px;
+                    text-align: center;
+                    background: $blue;
+                    color: $white;
+                    font-size: $fs-sm;
+                    line-height: 20px;
+                    font-weight: bold;
+                }
+            }
         }
+
     }
 }

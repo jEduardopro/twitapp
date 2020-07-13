@@ -75,7 +75,11 @@ export default {
         ...mapState("twit", ["form", "twits", "loading"])
     },
     methods: {
-        ...mapActions("twit", ["get_twits", "create_twit", "clean_twits"])
+        ...mapActions("twit", ["get_twits", "create_twit", "clean_twits"]),
+        ...mapActions("notification", ["get_notifications"])
+    },
+    created() {
+        this.get_notifications();
     },
     beforeDestroy() {
         this.clean_twits();

@@ -13,10 +13,18 @@
                     <span class="ml-3 font-weight-bold">Inicio</span>
                 </div>
             </router-link>
-            <router-link to="#" class="mb-4">
+            <router-link
+                :to="{ name: 'notifications' }"
+                class="mb-4 notifications"
+            >
                 <div>
                     <i class="far fa-bell"></i>
                     <span class="ml-3 font-weight-bold">Notificaciones</span>
+                    <span
+                        class="unread_notifications"
+                        v-if="unread_notifications > 0"
+                        v-text="unread_notifications"
+                    ></span>
                 </div>
             </router-link>
             <router-link
@@ -57,11 +65,12 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapState, mapGetters } from "vuex";
 export default {
     props: ["user"],
     computed: {
-        ...mapState("user", ["user_auth"])
+        ...mapState("user", ["user_auth"]),
+        ...mapGetters("notification", ["unread_notifications"])
     },
     data() {
         return {

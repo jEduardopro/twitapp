@@ -44,6 +44,7 @@ import store from "./store/index";
 
 // Router
 import router from "./routes/index";
+import { log } from "pusher-js";
 
 const app = new Vue({
     el: "#app",
@@ -56,10 +57,16 @@ const app = new Vue({
         }
     },
     mounted() {
-        // console.log(store.state.user.user_auth);
         Echo.private(`App.User.${store.state.user.user_auth.id}`).notification(
             e => {
+                let notification = {
+                    read_at: null,
+                    data: {
+                        twit: e.twit
+                    }
+                };
                 console.log(e);
+                store.commit("notification/ADD_NOTIFICATION", notification);
                 store.commit("twit/ADD_TWIT", e.twit);
             }
         );
