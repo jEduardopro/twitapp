@@ -11189,6 +11189,11 @@ h1 {
   width: 90%;
 }
 
+.twit-card .body .header,
+.comment-card .body .header {
+  position: relative;
+}
+
 .twit-card .body .header a,
 .comment-card .body .header a {
   font-weight: bold;
@@ -11225,18 +11230,21 @@ h1 {
 }
 
 .btn-comment,
-.btn-like {
+.btn-like,
+.btn-destroy {
   display: flex;
   align-items: center;
 }
 
 .btn-comment span,
-.btn-like span {
+.btn-like span,
+.btn-destroy span {
   color: #8899a6;
 }
 
 .btn-comment .btn,
-.btn-like .btn {
+.btn-like .btn,
+.btn-destroy .btn {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -11247,18 +11255,29 @@ h1 {
 }
 
 .btn-comment .btn i,
-.btn-like .btn i {
+.btn-like .btn i,
+.btn-destroy .btn i {
   color: #8899a6;
   font-size: 20px;
   line-height: 40px;
 }
 
 .btn-comment:hover .btn,
-.btn-like:hover .btn {
+.btn-like:hover .btn,
+.btn-destroy:hover .btn {
   background: rgba(255, 255, 255, 0.2);
 }
 
-.btn-comment:hover .btn.btn-comment i {
+.btn-destroy {
+  position: absolute;
+  left: auto;
+  right: 2px;
+  top: 5px;
+  width: 20px;
+  height: 20px;
+}
+
+.btn-comment:hover .btn i {
   color: #1DA1F2;
 }
 
@@ -11266,12 +11285,16 @@ h1 {
   color: #1DA1F2;
 }
 
-.btn-like:hover .btn.btn-like i {
+.btn-like:hover .btn i {
   color: #f66d9b;
 }
 
 .btn-like:hover span {
   color: #f66d9b;
+}
+
+.btn-destroy:hover .btn i {
+  color: #e3342f;
 }
 
 .user-card {

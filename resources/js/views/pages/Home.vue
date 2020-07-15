@@ -24,7 +24,7 @@
             >
             <button
                 type="button"
-                :disabled="!form.twit || form.twit.length > 280"
+                :disabled="!form.twit || form.twit.length > 280 || loading"
                 @click="create_twit"
                 class="btn twit-btn font-weight-bold btn-primary"
             >
@@ -33,36 +33,24 @@
         </div>
         <hr class="mt-2" />
         <div>
-            <p class="text-muted text-center py-5" v-if="loading">
-                <i class="fas fa-circle-notch fa-2x fa-spin"></i>
-            </p>
-            <div v-else>
-                <router-link
-                    :to="{
-                        name: 'twit-show',
-                        params: {
-                            username: twit.relationships.user.username,
-                            twit_id: twit.id
-                        }
-                    }"
-                    v-for="(twit, index) in twits"
-                    :key="twit.id + '_' + index"
-                    class="link-twit"
-                >
-                    <BaseTwit :twit="twit" />
-                </router-link>
-                <infinite-loading spinner="waveDots" @infinite="get_twits">
-                    <div slot="no-more"></div>
-                    <div slot="no-results">
-                        <h1 class="text-center text-white mb-0">
-                            Bienvenido a TwitApp
-                        </h1>
-                        <p class="text-muted p-0 m-0 text-center">
-                            Comienza a twittear sin limites.
-                        </p>
-                    </div>
-                </infinite-loading>
-            </div>
+            <router-link
+                :to="{
+                    name: 'twit-show',
+                    params: {
+                        username: twit.relationships.user.username,
+                        twit_id: twit.id
+                    }
+                }"
+                v-for="(twit, index) in twits"
+                :key="twit.id + '_' + index"
+                class="link-twit"
+            >
+                <BaseTwit :twit="twit" />
+            </router-link>
+            <infinite-loading spinner="waveDots" @infinite="get_twits">
+                <div slot="no-more"></div>
+                <div slot="no-results"></div>
+            </infinite-loading>
         </div>
     </div>
 </template>

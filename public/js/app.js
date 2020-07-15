@@ -2272,6 +2272,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2301,8 +2308,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["comment"]
+  props: ["comment"],
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("user", ["user_auth"])),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("twit", ["destroy_comment"]))
 });
 
 /***/ }),
@@ -2534,9 +2553,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("user", ["user_auth"])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("twit", ["twit", "comment_form"])),
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("user", ["user_auth"])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("twit", ["twit", "comment_form", "loading_comment"])),
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("twit", ["create_comment", "close_modal"]))
 });
 
@@ -2714,10 +2734,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["twit", "hide_buttons"],
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("twit", ["show_modal"])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("user", ["user_auth"])),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("twit", ["show_modal", "destroy"])),
   mounted: function mounted() {
     var _this = this;
 
@@ -3260,18 +3295,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("user", ["user_auth"])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("twit", ["form", "twits", "loading"])),
@@ -3382,10 +3405,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
-//
-//
 //
 //
 //
@@ -48644,7 +48663,26 @@ var render = function() {
                   domProps: { textContent: _vm._s(_vm.comment.created_at) }
                 })
               ]
-            )
+            ),
+            _vm._v(" "),
+            _vm.comment.user_id == _vm.user_auth.id
+              ? _c("div", { staticClass: "btn-destroy" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.destroy_comment(_vm.comment)
+                        }
+                      }
+                    },
+                    [_c("i", { staticClass: "far fa-trash-alt" })]
+                  )
+                ])
+              : _vm._e()
           ],
           1
         ),
@@ -49064,7 +49102,8 @@ var render = function() {
                     type: "button",
                     disabled:
                       !_vm.comment_form.comment ||
-                      _vm.comment_form.comment.length > 280
+                      _vm.comment_form.comment.length > 280 ||
+                      _vm.loading_comment
                   },
                   on: {
                     click: function($event) {
@@ -49289,9 +49328,32 @@ var render = function() {
                     domProps: { textContent: _vm._s(_vm.twit.created_at) }
                   })
                 ]
-              )
+              ),
+              _vm._v(" "),
+              !_vm.hide_buttons
+                ? [
+                    _vm.twit.user_id == _vm.user_auth.id
+                      ? _c("div", { staticClass: "btn-destroy" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn",
+                              attrs: { type: "button" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.destroy(_vm.twit)
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "far fa-trash-alt" })]
+                          )
+                        ])
+                      : _vm._e()
+                  ]
+                : _vm._e()
             ],
-            1
+            2
           ),
           _vm._v(" "),
           _c("div", {
@@ -49308,7 +49370,7 @@ var render = function() {
                     _c(
                       "button",
                       {
-                        staticClass: "btn btn-comment",
+                        staticClass: "btn",
                         attrs: { type: "button" },
                         on: {
                           click: function($event) {
@@ -50151,7 +50213,8 @@ var render = function() {
               staticClass: "btn twit-btn font-weight-bold btn-primary",
               attrs: {
                 type: "button",
-                disabled: !_vm.form.twit || _vm.form.twit.length > 280
+                disabled:
+                  !_vm.form.twit || _vm.form.twit.length > 280 || _vm.loading
               },
               on: { click: _vm.create_twit }
             },
@@ -50162,75 +50225,42 @@ var render = function() {
       _vm._v(" "),
       _c("hr", { staticClass: "mt-2" }),
       _vm._v(" "),
-      _c("div", [
-        _vm.loading
-          ? _c("p", { staticClass: "text-muted text-center py-5" }, [
-              _c("i", { staticClass: "fas fa-circle-notch fa-2x fa-spin" })
-            ])
-          : _c(
-              "div",
-              [
-                _vm._l(_vm.twits, function(twit, index) {
-                  return _c(
-                    "router-link",
-                    {
-                      key: twit.id + "_" + index,
-                      staticClass: "link-twit",
-                      attrs: {
-                        to: {
-                          name: "twit-show",
-                          params: {
-                            username: twit.relationships.user.username,
-                            twit_id: twit.id
-                          }
-                        }
-                      }
-                    },
-                    [_c("BaseTwit", { attrs: { twit: twit } })],
-                    1
-                  )
-                }),
-                _vm._v(" "),
-                _c(
-                  "infinite-loading",
-                  {
-                    attrs: { spinner: "waveDots" },
-                    on: { infinite: _vm.get_twits }
-                  },
-                  [
-                    _c("div", { attrs: { slot: "no-more" }, slot: "no-more" }),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { attrs: { slot: "no-results" }, slot: "no-results" },
-                      [
-                        _c(
-                          "h1",
-                          { staticClass: "text-center text-white mb-0" },
-                          [
-                            _vm._v(
-                              "\n                        Bienvenido a TwitApp\n                    "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "p",
-                          { staticClass: "text-muted p-0 m-0 text-center" },
-                          [
-                            _vm._v(
-                              "\n                        Comienza a twittear sin limites.\n                    "
-                            )
-                          ]
-                        )
-                      ]
-                    )
-                  ]
-                )
-              ],
-              2
+      _c(
+        "div",
+        [
+          _vm._l(_vm.twits, function(twit, index) {
+            return _c(
+              "router-link",
+              {
+                key: twit.id + "_" + index,
+                staticClass: "link-twit",
+                attrs: {
+                  to: {
+                    name: "twit-show",
+                    params: {
+                      username: twit.relationships.user.username,
+                      twit_id: twit.id
+                    }
+                  }
+                }
+              },
+              [_c("BaseTwit", { attrs: { twit: twit } })],
+              1
             )
-      ])
+          }),
+          _vm._v(" "),
+          _c(
+            "infinite-loading",
+            { attrs: { spinner: "waveDots" }, on: { infinite: _vm.get_twits } },
+            [
+              _c("div", { attrs: { slot: "no-more" }, slot: "no-more" }),
+              _vm._v(" "),
+              _c("div", { attrs: { slot: "no-results" }, slot: "no-results" })
+            ]
+          )
+        ],
+        2
+      )
     ],
     1
   )
@@ -50610,24 +50640,10 @@ var render = function() {
                             slot: "no-more"
                           }),
                           _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              attrs: { slot: "no-results" },
-                              slot: "no-results"
-                            },
-                            [
-                              _c(
-                                "h1",
-                                { staticClass: "text-center text-muted mb-0" },
-                                [
-                                  _vm._v(
-                                    "\n                            No hay twits\n                        "
-                                  )
-                                ]
-                              )
-                            ]
-                          )
+                          _c("div", {
+                            attrs: { slot: "no-results" },
+                            slot: "no-results"
+                          })
                         ]
                       )
                     ],
@@ -67071,7 +67087,6 @@ var app = new Vue({
           twit: e.twit
         }
       };
-      console.log(e);
       _store_index__WEBPACK_IMPORTED_MODULE_3__["default"].commit("notification/ADD_NOTIFICATION", notification);
       _store_index__WEBPACK_IMPORTED_MODULE_3__["default"].commit("twit/ADD_TWIT", e.twit);
     });
@@ -68490,8 +68505,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   },
   actions: {
     catch_errors: function catch_errors(_ref, err) {
-      var state = _ref.state,
-          commit = _ref.commit;
+      var commit = _ref.commit;
       var data = err.response.data;
       var status = err.response.status;
 
@@ -68714,6 +68728,18 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../routes */ "./resources/js/routes/index.js");
+
+
+function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   namespaced: true,
   state: {
@@ -68726,7 +68752,8 @@ __webpack_require__.r(__webpack_exports__);
     twit: {},
     twits: [],
     page: 1,
-    loading: false
+    loading: false,
+    loading_comment: false
   },
   mutations: {
     SET_TWIT: function SET_TWIT(state, twit) {
@@ -68735,14 +68762,30 @@ __webpack_require__.r(__webpack_exports__);
     ADD_TWIT: function ADD_TWIT(state, twit) {
       state.twits.unshift(twit);
     },
+    REMOVE_TWIT: function REMOVE_TWIT(state, twit) {
+      if (state.twits.length > 0) {
+        state.twits = state.twits.filter(function (t) {
+          return t.id != twit.id;
+        });
+      }
+    },
     ADD_COMMENT: function ADD_COMMENT(state, comment) {
       state.twit.relationships.comments.unshift(comment);
+    },
+    REMOVE_COMMENT: function REMOVE_COMMENT(state, comment) {
+      state.twit.relationships.comments = state.twit.relationships.comments.filter(function (c) {
+        return c.id != comment.id;
+      });
+      state.twit.comments_count--;
     },
     SET_TWITS: function SET_TWITS(state, twits) {
       state.twits = state.twits.concat(twits);
     },
     SET_LOADING: function SET_LOADING(state, status) {
       state.loading = status;
+    },
+    SET_LOADING_COMMENT: function SET_LOADING_COMMENT(state, status) {
+      state.loading_comment = status;
     },
     CLEAN_FORM: function CLEAN_FORM(state) {
       state.form.twit = "";
@@ -68773,9 +68816,11 @@ __webpack_require__.r(__webpack_exports__);
       var state = _ref2.state,
           commit = _ref2.commit,
           dispatch = _ref2.dispatch;
+      commit("SET_LOADING", true);
       axios.post("twits", state.form).then(function (res) {
         commit("CLEAN_FORM");
         commit("ADD_TWIT", res.data.data);
+        commit("SET_LOADING", false);
       })["catch"](function (err) {
         dispatch("catch_errors", err, {
           root: true
@@ -68792,29 +68837,85 @@ __webpack_require__.r(__webpack_exports__);
         commit("SET_LOADING", false);
       });
     },
-    clean_twits: function clean_twits(_ref4) {
-      var commit = _ref4.commit;
+    destroy: function destroy(_ref4, twit) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var commit, rootState;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                commit = _ref4.commit, rootState = _ref4.rootState;
+                commit("REMOVE_TWIT", twit);
+
+                if (rootState.user.twits.length > 0) {
+                  rootState.user.twits = rootState.user.twits.filter(function (t) {
+                    return t.id != twit.id;
+                  });
+                }
+
+                if (_routes__WEBPACK_IMPORTED_MODULE_1__["default"].history.current.name == "twit-show") {
+                  _routes__WEBPACK_IMPORTED_MODULE_1__["default"].push({
+                    name: "home"
+                  });
+                }
+
+                _context.next = 6;
+                return axios["delete"]("twits/".concat(twit.id));
+
+              case 6:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    clean_twits: function clean_twits(_ref5) {
+      var commit = _ref5.commit;
       commit("CLEAN_TWITS");
     },
     // Agregar comments
-    show_modal: function show_modal(_ref5, twit) {
-      var commit = _ref5.commit;
+    show_modal: function show_modal(_ref6, twit) {
+      var commit = _ref6.commit;
       commit("SET_TWIT", twit);
       $("#modal_comment").modal("show");
     },
-    close_modal: function close_modal(_ref6) {
-      var commit = _ref6.commit;
+    close_modal: function close_modal(_ref7) {
+      _objectDestructuringEmpty(_ref7);
+
       $("#modal_comment").modal("hide");
     },
-    create_comment: function create_comment(_ref7, twit) {
-      var state = _ref7.state,
-          commit = _ref7.commit;
+    create_comment: function create_comment(_ref8, twit) {
+      var state = _ref8.state,
+          commit = _ref8.commit;
+      commit("SET_LOADING_COMMENT", true);
       axios.post("twits/".concat(twit.id, "/comments"), state.comment_form).then(function (res) {
         commit("CLEAN_COMMENT");
         commit("ADD_COMMENT", res.data.data);
         twit.comments_count++;
         $("#modal_comment").modal("hide");
+        commit("SET_LOADING_COMMENT", false);
       });
+    },
+    destroy_comment: function destroy_comment(_ref9, comment) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var commit;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                commit = _ref9.commit;
+                commit("REMOVE_COMMENT", comment);
+                _context2.next = 4;
+                return axios["delete"]("twits/".concat(comment.twit_id, "/comments/").concat(comment.id));
+
+              case 4:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     }
   }
 });
@@ -69535,8 +69636,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\laravel-homestead\twitapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\laravel-homestead\twitapp\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\twitapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\twitapp\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -18,6 +18,15 @@
                     </span>
                     <span class="ml-2" v-text="comment.created_at"></span>
                 </router-link>
+                <div v-if="comment.user_id == user_auth.id" class="btn-destroy">
+                    <button
+                        type="button"
+                        class="btn"
+                        @click.prevent="destroy_comment(comment)"
+                    >
+                        <i class="far fa-trash-alt"></i>
+                    </button>
+                </div>
             </div>
             <div class="content-text py-1" v-text="comment.content"></div>
             <div class="footer">
@@ -28,7 +37,14 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
 export default {
-    props: ["comment"]
+    props: ["comment"],
+    computed: {
+        ...mapState("user", ["user_auth"])
+    },
+    methods: {
+        ...mapActions("twit", ["destroy_comment"])
+    }
 };
 </script>

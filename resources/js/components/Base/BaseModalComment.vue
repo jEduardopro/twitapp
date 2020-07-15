@@ -49,7 +49,8 @@
                         type="button"
                         :disabled="
                             !comment_form.comment ||
-                                comment_form.comment.length > 280
+                                comment_form.comment.length > 280 ||
+                                loading_comment
                         "
                         @click="create_comment(twit)"
                         class="btn twit-btn btn-primary"
@@ -67,7 +68,7 @@ import { mapState, mapActions } from "vuex";
 export default {
     computed: {
         ...mapState("user", ["user_auth"]),
-        ...mapState("twit", ["twit", "comment_form"])
+        ...mapState("twit", ["twit", "comment_form", "loading_comment"])
     },
     methods: {
         ...mapActions("twit", ["create_comment", "close_modal"])

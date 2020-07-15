@@ -65,7 +65,6 @@ const app = new Vue({
                         twit: e.twit
                     }
                 };
-                console.log(e);
                 store.commit("notification/ADD_NOTIFICATION", notification);
                 store.commit("twit/ADD_TWIT", e.twit);
             }

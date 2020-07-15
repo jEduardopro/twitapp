@@ -20,7 +20,7 @@ const store = new Vuex.Store({
         }
     },
     actions: {
-        catch_errors({ state, commit }, err) {
+        catch_errors({ commit }, err) {
             const data = err.response.data;
             const status = err.response.status;
             switch (status) {

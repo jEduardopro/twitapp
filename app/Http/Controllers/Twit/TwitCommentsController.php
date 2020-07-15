@@ -33,8 +33,8 @@ class TwitCommentsController extends Controller
      * @param  \App\Models\Twit  $twit
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Twit $twit)
+    public function destroy(Twit $twit, $comment_id)
     {
-        $twit->comments()->where('user_id', auth()->id())->delete();
+        $twit->comments()->where('id', $comment_id)->delete();
     }
 }

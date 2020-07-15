@@ -16,13 +16,27 @@
                     </span>
                     <span class="ml-2" v-text="twit.created_at"></span>
                 </router-link>
+                <template v-if="!hide_buttons">
+                    <div
+                        v-if="twit.user_id == user_auth.id"
+                        class="btn-destroy"
+                    >
+                        <button
+                            type="button"
+                            class="btn"
+                            @click.prevent="destroy(twit)"
+                        >
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </template>
             </div>
             <div class="content-text py-1" v-text="twit.content"></div>
             <div class="footer" v-if="!hide_buttons">
                 <div class="btn-comment mr-3">
                     <button
                         type="button"
-                        class="btn btn-comment"
+                        class="btn"
                         @click.prevent="show_modal(twit)"
                     >
                         <i class="far fa-comment"></i>
@@ -41,11 +55,14 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 export default {
     props: ["twit", "hide_buttons"],
+    computed: {
+        ...mapState("user", ["user_auth"])
+    },
     methods: {
-        ...mapActions("twit", ["show_modal"])
+        ...mapActions("twit", ["show_modal", "destroy"])
     },
     mounted() {
         Echo.channel(`twits-${this.twit.id}-likes`).listen(

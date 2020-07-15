@@ -22,21 +22,25 @@
     .body {
         width: 90%;
 
-        .header a {
-            font-weight: bold;
-            font-size: $fs-md;
+        .header {
+            position: relative;
 
-            &:hover {
-                text-decoration: none;
+            a {
+                font-weight: bold;
+                font-size: $fs-md;
 
-                strong {
-                    text-decoration: underline;
+                &:hover {
+                    text-decoration: none;
+
+                    strong {
+                        text-decoration: underline;
+                    }
                 }
-            }
 
-            span {
-                color: $gray;
-                font-weight: normal;
+                span {
+                    color: $gray;
+                    font-weight: normal;
+                }
             }
         }
 
@@ -54,7 +58,8 @@
 }
 
 .btn-comment,
-.btn-like {
+.btn-like,
+.btn-destroy {
     display: flex;
     align-items: center;
 
@@ -85,8 +90,17 @@
     }
 }
 
+.btn-destroy {
+    position: absolute;
+    left: auto;
+    right: 2px;
+    top: 5px;
+    width: 20px;
+    height: 20px;
+}
+
 .btn-comment:hover {
-    .btn.btn-comment {
+    .btn {
         i {
             color: $blue;
         }
@@ -98,7 +112,7 @@
 }
 
 .btn-like:hover {
-    .btn.btn-like {
+    .btn {
         i {
             color: $pink;
         }
@@ -106,5 +120,13 @@
 
     span {
         color: $pink;
+    }
+}
+
+.btn-destroy:hover {
+    .btn {
+        i {
+            color: $red;
+        }
     }
 }

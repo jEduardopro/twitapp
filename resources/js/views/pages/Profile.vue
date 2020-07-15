@@ -110,11 +110,7 @@
                         "
                     >
                         <div slot="no-more"></div>
-                        <div slot="no-results">
-                            <h1 class="text-center text-muted mb-0">
-                                No hay twits
-                            </h1>
-                        </div>
+                        <div slot="no-results"></div>
                     </infinite-loading>
                 </div>
             </template>
